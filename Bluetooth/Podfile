@@ -7,6 +7,7 @@ target 'Bluetooth' do
 
 pod 'AFNetworking'
 pod 'Masonry'
+pod 'ReactiveCocoa'
 
 end
 

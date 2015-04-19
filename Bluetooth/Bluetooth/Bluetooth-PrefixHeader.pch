@@ -16,5 +16,6 @@
 
 #import "UIFont+Bluetooth.h"
 #import "NSData+Bluetooth.h"
+#import "ReactiveCocoa.h"
 
 #endif
