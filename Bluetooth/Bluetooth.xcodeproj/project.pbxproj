@@ -10,12 +10,27 @@
 		07F26F5B18D6CDD7D3FB47C1 /* libPods-Bluetooth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 947C71A65AB8827BDAC39AD1 /* libPods-Bluetooth.a */; };
 		9C1E75171AE077470047D04E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E75161AE077470047D04E /* main.m */; };
 		9C1E751A1AE077470047D04E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E75191AE077470047D04E /* AppDelegate.m */; };
-		9C1E751D1AE077470047D04E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E751C1AE077470047D04E /* ViewController.m */; };
 		9C1E75201AE077470047D04E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C1E751E1AE077470047D04E /* Main.storyboard */; };
 		9C1E75221AE077470047D04E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C1E75211AE077470047D04E /* Images.xcassets */; };
 		9C1E75251AE077470047D04E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C1E75231AE077470047D04E /* LaunchScreen.xib */; };
 		9C1E75311AE077470047D04E /* BluetoothTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E75301AE077470047D04E /* BluetoothTests.m */; };
 		9C3200491AE27C3B003721CF /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3200481AE27C3B003721CF /* CoreBluetooth.framework */; };
+		9C32004F1AE3F188003721CF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C32004E1AE3F188003721CF /* ViewController.m */; };
+		9C3200531AE3F1FF003721CF /* UIFont+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3200521AE3F1FF003721CF /* UIFont+Bluetooth.m */; };
+		9C3200631AE3F3D4003721CF /* Sketchnote Text Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C3200561AE3F3D4003721CF /* Sketchnote Text Regular.otf */; };
+		9C3200641AE3F3D4003721CF /* SourceSansPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C3200571AE3F3D4003721CF /* SourceSansPro-Black.ttf */; };
+		9C3200651AE3F3D4003721CF /* SourceSansPro-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C3200581AE3F3D4003721CF /* SourceSansPro-BlackItalic.ttf */; };
+		9C3200661AE3F3D4003721CF /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C3200591AE3F3D4003721CF /* SourceSansPro-Bold.ttf */; };
+		9C3200671AE3F3D4003721CF /* SourceSansPro-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C32005A1AE3F3D4003721CF /* SourceSansPro-BoldItalic.ttf */; };
+		9C3200681AE3F3D4003721CF /* SourceSansPro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C32005B1AE3F3D4003721CF /* SourceSansPro-ExtraLight.ttf */; };
+		9C3200691AE3F3D4003721CF /* SourceSansPro-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C32005C1AE3F3D4003721CF /* SourceSansPro-ExtraLightItalic.ttf */; };
+		9C32006A1AE3F3D4003721CF /* SourceSansPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C32005D1AE3F3D4003721CF /* SourceSansPro-Italic.ttf */; };
+		9C32006B1AE3F3D4003721CF /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C32005E1AE3F3D4003721CF /* SourceSansPro-Light.ttf */; };
+		9C32006C1AE3F3D4003721CF /* SourceSansPro-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C32005F1AE3F3D4003721CF /* SourceSansPro-LightItalic.ttf */; };
+		9C32006D1AE3F3D4003721CF /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C3200601AE3F3D4003721CF /* SourceSansPro-Regular.ttf */; };
+		9C32006E1AE3F3D4003721CF /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C3200611AE3F3D4003721CF /* SourceSansPro-Semibold.ttf */; };
+		9C32006F1AE3F3D4003721CF /* SourceSansPro-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C3200621AE3F3D4003721CF /* SourceSansPro-SemiboldItalic.ttf */; };
+		9C3200721AE3F43A003721CF /* NSData+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3200711AE3F43A003721CF /* NSData+Bluetooth.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +51,6 @@
 		9C1E75161AE077470047D04E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9C1E75181AE077470047D04E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9C1E75191AE077470047D04E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9C1E751B1AE077470047D04E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9C1E751C1AE077470047D04E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9C1E751F1AE077470047D04E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C1E75211AE077470047D04E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9C1E75241AE077470047D04E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -45,6 +58,26 @@
 		9C1E752F1AE077470047D04E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C1E75301AE077470047D04E /* BluetoothTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BluetoothTests.m; sourceTree = "<group>"; };
 		9C3200481AE27C3B003721CF /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		9C32004D1AE3F188003721CF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9C32004E1AE3F188003721CF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9C3200511AE3F1FF003721CF /* UIFont+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Bluetooth.h"; sourceTree = "<group>"; };
+		9C3200521AE3F1FF003721CF /* UIFont+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Bluetooth.m"; sourceTree = "<group>"; };
+		9C3200561AE3F3D4003721CF /* Sketchnote Text Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sketchnote Text Regular.otf"; sourceTree = "<group>"; };
+		9C3200571AE3F3D4003721CF /* SourceSansPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Black.ttf"; sourceTree = "<group>"; };
+		9C3200581AE3F3D4003721CF /* SourceSansPro-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BlackItalic.ttf"; sourceTree = "<group>"; };
+		9C3200591AE3F3D4003721CF /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		9C32005A1AE3F3D4003721CF /* SourceSansPro-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BoldItalic.ttf"; sourceTree = "<group>"; };
+		9C32005B1AE3F3D4003721CF /* SourceSansPro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-ExtraLight.ttf"; sourceTree = "<group>"; };
+		9C32005C1AE3F3D4003721CF /* SourceSansPro-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		9C32005D1AE3F3D4003721CF /* SourceSansPro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Italic.ttf"; sourceTree = "<group>"; };
+		9C32005E1AE3F3D4003721CF /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
+		9C32005F1AE3F3D4003721CF /* SourceSansPro-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-LightItalic.ttf"; sourceTree = "<group>"; };
+		9C3200601AE3F3D4003721CF /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		9C3200611AE3F3D4003721CF /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
+		9C3200621AE3F3D4003721CF /* SourceSansPro-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		9C3200701AE3F43A003721CF /* NSData+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Bluetooth.h"; sourceTree = "<group>"; };
+		9C3200711AE3F43A003721CF /* NSData+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Bluetooth.m"; sourceTree = "<group>"; };
+		9C3200731AE3F6FA003721CF /* Bluetooth-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bluetooth-PrefixHeader.pch"; sourceTree = "<group>"; };
 		B36F6CACB97035D430073360 /* Pods-Bluetooth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bluetooth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bluetooth/Pods-Bluetooth.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,10 +133,12 @@
 		9C1E75131AE077470047D04E /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				9C3200541AE3F3D4003721CF /* Resources */,
+				9C32004A1AE3F16E003721CF /* Controllers */,
+				9C32004B1AE3F16E003721CF /* Categories */,
+				9C32004C1AE3F16E003721CF /* Services */,
 				9C1E75181AE077470047D04E /* AppDelegate.h */,
 				9C1E75191AE077470047D04E /* AppDelegate.m */,
-				9C1E751B1AE077470047D04E /* ViewController.h */,
-				9C1E751C1AE077470047D04E /* ViewController.m */,
 				9C1E751E1AE077470047D04E /* Main.storyboard */,
 				9C1E75211AE077470047D04E /* Images.xcassets */,
 				9C1E75231AE077470047D04E /* LaunchScreen.xib */,
@@ -117,6 +152,7 @@
 			children = (
 				9C1E75151AE077470047D04E /* Info.plist */,
 				9C1E75161AE077470047D04E /* main.m */,
+				9C3200731AE3F6FA003721CF /* Bluetooth-PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -136,6 +172,70 @@
 				9C1E752F1AE077470047D04E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9C32004A1AE3F16E003721CF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9C32004D1AE3F188003721CF /* ViewController.h */,
+				9C32004E1AE3F188003721CF /* ViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9C32004B1AE3F16E003721CF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9C3200511AE3F1FF003721CF /* UIFont+Bluetooth.h */,
+				9C3200521AE3F1FF003721CF /* UIFont+Bluetooth.m */,
+				9C3200701AE3F43A003721CF /* NSData+Bluetooth.h */,
+				9C3200711AE3F43A003721CF /* NSData+Bluetooth.m */,
+			);
+			name = Categories;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C32004C1AE3F16E003721CF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9C3200501AE3F1A2003721CF /* Bluetooth */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9C3200501AE3F1A2003721CF /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		9C3200541AE3F3D4003721CF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9C3200551AE3F3D4003721CF /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9C3200551AE3F3D4003721CF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9C3200561AE3F3D4003721CF /* Sketchnote Text Regular.otf */,
+				9C3200571AE3F3D4003721CF /* SourceSansPro-Black.ttf */,
+				9C3200581AE3F3D4003721CF /* SourceSansPro-BlackItalic.ttf */,
+				9C3200591AE3F3D4003721CF /* SourceSansPro-Bold.ttf */,
+				9C32005A1AE3F3D4003721CF /* SourceSansPro-BoldItalic.ttf */,
+				9C32005B1AE3F3D4003721CF /* SourceSansPro-ExtraLight.ttf */,
+				9C32005C1AE3F3D4003721CF /* SourceSansPro-ExtraLightItalic.ttf */,
+				9C32005D1AE3F3D4003721CF /* SourceSansPro-Italic.ttf */,
+				9C32005E1AE3F3D4003721CF /* SourceSansPro-Light.ttf */,
+				9C32005F1AE3F3D4003721CF /* SourceSansPro-LightItalic.ttf */,
+				9C3200601AE3F3D4003721CF /* SourceSansPro-Regular.ttf */,
+				9C3200611AE3F3D4003721CF /* SourceSansPro-Semibold.ttf */,
+				9C3200621AE3F3D4003721CF /* SourceSansPro-SemiboldItalic.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		A8264DFFDCEBA048FDAD36FB /* Frameworks */ = {
@@ -230,9 +330,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C3200691AE3F3D4003721CF /* SourceSansPro-ExtraLightItalic.ttf in Resources */,
+				9C32006A1AE3F3D4003721CF /* SourceSansPro-Italic.ttf in Resources */,
+				9C3200651AE3F3D4003721CF /* SourceSansPro-BlackItalic.ttf in Resources */,
+				9C32006D1AE3F3D4003721CF /* SourceSansPro-Regular.ttf in Resources */,
+				9C32006B1AE3F3D4003721CF /* SourceSansPro-Light.ttf in Resources */,
 				9C1E75201AE077470047D04E /* Main.storyboard in Resources */,
+				9C3200631AE3F3D4003721CF /* Sketchnote Text Regular.otf in Resources */,
+				9C3200681AE3F3D4003721CF /* SourceSansPro-ExtraLight.ttf in Resources */,
+				9C3200671AE3F3D4003721CF /* SourceSansPro-BoldItalic.ttf in Resources */,
 				9C1E75251AE077470047D04E /* LaunchScreen.xib in Resources */,
+				9C32006F1AE3F3D4003721CF /* SourceSansPro-SemiboldItalic.ttf in Resources */,
+				9C3200641AE3F3D4003721CF /* SourceSansPro-Black.ttf in Resources */,
+				9C3200661AE3F3D4003721CF /* SourceSansPro-Bold.ttf in Resources */,
 				9C1E75221AE077470047D04E /* Images.xcassets in Resources */,
+				9C32006C1AE3F3D4003721CF /* SourceSansPro-LightItalic.ttf in Resources */,
+				9C32006E1AE3F3D4003721CF /* SourceSansPro-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,9 +396,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C1E751D1AE077470047D04E /* ViewController.m in Sources */,
+				9C32004F1AE3F188003721CF /* ViewController.m in Sources */,
 				9C1E751A1AE077470047D04E /* AppDelegate.m in Sources */,
+				9C3200721AE3F43A003721CF /* NSData+Bluetooth.m in Sources */,
 				9C1E75171AE077470047D04E /* main.m in Sources */,
+				9C3200531AE3F1FF003721CF /* UIFont+Bluetooth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,9 +528,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$SRCROOT/Bluetooth/Bluetooth-PrefixHeader.pch";
 				INFOPLIST_FILE = Bluetooth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -425,9 +543,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$SRCROOT/Bluetooth/Bluetooth-PrefixHeader.pch";
 				INFOPLIST_FILE = Bluetooth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
