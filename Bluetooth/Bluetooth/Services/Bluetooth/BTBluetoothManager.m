@@ -15,11 +15,15 @@
 @implementation BTBluetoothManager
 {
     dispatch_queue_t _central_queue;
+    dispatch_queue_t _peripherals_connect_queue;
+    
     NSMutableDictionary *_discoveried_peripherals;
     NSMutableDictionary *_connected_peripherals;
     
     NSLock *_discoveried_peripherals_lock;
     NSLock *_connected_peripherals_lock;
+    
+    NSTimer *_jobTimer;
 }
 
 + (BTBluetoothManager *)sharedInstance
@@ -36,6 +40,8 @@
 {
     if (self = [super init]) {
         _central_queue = dispatch_queue_create("com.bluetooth.centralmanager", DISPATCH_QUEUE_CONCURRENT);
+        _peripherals_connect_queue = dispatch_queue_create("com.bluetooth.peripheralsconnect", DISPATCH_QUEUE_SERIAL);
+        
         self.cbCentralManager = [[CBCentralManager alloc] initWithDelegate:self queue:_central_queue options:nil];
         
         _discoveried_peripherals = [[NSMutableDictionary alloc] init];
@@ -43,6 +49,8 @@
         
         _connected_peripherals = [[NSMutableDictionary alloc] init];
         _connected_peripherals_lock = [[NSLock alloc] init];
+        
+        _jobTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(runningPeripheralConnectJob:) userInfo:nil repeats:YES];
     }
     
     return self;
@@ -86,6 +94,22 @@
     return services;
 }
 
+- (void)runningPeripheralConnectJob:(id)timer
+{
+    dispatch_async(_peripherals_connect_queue, ^{
+        if (_discoveried_peripherals.count > 0) {
+            NSUInteger randomIndex = rand() % _discoveried_peripherals.count;
+            [_discoveried_peripherals_lock lock];
+            CBPeripheral *peripheral = [_discoveried_peripherals.allValues objectAtIndex:randomIndex];
+            [_discoveried_peripherals removeObjectForKey:peripheral.identifier.UUIDString];
+            [_discoveried_peripherals_lock unlock];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.cbCentralManager connectPeripheral:peripheral options:nil];
+            }];
+        }
+    });
+}
+
 #pragma mark CBCentralManagerDelegate
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
@@ -94,6 +118,7 @@
     NSLog(@"%@", log);
 #endif
 }
+
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
@@ -106,7 +131,6 @@
         [_discoveried_peripherals_lock lock];
         [_discoveried_peripherals setObject:peripheral forKey:peripheral.identifier.UUIDString];
         [_discoveried_peripherals_lock unlock];
-        [self.cbCentralManager connectPeripheral:peripheral options:nil];
     }];
 }
 
@@ -158,7 +182,7 @@
     [_connected_peripherals_lock unlock];
     
     [_discoveried_peripherals_lock lock];
-    [_discoveried_peripherals removeObjectForKey:peripheral.identifier.UUIDString];
+    [_discoveried_peripherals setObject:peripheral forKey:peripheral.identifier.UUIDString];
     [_discoveried_peripherals_lock unlock];
 }
 

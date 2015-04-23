@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface BTBluetoothManager : NSObject
-
++ (BTBluetoothManager *)sharedInstance;
+- (void)start;
+- (void)stop;
 @end
