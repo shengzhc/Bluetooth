@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import <CoreBluetooth/CoreBluetooth.h>
 
 @interface ViewController () <CBCentralManagerDelegate, CBPeripheralDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *startButton;

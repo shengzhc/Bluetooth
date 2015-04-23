@@ -35,6 +35,8 @@
 		9C3200791AE40849003721CF /* BTDeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3200781AE40849003721CF /* BTDeviceListViewController.m */; };
 		9C32007E1AE408A7003721CF /* BTDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C32007D1AE408A7003721CF /* BTDeviceTableViewCell.m */; };
 		9C3200811AE408D2003721CF /* BTTableViewCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3200801AE408D2003721CF /* BTTableViewCellFactory.m */; };
+		9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */; };
+		9CF17BA91AE8AA8300831B16 /* BTBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF17BA81AE8AA8300831B16 /* BTBluetoothManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,10 @@
 		9C32007D1AE408A7003721CF /* BTDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDeviceTableViewCell.m; sourceTree = "<group>"; };
 		9C32007F1AE408D2003721CF /* BTTableViewCellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTableViewCellFactory.h; sourceTree = "<group>"; };
 		9C3200801AE408D2003721CF /* BTTableViewCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTableViewCellFactory.m; sourceTree = "<group>"; };
+		9CD08DA01AE9A6DE0051D4F5 /* CBUUID+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+Bluetooth.h"; sourceTree = "<group>"; };
+		9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+Bluetooth.m"; sourceTree = "<group>"; };
+		9CF17BA71AE8AA8300831B16 /* BTBluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBluetoothManager.h; sourceTree = "<group>"; };
+		9CF17BA81AE8AA8300831B16 /* BTBluetoothManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBluetoothManager.m; sourceTree = "<group>"; };
 		B36F6CACB97035D430073360 /* Pods-Bluetooth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bluetooth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bluetooth/Pods-Bluetooth.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +211,8 @@
 				9C3200521AE3F1FF003721CF /* UIFont+Bluetooth.m */,
 				9C3200701AE3F43A003721CF /* NSData+Bluetooth.h */,
 				9C3200711AE3F43A003721CF /* NSData+Bluetooth.m */,
+				9CD08DA01AE9A6DE0051D4F5 /* CBUUID+Bluetooth.h */,
+				9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */,
 			);
 			name = Categories;
 			path = Extensions;
@@ -223,6 +231,8 @@
 			children = (
 				9C3200741AE3F828003721CF /* Operation.h */,
 				9C3200751AE3F828003721CF /* Operation.m */,
+				9CF17BA71AE8AA8300831B16 /* BTBluetoothManager.h */,
+				9CF17BA81AE8AA8300831B16 /* BTBluetoothManager.m */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -433,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C32004F1AE3F188003721CF /* ViewController.m in Sources */,
+				9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */,
 				9C1E751A1AE077470047D04E /* AppDelegate.m in Sources */,
 				9C3200811AE408D2003721CF /* BTTableViewCellFactory.m in Sources */,
 				9C3200791AE40849003721CF /* BTDeviceListViewController.m in Sources */,
@@ -440,6 +451,7 @@
 				9C3200721AE3F43A003721CF /* NSData+Bluetooth.m in Sources */,
 				9C3200761AE3F828003721CF /* Operation.m in Sources */,
 				9C1E75171AE077470047D04E /* main.m in Sources */,
+				9CF17BA91AE8AA8300831B16 /* BTBluetoothManager.m in Sources */,
 				9C3200531AE3F1FF003721CF /* UIFont+Bluetooth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
