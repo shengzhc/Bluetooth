@@ -8,16 +8,18 @@
 
 #import "BTDeviceListTableViewCell.h"
 
+@interface BTDeviceListTableViewCell ()
+
+@end
+
 @implementation BTDeviceListTableViewCell
 
 - (void)awakeFromNib
 {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
+    [super awakeFromNib];
+    self.nameLabel.font = [UIFont bluetoothFontOfSize:24.0];
+    self.currTempLabel.font = [UIFont bluetoothFontOfSize:24.0];
+    self.targetTempLabel.font = [UIFont bluetoothFontOfSize:12.0];
 }
 
 @end

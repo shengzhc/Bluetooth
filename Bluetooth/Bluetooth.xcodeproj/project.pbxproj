@@ -37,6 +37,10 @@
 		9C3200811AE408D2003721CF /* BTTableViewCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3200801AE408D2003721CF /* BTTableViewCellFactory.m */; };
 		9C685AAC1AEAB196001DDC80 /* BTDeviceListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AAB1AEAB196001DDC80 /* BTDeviceListDataSource.m */; };
 		9C685AB01AEAB6C3001DDC80 /* BTDeviceListDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AAF1AEAB6C3001DDC80 /* BTDeviceListDelegate.m */; };
+		9C685AB61AEAF0F9001DDC80 /* bg_galaxy_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C685AB21AEAF0F9001DDC80 /* bg_galaxy_02.jpg */; };
+		9C685AB71AEAF0F9001DDC80 /* bg_galaxy_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C685AB31AEAF0F9001DDC80 /* bg_galaxy_01.jpg */; };
+		9C685AB81AEAF0F9001DDC80 /* bg_galaxy_03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C685AB41AEAF0F9001DDC80 /* bg_galaxy_03.jpg */; };
+		9C685AB91AEAF0F9001DDC80 /* bg_galaxy_04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C685AB51AEAF0F9001DDC80 /* bg_galaxy_04.jpg */; };
 		9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */; };
 		9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA41AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m */; };
 		9CF17BA91AE8AA8300831B16 /* BTBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF17BA81AE8AA8300831B16 /* BTBluetoothManager.m */; };
@@ -100,6 +104,10 @@
 		9C685AAD1AEAB262001DDC80 /* BTConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTConstants.h; sourceTree = "<group>"; };
 		9C685AAE1AEAB6C3001DDC80 /* BTDeviceListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDeviceListDelegate.h; sourceTree = "<group>"; };
 		9C685AAF1AEAB6C3001DDC80 /* BTDeviceListDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDeviceListDelegate.m; sourceTree = "<group>"; };
+		9C685AB21AEAF0F9001DDC80 /* bg_galaxy_02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_galaxy_02.jpg; sourceTree = "<group>"; };
+		9C685AB31AEAF0F9001DDC80 /* bg_galaxy_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_galaxy_01.jpg; sourceTree = "<group>"; };
+		9C685AB41AEAF0F9001DDC80 /* bg_galaxy_03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_galaxy_03.jpg; sourceTree = "<group>"; };
+		9C685AB51AEAF0F9001DDC80 /* bg_galaxy_04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_galaxy_04.jpg; sourceTree = "<group>"; };
 		9CD08DA01AE9A6DE0051D4F5 /* CBUUID+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+Bluetooth.h"; sourceTree = "<group>"; };
 		9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+Bluetooth.m"; sourceTree = "<group>"; };
 		9CD08DA31AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBLEServiceCharacteristicMapper.h; sourceTree = "<group>"; };
@@ -254,6 +262,7 @@
 		9C3200541AE3F3D4003721CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9C685AB11AEAF0E9001DDC80 /* Images */,
 				9C3200551AE3F3D4003721CF /* Fonts */,
 			);
 			path = Resources;
@@ -307,6 +316,17 @@
 				9C685AAF1AEAB6C3001DDC80 /* BTDeviceListDelegate.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		9C685AB11AEAF0E9001DDC80 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9C685AB21AEAF0F9001DDC80 /* bg_galaxy_02.jpg */,
+				9C685AB31AEAF0F9001DDC80 /* bg_galaxy_01.jpg */,
+				9C685AB41AEAF0F9001DDC80 /* bg_galaxy_03.jpg */,
+				9C685AB51AEAF0F9001DDC80 /* bg_galaxy_04.jpg */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		A8264DFFDCEBA048FDAD36FB /* Frameworks */ = {
@@ -401,6 +421,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C685AB91AEAF0F9001DDC80 /* bg_galaxy_04.jpg in Resources */,
+				9C685AB71AEAF0F9001DDC80 /* bg_galaxy_01.jpg in Resources */,
 				9C3200691AE3F3D4003721CF /* SourceSansPro-ExtraLightItalic.ttf in Resources */,
 				9C32006A1AE3F3D4003721CF /* SourceSansPro-Italic.ttf in Resources */,
 				9C3200651AE3F3D4003721CF /* SourceSansPro-BlackItalic.ttf in Resources */,
@@ -408,12 +430,14 @@
 				9C32006B1AE3F3D4003721CF /* SourceSansPro-Light.ttf in Resources */,
 				9C1E75201AE077470047D04E /* Main.storyboard in Resources */,
 				9C3200631AE3F3D4003721CF /* Sketchnote Text Regular.otf in Resources */,
+				9C685AB61AEAF0F9001DDC80 /* bg_galaxy_02.jpg in Resources */,
 				9C3200681AE3F3D4003721CF /* SourceSansPro-ExtraLight.ttf in Resources */,
 				9C3200671AE3F3D4003721CF /* SourceSansPro-BoldItalic.ttf in Resources */,
 				9C1E75251AE077470047D04E /* LaunchScreen.xib in Resources */,
 				9C32006F1AE3F3D4003721CF /* SourceSansPro-SemiboldItalic.ttf in Resources */,
 				9C3200641AE3F3D4003721CF /* SourceSansPro-Black.ttf in Resources */,
 				9C3200661AE3F3D4003721CF /* SourceSansPro-Bold.ttf in Resources */,
+				9C685AB81AEAF0F9001DDC80 /* bg_galaxy_03.jpg in Resources */,
 				9C1E75221AE077470047D04E /* Images.xcassets in Resources */,
 				9C32006C1AE3F3D4003721CF /* SourceSansPro-LightItalic.ttf in Resources */,
 				9C32006E1AE3F3D4003721CF /* SourceSansPro-Semibold.ttf in Resources */,

@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet BTDeviceListDataSource *dataSource;
 @property (strong, nonatomic) IBOutlet BTDeviceListDelegate *delegate;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @end
 
@@ -36,7 +37,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[BTBluetoothManager sharedInstance] start];
+//    [[BTBluetoothManager sharedInstance] start];
 }
 
 - (void)didReceiveLogNotification:(NSNotification *)notification

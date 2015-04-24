@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BTDeviceListTableViewCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currTempLabel;
+@property (weak, nonatomic) IBOutlet UILabel *targetTempLabel;
 @end
