@@ -1,5 +1,5 @@
 //
-//  BTDeviceTableViewCell.h
+//  BTDeviceListTableViewCell.h
 //  Bluetooth
 //
 //  Created by Shengzhe Chen on 4/19/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTDeviceTableViewCell : UITableViewCell
+@interface BTDeviceListTableViewCell : UITableViewCell
 
 @end

@@ -89,7 +89,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BTDeviceTableViewCellIdentifier" rowHeight="266" id="pha-hn-70Y" customClass="BTDeviceTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BTDeviceListTableViewCellIdentifier" rowHeight="266" id="pha-hn-70Y" customClass="BTDeviceListTableViewCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pha-hn-70Y" id="pMe-9k-PJe">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -99,7 +99,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="mvf-fz-jBK" id="TA8-Ij-CyT"/>
+                                    <outlet property="delegate" destination="8Y2-zC-XnK" id="nLY-CZ-kN5"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -116,11 +116,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataSource" destination="mvf-fz-jBK" id="05j-Hm-FCf"/>
+                        <outlet property="delegate" destination="8Y2-zC-XnK" id="l9p-7H-aNz"/>
                         <outlet property="textView" destination="OXN-Z6-Oh3" id="j4E-hh-q7O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIa-xB-SrT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="mvf-fz-jBK" customClass="BTDeviceListDataSource"/>
+                <customObject id="8Y2-zC-XnK" customClass="BTDeviceListDelegate"/>
             </objects>
             <point key="canvasLocation" x="609" y="398"/>
         </scene>

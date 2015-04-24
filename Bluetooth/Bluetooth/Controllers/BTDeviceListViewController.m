@@ -7,8 +7,14 @@
 //
 
 #import "BTDeviceListViewController.h"
+#import "BTDeviceListDataSource.h"
+#import "BTDeviceListDelegate.h"
 
 @interface BTDeviceListViewController ()
+
+@property (strong, nonatomic) IBOutlet BTDeviceListDataSource *dataSource;
+@property (strong, nonatomic) IBOutlet BTDeviceListDelegate *delegate;
+
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @end
 

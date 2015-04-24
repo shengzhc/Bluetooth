@@ -7,12 +7,13 @@
 //
 
 #import "BTTableViewCellFactory.h"
+#import "BTDeviceListTableViewCell.h"
 
 NSString *stringFromBTTableViewCellType(BTTableViewCellType type)
 {
     switch (type) {
-        case kBTDeviceTableViewCell:
-            return @"BTDeviceTableViewCellIdentifier";
+        case kBTDeviceListTableViewCell:
+            return @"BTDeviceListTableViewCellIdentifier";
             break;
         case kDefault:
             return nil;
