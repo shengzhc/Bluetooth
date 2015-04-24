@@ -141,8 +141,6 @@
         if ([characteristic.UUID.UUIDString isEqualToString:@"2A90"]) {
             self.textView.text = [NSString stringWithFormat:@"%@%@\n", self.textView.text, [NSString stringWithFormat:@"Sending read to %@", characteristic]];
             [self.connectedPeripheral readValueForCharacteristic:characteristic];
-//            CBMutableCharacteristic *reading = [[CBMutableCharacteristic alloc] initWithType:characteristic.UUID properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyNotifyEncryptionRequired value:nil permissions:CBAttributePermissionsReadEncryptionRequired];
-//            [self.connectedPeripheral readValueForCharacteristic:reading];
         }
     }
 }

@@ -20,4 +20,6 @@
 #import "NSData+Bluetooth.h"
 #import "ReactiveCocoa.h"
 
+#import "BTBluetoothManager.h"
+
 #endif

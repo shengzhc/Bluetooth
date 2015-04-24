@@ -7,7 +7,7 @@
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewControllerIdentifier" id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -70,7 +70,7 @@
         <!--Device List View Controller-->
         <scene sceneID="9hc-hf-Dvc">
             <objects>
-                <viewController id="ySD-H3-Lm5" customClass="BTDeviceListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BTDeviceListViewControllerIdentifier" id="ySD-H3-Lm5" customClass="BTDeviceListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GLN-vb-di3"/>
                         <viewControllerLayoutGuide type="bottom" id="Iws-r9-FvX"/>
@@ -79,6 +79,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXN-Z6-Oh3">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="266" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="18O-hw-94N">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -92,18 +98,29 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mvf-fz-jBK" id="TA8-Ij-CyT"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="18O-hw-94N" firstAttribute="leading" secondItem="PfH-T9-YqB" secondAttribute="leading" id="G3N-dw-axb"/>
+                            <constraint firstItem="OXN-Z6-Oh3" firstAttribute="top" secondItem="PfH-T9-YqB" secondAttribute="top" id="InO-5F-IhH"/>
                             <constraint firstItem="18O-hw-94N" firstAttribute="top" secondItem="PfH-T9-YqB" secondAttribute="top" id="WP1-nr-Bno"/>
+                            <constraint firstItem="OXN-Z6-Oh3" firstAttribute="leading" secondItem="PfH-T9-YqB" secondAttribute="leading" id="dCl-hy-LVm"/>
                             <constraint firstAttribute="trailing" secondItem="18O-hw-94N" secondAttribute="trailing" id="juU-7b-WVj"/>
                             <constraint firstAttribute="bottom" secondItem="18O-hw-94N" secondAttribute="bottom" id="l0I-Sr-yDv"/>
+                            <constraint firstAttribute="bottom" secondItem="OXN-Z6-Oh3" secondAttribute="bottom" id="uuZ-Ve-hHP"/>
+                            <constraint firstAttribute="trailing" secondItem="OXN-Z6-Oh3" secondAttribute="trailing" id="yzT-0l-6ff"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="OXN-Z6-Oh3" id="j4E-hh-q7O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIa-xB-SrT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="mvf-fz-jBK" customClass="BTDeviceListDataSource"/>
             </objects>
             <point key="canvasLocation" x="609" y="398"/>
         </scene>

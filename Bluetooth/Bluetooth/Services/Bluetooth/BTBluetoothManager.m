@@ -109,6 +109,7 @@
 {
 #if DEBUG
     NSString *log = [NSString stringWithFormat:@"centralManagerDidUpdateState: %ld", (long)central.state];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
 }
@@ -118,6 +119,7 @@
 {
 #if DEBUG
     NSString *log = [NSString stringWithFormat:@"didDiscoverPeripheral: %@, %@", peripheral.name, peripheral.identifier.UUIDString];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
     
@@ -132,6 +134,7 @@
 {
 #if DEBUG
     NSString *log = [NSString stringWithFormat:@"didConnectPeripheral: %@, %@", peripheral.name, peripheral.identifier.UUIDString];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
     
@@ -160,6 +163,7 @@
 {
 #if DEBUG
     NSString *log = [NSString stringWithFormat:@"didFailToConnectPeripheral: %@, %@, %@", peripheral.name, peripheral.identifier.UUIDString, error];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
 }
@@ -168,6 +172,7 @@
 {
 #if DEBUG
     NSString *log = [NSString stringWithFormat:@"didDisconnectPeripheral: %@, %@, %@", peripheral.name, peripheral.identifier.UUIDString, error];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
     peripheral.delegate = nil;
@@ -185,6 +190,7 @@
 {
 #if DEBUG
     NSString *log = [NSString stringWithFormat:@"didDiscoverServices: %@, %@, %@", peripheral.name, peripheral.services, error];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
 
@@ -199,6 +205,7 @@
 {
 #if DEBUG
     NSString *log = [NSString stringWithFormat:@"didDiscoverCharacteristicsForService: %@, %@, %@", service.UUID.UUIDString, service.characteristics, error];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
 
@@ -213,6 +220,7 @@
 {
 #if DEBUG
     NSString *log = [NSString stringWithFormat:@"didReadValueForCharacteristic: %@: %@, %@, %@", characteristic.service.UUID.UUIDString, characteristic.UUID.UUIDString, characteristic.value, error];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
     
@@ -227,6 +235,7 @@
 {
 #if DEBUG
     NSString *log = [NSString stringWithFormat:@"didWriteValueForCharacteristic: %@: %@, %@", characteristic.service.UUID.UUIDString, characteristic.UUID.UUIDString, error];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
 }
