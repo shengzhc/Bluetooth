@@ -19,6 +19,7 @@
 
 #import "UIFont+Bluetooth.h"
 #import "NSData+Bluetooth.h"
+#import "UIColor+Bluetooth.h"
 
 #import "BTTableViewCellFactory.h"
 #import "BTBluetoothManager.h"

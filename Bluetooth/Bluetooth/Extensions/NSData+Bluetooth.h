@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTDataPackage.h"
 
 @interface NSData (Bluetooth)
 
 + (NSData *)dataFromHexString:(NSString *)hexString;
+- (BTDataPackage *)dataPackage;
 
 @end

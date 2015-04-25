@@ -25,6 +25,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[BTTableViewCellFactory shareInstance] tableView:tableView withBTCellType:kBTDeviceListTableViewCell withIndexPath:indexPath];
+    
+    if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
+        BTDeviceListTableViewCell *deviceListCell = (BTDeviceListTableViewCell *)cell;
+        deviceListCell.currTempLabel.text = [NSString stringWithFormat:@"%@\u00B0F", deviceListCell.currTempLabel.text];
+        
+        //
+        //    NSString *fahrenheit = @"\u00B0F";
+        //    NSString *celsius = @"\u00B0C";
+    }
     return cell;
 }
 

@@ -18,7 +18,7 @@
 {
     [super awakeFromNib];
     self.nameLabel.font = [UIFont bluetoothFontOfSize:20.0];
-    self.currTempLabel.font = [UIFont bluetoothFontOfSize:24.0];
+    self.currTempLabel.font = [UIFont lightBluetoothFontOfSize:28.0];
     self.targetTempLabel.font = [UIFont bluetoothFontOfSize:12.0];
 }
 

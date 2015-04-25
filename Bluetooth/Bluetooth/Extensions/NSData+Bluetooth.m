@@ -36,4 +36,20 @@
     return data;
 }
 
+- (BTDataPackage *)dataPackage
+{
+    NSUInteger bytes = self.length;
+    assert(bytes%2 == 0 && bytes > 0);
+    NSUInteger numberOfBranches = bytes/2;
+    NSMutableArray *branchBlocks = [[NSMutableArray alloc] initWithCapacity:numberOfBranches];
+    for (NSUInteger branchIndex = 0; branchIndex < numberOfBranches; branchIndex++) {
+        UInt16 buffer = 0;
+        [self getBytes:&buffer range:NSMakeRange(branchIndex * 2, sizeof(UInt16))];
+        BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:buffer & 0x0F temperature:buffer & 0xF0];
+        [branchBlocks addObject:branch];
+    }
+    
+    return [[BTDataPackage alloc] initWithBranchBlocks:branchBlocks];
+}
+
 @end
