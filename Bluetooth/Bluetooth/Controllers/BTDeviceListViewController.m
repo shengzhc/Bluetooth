@@ -7,25 +7,25 @@
 //
 
 #import "BTDeviceListViewController.h"
-#import "BTDeviceListDataSource.h"
-#import "BTDeviceListDelegate.h"
+#import "BTDeviceListSupporter.h"
 
-@interface BTDeviceListViewController ()
-
-@property (strong, nonatomic) IBOutlet BTDeviceListDataSource *dataSource;
-@property (strong, nonatomic) IBOutlet BTDeviceListDelegate *delegate;
-
+@interface BTDeviceListViewController () < BTDeviceListSupporterDelegate >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet BTDeviceListSupporter *tableSupporter;
 @end
 
 @implementation BTDeviceListViewController
+{
+    BOOL _isHandlingLongPress;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.textView.textAlignment = NSTextAlignmentLeft;
     self.textView.font = [UIFont bluetoothFontOfSize:14.0];
+    self.tableSupporter.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -45,6 +45,17 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         self.textView.text = [NSString stringWithFormat:@"%@\n%@", self.textView.text, notification.object];
     }];
+}
+
+#pragma mark BTDeviceListSupporterDelegate
+- (void)handleLongPressWithSender:(id)sender
+{
+    if (_isHandlingLongPress) {
+        return;
+    }
+    
+    _isHandlingLongPress = YES;
+    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 @end

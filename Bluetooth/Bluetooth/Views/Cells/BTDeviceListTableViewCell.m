@@ -62,12 +62,21 @@
     return targetTemperatureDegreeAttributes;
 }
 
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     self.nameLabel.font = [UIFont bluetoothFontOfSize:22.0];
-    self.nameLabel.textAlignment = NSTextAlignmentCenter;
+    self.nameLabel.textAlignment = NSTextAlignmentLeft;
+    UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestureRecognizer:)];
+    longPressGestureRecognizer.minimumPressDuration = 1.0f;
+    [self.contentView addGestureRecognizer:longPressGestureRecognizer];
+}
+
+- (void)handleLongPressGestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    if ([self.delegate respondsToSelector:@selector(deviceListTableViewCell:handleLongPressGestureRecognizer:)]) {
+        [self.delegate deviceListTableViewCell:self handleLongPressGestureRecognizer:gestureRecognizer];
+    }
 }
 
 @end

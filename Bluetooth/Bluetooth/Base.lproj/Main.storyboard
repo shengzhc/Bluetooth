@@ -93,7 +93,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="18O-hw-94N">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="18O-hw-94N">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -141,8 +141,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="mvf-fz-jBK" id="ISL-4y-8X2"/>
-                                    <outlet property="delegate" destination="8Y2-zC-XnK" id="nLY-CZ-kN5"/>
+                                    <outlet property="dataSource" destination="mvf-fz-jBK" id="Bds-CZ-TpW"/>
+                                    <outlet property="delegate" destination="mvf-fz-jBK" id="ylc-Do-n5z"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -167,15 +167,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dataSource" destination="mvf-fz-jBK" id="05j-Hm-FCf"/>
-                        <outlet property="delegate" destination="8Y2-zC-XnK" id="l9p-7H-aNz"/>
+                        <outlet property="tableSupporter" destination="mvf-fz-jBK" id="rSV-00-fdr"/>
                         <outlet property="tableView" destination="18O-hw-94N" id="jrP-uU-yQg"/>
                         <outlet property="textView" destination="OXN-Z6-Oh3" id="j4E-hh-q7O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIa-xB-SrT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="mvf-fz-jBK" customClass="BTDeviceListDataSource"/>
-                <customObject id="8Y2-zC-XnK" customClass="BTDeviceListDelegate"/>
+                <customObject id="mvf-fz-jBK" customClass="BTDeviceListSupporter"/>
             </objects>
             <point key="canvasLocation" x="609" y="398"/>
         </scene>

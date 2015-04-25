@@ -34,8 +34,7 @@
 		9C3200791AE40849003721CF /* BTDeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3200781AE40849003721CF /* BTDeviceListViewController.m */; };
 		9C32007E1AE408A7003721CF /* BTDeviceListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C32007D1AE408A7003721CF /* BTDeviceListTableViewCell.m */; };
 		9C3200811AE408D2003721CF /* BTTableViewCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3200801AE408D2003721CF /* BTTableViewCellFactory.m */; };
-		9C685AAC1AEAB196001DDC80 /* BTDeviceListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AAB1AEAB196001DDC80 /* BTDeviceListDataSource.m */; };
-		9C685AB01AEAB6C3001DDC80 /* BTDeviceListDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AAF1AEAB6C3001DDC80 /* BTDeviceListDelegate.m */; };
+		9C685AAC1AEAB196001DDC80 /* BTDeviceListSupporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AAB1AEAB196001DDC80 /* BTDeviceListSupporter.m */; };
 		9C685AB61AEAF0F9001DDC80 /* bg_galaxy_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C685AB21AEAF0F9001DDC80 /* bg_galaxy_02.jpg */; };
 		9C685AB71AEAF0F9001DDC80 /* bg_galaxy_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C685AB31AEAF0F9001DDC80 /* bg_galaxy_01.jpg */; };
 		9C685AB81AEAF0F9001DDC80 /* bg_galaxy_03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C685AB41AEAF0F9001DDC80 /* bg_galaxy_03.jpg */; };
@@ -100,11 +99,9 @@
 		9C32007D1AE408A7003721CF /* BTDeviceListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDeviceListTableViewCell.m; sourceTree = "<group>"; };
 		9C32007F1AE408D2003721CF /* BTTableViewCellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTableViewCellFactory.h; sourceTree = "<group>"; };
 		9C3200801AE408D2003721CF /* BTTableViewCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTableViewCellFactory.m; sourceTree = "<group>"; };
-		9C685AAA1AEAB196001DDC80 /* BTDeviceListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDeviceListDataSource.h; sourceTree = "<group>"; };
-		9C685AAB1AEAB196001DDC80 /* BTDeviceListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDeviceListDataSource.m; sourceTree = "<group>"; };
+		9C685AAA1AEAB196001DDC80 /* BTDeviceListSupporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDeviceListSupporter.h; sourceTree = "<group>"; };
+		9C685AAB1AEAB196001DDC80 /* BTDeviceListSupporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDeviceListSupporter.m; sourceTree = "<group>"; };
 		9C685AAD1AEAB262001DDC80 /* BTConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTConstants.h; sourceTree = "<group>"; };
-		9C685AAE1AEAB6C3001DDC80 /* BTDeviceListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDeviceListDelegate.h; sourceTree = "<group>"; };
-		9C685AAF1AEAB6C3001DDC80 /* BTDeviceListDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDeviceListDelegate.m; sourceTree = "<group>"; };
 		9C685AB21AEAF0F9001DDC80 /* bg_galaxy_02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_galaxy_02.jpg; sourceTree = "<group>"; };
 		9C685AB31AEAF0F9001DDC80 /* bg_galaxy_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_galaxy_01.jpg; sourceTree = "<group>"; };
 		9C685AB41AEAF0F9001DDC80 /* bg_galaxy_03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_galaxy_03.jpg; sourceTree = "<group>"; };
@@ -321,10 +318,8 @@
 		9C685AA91AEAB174001DDC80 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9C685AAA1AEAB196001DDC80 /* BTDeviceListDataSource.h */,
-				9C685AAB1AEAB196001DDC80 /* BTDeviceListDataSource.m */,
-				9C685AAE1AEAB6C3001DDC80 /* BTDeviceListDelegate.h */,
-				9C685AAF1AEAB6C3001DDC80 /* BTDeviceListDelegate.m */,
+				9C685AAA1AEAB196001DDC80 /* BTDeviceListSupporter.h */,
+				9C685AAB1AEAB196001DDC80 /* BTDeviceListSupporter.m */,
 				9C685ABA1AEAFE3D001DDC80 /* BTDataPackage.h */,
 				9C685ABB1AEAFE3D001DDC80 /* BTDataPackage.m */,
 			);
@@ -508,7 +503,7 @@
 				9C685ABC1AEAFE3D001DDC80 /* BTDataPackage.m in Sources */,
 				9C32004F1AE3F188003721CF /* ViewController.m in Sources */,
 				9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */,
-				9C685AAC1AEAB196001DDC80 /* BTDeviceListDataSource.m in Sources */,
+				9C685AAC1AEAB196001DDC80 /* BTDeviceListSupporter.m in Sources */,
 				9C1E751A1AE077470047D04E /* AppDelegate.m in Sources */,
 				9C3200811AE408D2003721CF /* BTTableViewCellFactory.m in Sources */,
 				9C3200791AE40849003721CF /* BTDeviceListViewController.m in Sources */,
@@ -519,7 +514,6 @@
 				9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */,
 				9C685ABF1AEB6D07001DDC80 /* UIColor+Bluetooth.m in Sources */,
 				9CF17BA91AE8AA8300831B16 /* BTBluetoothManager.m in Sources */,
-				9C685AB01AEAB6C3001DDC80 /* BTDeviceListDelegate.m in Sources */,
 				9C3200531AE3F1FF003721CF /* UIFont+Bluetooth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,6 +645,7 @@
 				Debug = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$SRCROOT/Bluetooth/Bluetooth-PrefixHeader.pch";
+				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INFOPLIST_FILE = Bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -668,6 +663,7 @@
 				Debug = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$SRCROOT/Bluetooth/Bluetooth-PrefixHeader.pch";
+				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INFOPLIST_FILE = Bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class BTDeviceListTableViewCell;
+@protocol BTDeviceListTableViewCellDelegate <NSObject>
+@optional
+- (void)deviceListTableViewCell:(BTDeviceListTableViewCell *)cell handleLongPressGestureRecognizer:(UILongPressGestureRecognizer *)longGestureRecognizer;
+@end
+
 @interface BTDeviceListTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentTemperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *targetTemperatureLabel;
+@property (weak, nonatomic) id< BTDeviceListTableViewCellDelegate > delegate;
 
 + (NSDictionary *)currentTemperatureTextAttributes;
 + (NSDictionary *)currentTemperatureDegreeAttributes;
