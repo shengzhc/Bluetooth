@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTDeviceListViewController : UIViewController
+@interface BTDeviceListViewController : UIViewController < UITableViewDataSource, UITableViewDelegate >
 
 @end

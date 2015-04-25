@@ -10,11 +10,9 @@
 
 @class BTDeviceListSupporter;
 @protocol BTDeviceListSupporterDelegate <NSObject>
-@optional
-- (void)handleLongPressWithSender:(id)sender;
 @end
 
-@interface BTDeviceListSupporter : NSObject < UITableViewDataSource, UITableViewDelegate >
+@interface BTDeviceListSupporter : NSObject < UITableViewDataSource >
 @property (weak, nonatomic) id < BTDeviceListSupporterDelegate > delegate;
-
+@property (weak, nonatomic) UITableView *tableView;
 @end

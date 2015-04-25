@@ -43,6 +43,9 @@
 		9C685ABF1AEB6D07001DDC80 /* UIColor+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685ABE1AEB6D07001DDC80 /* UIColor+Bluetooth.m */; };
 		9C685AC21AEC0148001DDC80 /* NSString+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AC11AEC0148001DDC80 /* NSString+Bluetooth.m */; };
 		9C685AC41AEC0484001DDC80 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C685AC31AEC0484001DDC80 /* CoreText.framework */; };
+		9C685AC81AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AC71AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.m */; };
+		9C685ACC1AEC4CAA001DDC80 /* BTAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685ACB1AEC4CAA001DDC80 /* BTAppState.m */; };
+		9C685AD21AEC59C8001DDC80 /* NSNumber+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AD11AEC59C8001DDC80 /* NSNumber+Bluetooth.m */; };
 		9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */; };
 		9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA41AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m */; };
 		9CF17BA91AE8AA8300831B16 /* BTBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF17BA81AE8AA8300831B16 /* BTBluetoothManager.m */; };
@@ -113,6 +116,12 @@
 		9C685AC01AEC0148001DDC80 /* NSString+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Bluetooth.h"; sourceTree = "<group>"; };
 		9C685AC11AEC0148001DDC80 /* NSString+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Bluetooth.m"; sourceTree = "<group>"; };
 		9C685AC31AEC0484001DDC80 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		9C685AC61AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDegreeUnitSwitchCell.h; sourceTree = "<group>"; };
+		9C685AC71AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDegreeUnitSwitchCell.m; sourceTree = "<group>"; };
+		9C685ACA1AEC4CAA001DDC80 /* BTAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAppState.h; sourceTree = "<group>"; };
+		9C685ACB1AEC4CAA001DDC80 /* BTAppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAppState.m; sourceTree = "<group>"; };
+		9C685AD01AEC59C8001DDC80 /* NSNumber+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Bluetooth.h"; sourceTree = "<group>"; };
+		9C685AD11AEC59C8001DDC80 /* NSNumber+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Bluetooth.m"; sourceTree = "<group>"; };
 		9CD08DA01AE9A6DE0051D4F5 /* CBUUID+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+Bluetooth.h"; sourceTree = "<group>"; };
 		9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+Bluetooth.m"; sourceTree = "<group>"; };
 		9CD08DA31AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBLEServiceCharacteristicMapper.h; sourceTree = "<group>"; };
@@ -175,6 +184,7 @@
 		9C1E75131AE077470047D04E /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				9C685AC91AEC4C9E001DDC80 /* Global */,
 				9C685AA91AEAB174001DDC80 /* Models */,
 				9C32007A1AE40879003721CF /* Views */,
 				9C3200541AE3F3D4003721CF /* Resources */,
@@ -243,6 +253,8 @@
 				9C685ABE1AEB6D07001DDC80 /* UIColor+Bluetooth.m */,
 				9C685AC01AEC0148001DDC80 /* NSString+Bluetooth.h */,
 				9C685AC11AEC0148001DDC80 /* NSString+Bluetooth.m */,
+				9C685AD01AEC59C8001DDC80 /* NSNumber+Bluetooth.h */,
+				9C685AD11AEC59C8001DDC80 /* NSNumber+Bluetooth.m */,
 			);
 			name = Categories;
 			path = Extensions;
@@ -299,6 +311,7 @@
 		9C32007A1AE40879003721CF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9C685AC51AEC4B27001DDC80 /* Controls */,
 				9C32007B1AE40889003721CF /* Cells */,
 			);
 			path = Views;
@@ -311,6 +324,8 @@
 				9C32007D1AE408A7003721CF /* BTDeviceListTableViewCell.m */,
 				9C32007F1AE408D2003721CF /* BTTableViewCellFactory.h */,
 				9C3200801AE408D2003721CF /* BTTableViewCellFactory.m */,
+				9C685AC61AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.h */,
+				9C685AC71AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -335,6 +350,22 @@
 				9C685AB51AEAF0F9001DDC80 /* bg_galaxy_04.jpg */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		9C685AC51AEC4B27001DDC80 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		9C685AC91AEC4C9E001DDC80 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				9C685ACA1AEC4CAA001DDC80 /* BTAppState.h */,
+				9C685ACB1AEC4CAA001DDC80 /* BTAppState.m */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		A8264DFFDCEBA048FDAD36FB /* Frameworks */ = {
@@ -500,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C685AD21AEC59C8001DDC80 /* NSNumber+Bluetooth.m in Sources */,
 				9C685ABC1AEAFE3D001DDC80 /* BTDataPackage.m in Sources */,
 				9C32004F1AE3F188003721CF /* ViewController.m in Sources */,
 				9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */,
@@ -507,10 +539,12 @@
 				9C1E751A1AE077470047D04E /* AppDelegate.m in Sources */,
 				9C3200811AE408D2003721CF /* BTTableViewCellFactory.m in Sources */,
 				9C3200791AE40849003721CF /* BTDeviceListViewController.m in Sources */,
+				9C685AC81AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.m in Sources */,
 				9C32007E1AE408A7003721CF /* BTDeviceListTableViewCell.m in Sources */,
 				9C685AC21AEC0148001DDC80 /* NSString+Bluetooth.m in Sources */,
 				9C3200721AE3F43A003721CF /* NSData+Bluetooth.m in Sources */,
 				9C1E75171AE077470047D04E /* main.m in Sources */,
+				9C685ACC1AEC4CAA001DDC80 /* BTAppState.m in Sources */,
 				9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */,
 				9C685ABF1AEB6D07001DDC80 /* UIColor+Bluetooth.m in Sources */,
 				9CF17BA91AE8AA8300831B16 /* BTBluetoothManager.m in Sources */,

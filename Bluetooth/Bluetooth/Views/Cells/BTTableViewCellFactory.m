@@ -15,6 +15,8 @@ NSString *stringFromBTTableViewCellType(BTTableViewCellType type)
         case kBTDeviceListTableViewCell:
             return @"BTDeviceListTableViewCellIdentifier";
             break;
+        case kBTDegreeUnitSwitchCell:
+            return @"BTDegreeUnitSwitchCellIdentifier";
         case kDefault:
             return nil;
         default:
