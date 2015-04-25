@@ -10,6 +10,12 @@
 
 @interface BTDeviceListTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *currTempLabel;
-@property (weak, nonatomic) IBOutlet UILabel *targetTempLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentTemperatureLabel;
+@property (weak, nonatomic) IBOutlet UILabel *targetTemperatureLabel;
+
++ (NSDictionary *)currentTemperatureTextAttributes;
++ (NSDictionary *)currentTemperatureDegreeAttributes;
++ (NSDictionary *)targetTemperatureTextAttributes;
++ (NSDictionary *)targetTemperatureDegreeAttributes;
+
 @end

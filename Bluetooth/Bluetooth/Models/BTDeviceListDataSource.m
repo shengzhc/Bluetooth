@@ -28,12 +28,17 @@
     
     if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
         BTDeviceListTableViewCell *deviceListCell = (BTDeviceListTableViewCell *)cell;
-        deviceListCell.currTempLabel.text = [NSString stringWithFormat:@"%@\u00B0F", deviceListCell.currTempLabel.text];
+        deviceListCell.nameLabel.text = [NSString stringWithFormat:@"Branch_%@", @(indexPath.row)];
         
-        //
-        //    NSString *fahrenheit = @"\u00B0F";
-        //    NSString *celsius = @"\u00B0C";
+        NSMutableAttributedString *currentTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(rand()%40+10).stringValue attributes:[BTDeviceListTableViewCell currentTemperatureTextAttributes]];
+        [currentTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString celsius] attributes:[BTDeviceListTableViewCell currentTemperatureDegreeAttributes]]];
+        deviceListCell.currentTemperatureLabel.attributedText = currentTemperatureString;
+
+        NSMutableAttributedString *targetTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(rand()%40+10).stringValue attributes:[BTDeviceListTableViewCell targetTemperatureTextAttributes]];
+        [targetTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString celsius] attributes:[BTDeviceListTableViewCell targetTemperatureDegreeAttributes]]];
+        deviceListCell.targetTemperatureLabel.attributedText = targetTemperatureString;
     }
+    
     return cell;
 }
 

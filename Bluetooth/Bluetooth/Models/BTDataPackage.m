@@ -19,7 +19,6 @@
     return self;
 }
 
-
 @end
 
 @implementation BTDataPackage

@@ -14,12 +14,60 @@
 
 @implementation BTDeviceListTableViewCell
 
++ (NSDictionary *)currentTemperatureTextAttributes
+{
+    static NSDictionary *currentTemperatureTextAttributes = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        currentTemperatureTextAttributes = @{NSFontAttributeName: [UIFont lightBluetoothFontOfSize:36.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    });
+    
+    return currentTemperatureTextAttributes;
+}
+
++ (NSDictionary *)currentTemperatureDegreeAttributes
+{
+    static NSDictionary *currentTemperatureDegreeAttributes = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        currentTemperatureDegreeAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:16], NSForegroundColorAttributeName: [UIColor whiteColor], (NSString *)kCTSuperscriptAttributeName: @(2.0)};
+    });
+    
+    return currentTemperatureDegreeAttributes;
+}
+
++ (NSDictionary *)targetTemperatureTextAttributes
+{
+    static NSDictionary *targetTemperatureTextAttributes = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        targetTemperatureTextAttributes = @{NSFontAttributeName: [UIFont boldBluetoothFontOfSize:14], NSForegroundColorAttributeName: [UIColor semiBambooColor]};
+    });
+    
+    return targetTemperatureTextAttributes;
+}
+
++ (NSDictionary *)targetTemperatureDegreeAttributes
+{
+    static NSDictionary *targetTemperatureDegreeAttributes = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        targetTemperatureDegreeAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:8], NSForegroundColorAttributeName: [UIColor semiBambooColor], (NSString *)kCTSuperscriptAttributeName: @(1.0)};
+    });
+    
+    return targetTemperatureDegreeAttributes;
+}
+
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.nameLabel.font = [UIFont bluetoothFontOfSize:20.0];
-    self.currTempLabel.font = [UIFont lightBluetoothFontOfSize:28.0];
-    self.targetTempLabel.font = [UIFont bluetoothFontOfSize:12.0];
+    self.nameLabel.font = [UIFont bluetoothFontOfSize:22.0];
+    self.nameLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 @end

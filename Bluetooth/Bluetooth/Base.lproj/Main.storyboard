@@ -109,13 +109,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uG-PE-WgG" userLabel="currTempLabel">
-                                                    <rect key="frame" x="268" y="28" width="20" height="21"/>
+                                                    <rect key="frame" x="272" y="28" width="20" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CD0-hM-0AY" userLabel="targetTempLabel">
-                                                    <rect key="frame" x="286" y="14" width="20" height="21"/>
+                                                    <rect key="frame" x="296" y="19" width="20" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -125,18 +125,18 @@
                                             <constraints>
                                                 <constraint firstItem="Mti-cK-q5L" firstAttribute="leading" secondItem="pMe-9k-PJe" secondAttribute="leading" constant="14" id="6OQ-bL-kdx"/>
                                                 <constraint firstAttribute="centerY" secondItem="9uG-PE-WgG" secondAttribute="centerY" id="H3E-A4-zVL"/>
-                                                <constraint firstItem="CD0-hM-0AY" firstAttribute="top" secondItem="pMe-9k-PJe" secondAttribute="top" constant="14" id="KVp-23-ETt"/>
                                                 <constraint firstItem="9uG-PE-WgG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mti-cK-q5L" secondAttribute="trailing" priority="980" constant="14" id="ZKs-kt-mKL"/>
                                                 <constraint firstAttribute="centerY" secondItem="Mti-cK-q5L" secondAttribute="centerY" id="b45-NT-9Ag"/>
-                                                <constraint firstAttribute="trailing" secondItem="CD0-hM-0AY" secondAttribute="trailing" constant="14" id="dbW-hh-O8t"/>
-                                                <constraint firstAttribute="trailing" secondItem="9uG-PE-WgG" secondAttribute="trailing" constant="32" id="po0-az-BQ6"/>
+                                                <constraint firstAttribute="trailing" secondItem="CD0-hM-0AY" secondAttribute="trailing" constant="4" id="dbW-hh-O8t"/>
+                                                <constraint firstItem="9uG-PE-WgG" firstAttribute="top" secondItem="CD0-hM-0AY" secondAttribute="bottom" constant="-12" id="lvh-yI-K5c"/>
+                                                <constraint firstItem="CD0-hM-0AY" firstAttribute="leading" secondItem="9uG-PE-WgG" secondAttribute="trailing" constant="4" id="txf-r8-Hsu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="currTempLabel" destination="9uG-PE-WgG" id="QYI-To-5p3"/>
+                                            <outlet property="currentTemperatureLabel" destination="9uG-PE-WgG" id="SX0-YQ-v9c"/>
                                             <outlet property="nameLabel" destination="Mti-cK-q5L" id="awK-uG-phh"/>
-                                            <outlet property="targetTempLabel" destination="CD0-hM-0AY" id="DbL-Zk-FAy"/>
+                                            <outlet property="targetTemperatureLabel" destination="CD0-hM-0AY" id="XZD-l2-Ndt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

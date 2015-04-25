@@ -42,6 +42,8 @@
 		9C685AB91AEAF0F9001DDC80 /* bg_galaxy_04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C685AB51AEAF0F9001DDC80 /* bg_galaxy_04.jpg */; };
 		9C685ABC1AEAFE3D001DDC80 /* BTDataPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685ABB1AEAFE3D001DDC80 /* BTDataPackage.m */; };
 		9C685ABF1AEB6D07001DDC80 /* UIColor+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685ABE1AEB6D07001DDC80 /* UIColor+Bluetooth.m */; };
+		9C685AC21AEC0148001DDC80 /* NSString+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AC11AEC0148001DDC80 /* NSString+Bluetooth.m */; };
+		9C685AC41AEC0484001DDC80 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C685AC31AEC0484001DDC80 /* CoreText.framework */; };
 		9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */; };
 		9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA41AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m */; };
 		9CF17BA91AE8AA8300831B16 /* BTBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF17BA81AE8AA8300831B16 /* BTBluetoothManager.m */; };
@@ -111,6 +113,9 @@
 		9C685ABB1AEAFE3D001DDC80 /* BTDataPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDataPackage.m; sourceTree = "<group>"; };
 		9C685ABD1AEB6D07001DDC80 /* UIColor+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Bluetooth.h"; sourceTree = "<group>"; };
 		9C685ABE1AEB6D07001DDC80 /* UIColor+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Bluetooth.m"; sourceTree = "<group>"; };
+		9C685AC01AEC0148001DDC80 /* NSString+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Bluetooth.h"; sourceTree = "<group>"; };
+		9C685AC11AEC0148001DDC80 /* NSString+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Bluetooth.m"; sourceTree = "<group>"; };
+		9C685AC31AEC0484001DDC80 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		9CD08DA01AE9A6DE0051D4F5 /* CBUUID+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+Bluetooth.h"; sourceTree = "<group>"; };
 		9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+Bluetooth.m"; sourceTree = "<group>"; };
 		9CD08DA31AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBLEServiceCharacteristicMapper.h; sourceTree = "<group>"; };
@@ -125,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C685AC41AEC0484001DDC80 /* CoreText.framework in Frameworks */,
 				9C3200491AE27C3B003721CF /* CoreBluetooth.framework in Frameworks */,
 				07F26F5B18D6CDD7D3FB47C1 /* libPods-Bluetooth.a in Frameworks */,
 			);
@@ -238,6 +244,8 @@
 				9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */,
 				9C685ABD1AEB6D07001DDC80 /* UIColor+Bluetooth.h */,
 				9C685ABE1AEB6D07001DDC80 /* UIColor+Bluetooth.m */,
+				9C685AC01AEC0148001DDC80 /* NSString+Bluetooth.h */,
+				9C685AC11AEC0148001DDC80 /* NSString+Bluetooth.m */,
 			);
 			name = Categories;
 			path = Extensions;
@@ -337,6 +345,7 @@
 		A8264DFFDCEBA048FDAD36FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C685AC31AEC0484001DDC80 /* CoreText.framework */,
 				9C3200481AE27C3B003721CF /* CoreBluetooth.framework */,
 				947C71A65AB8827BDAC39AD1 /* libPods-Bluetooth.a */,
 			);
@@ -504,6 +513,7 @@
 				9C3200811AE408D2003721CF /* BTTableViewCellFactory.m in Sources */,
 				9C3200791AE40849003721CF /* BTDeviceListViewController.m in Sources */,
 				9C32007E1AE408A7003721CF /* BTDeviceListTableViewCell.m in Sources */,
+				9C685AC21AEC0148001DDC80 /* NSString+Bluetooth.m in Sources */,
 				9C3200721AE3F43A003721CF /* NSData+Bluetooth.m in Sources */,
 				9C1E75171AE077470047D04E /* main.m in Sources */,
 				9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */,

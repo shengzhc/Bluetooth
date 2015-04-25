@@ -13,6 +13,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #import <CoreBluetooth/CoreBluetooth.h>
+#import <CoreText/CoreText.h>
 
 #import "Masonry.h"
 #import "ReactiveCocoa.h"
@@ -20,6 +21,7 @@
 #import "UIFont+Bluetooth.h"
 #import "NSData+Bluetooth.h"
 #import "UIColor+Bluetooth.h"
+#import "NSString+Bluetooth.h"
 
 #import "BTTableViewCellFactory.h"
 #import "BTBluetoothManager.h"
