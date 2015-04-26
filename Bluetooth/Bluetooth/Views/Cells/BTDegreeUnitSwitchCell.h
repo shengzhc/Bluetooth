@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BTDegreeUnitSwitchCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIButton *switchButton;
 @end

@@ -16,15 +16,9 @@
         self.branchNumber = branchNumber;
         self.branchTemperature = branchTemperature;
         self.branchTargetTemperature = NSUIntegerMax;
-        self.branchTargetTemperature = rand()%40+10;
+        self.branchTargetTemperature = arc4random()%20 + 10;
     }
     return self;
-}
-
-- (NSUInteger)branchTemperature
-{
-    BOOL isCelsius = [BTAppState sharedInstance].degreeUnitType == kBTDegreeCelsius;
-    return isCelsius ? _branchTemperature : [NSNumber convertNumberToFahrenheit:@(_branchTemperature)].integerValue;
 }
 
 - (NSUInteger)branchTargetTemperature
@@ -32,9 +26,8 @@
     if (_branchTargetTemperature == NSUIntegerMax) {
         return NSUIntegerMax;
     }
-    
-    BOOL isCelsius = [BTAppState sharedInstance].degreeUnitType == kBTDegreeCelsius;
-    return isCelsius ? _branchTemperature : [NSNumber convertNumberToFahrenheit:@(_branchTargetTemperature)].integerValue;
+
+    return _branchTargetTemperature;
 }
 
 @end

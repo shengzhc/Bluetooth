@@ -8,7 +8,9 @@
 
 #import "BTDeviceListViewController.h"
 #import "BTDeviceListSupporter.h"
+
 #import "BTDeviceListTableViewCell.h"
+#import "BTDegreeUnitSwitchCell.h"
 
 @interface BTDeviceListViewController () < BTDeviceListSupporterDelegate, BTDeviceListTableViewCellDelegate >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -59,7 +61,7 @@
                 [reloadIndexPaths addObject:[self.tableView indexPathForCell:cell]];
             }
         }
-        [self.tableView reloadRowsAtIndexPaths:reloadIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadRowsAtIndexPaths:reloadIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -79,6 +81,8 @@
     UITableViewCell *cell = [self.tableSupporter tableView:tableView cellForRowAtIndexPath:indexPath];
     if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
         ((BTDeviceListTableViewCell *)cell).delegate = self;
+    } else if ([cell isKindOfClass:[BTDegreeUnitSwitchCell class]]) {
+        ((BTDegreeUnitSwitchCell *)cell).switchButton.selected = [BTAppState sharedInstance].degreeUnitType == kBTDegreeCelsius ? NO : YES;
     }
     return cell;
 }

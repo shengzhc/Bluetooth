@@ -92,7 +92,7 @@
 {
     dispatch_async(_peripherals_connect_queue, ^{
         if (_discoveried_peripherals.count > 0) {
-            NSUInteger randomIndex = rand() % _discoveried_peripherals.count;
+            NSUInteger randomIndex = arc4random() % _discoveried_peripherals.count;
             [_discoveried_peripherals_lock lock];
             CBPeripheral *peripheral = [_discoveried_peripherals.allValues objectAtIndex:randomIndex];
             [_discoveried_peripherals removeObjectForKey:peripheral.identifier.UUIDString];

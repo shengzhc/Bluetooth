@@ -8,8 +8,7 @@
 
 #import "BTDegreeUnitSwitchCell.h"
 
-@interface BTDegreeUnitSwitchCell ()
-@property (weak, nonatomic) IBOutlet UIButton *switchButton;
+@interface BTDegreeUnitSwitchCell () < BTAppStateChangeApprovalProtocol >
 @end
 
 @implementation BTDegreeUnitSwitchCell
@@ -41,6 +40,7 @@
 - (IBAction)didSwitchButtonClicked:(id)sender
 {
     self.switchButton.selected = !self.switchButton.selected;
+    [[BTAppState sharedInstance] updateDegreeUnitTypeWithType:self.switchButton.selected ? kBTDegreeFahrenheit : kBTDegreeCelsius sender:self];
 }
 
 @end

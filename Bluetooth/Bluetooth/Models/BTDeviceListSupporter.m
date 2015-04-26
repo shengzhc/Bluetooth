@@ -20,7 +20,7 @@
     if (self = [super init]) {
         self.branches = [NSMutableArray new];
         for (NSUInteger index=1; index <= 5; index++) {
-            BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:index temperature:rand()%40+10];
+            BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:index temperature:arc4random()%20 + 10];
             [self.branches addObject:branch];
         }
     }
@@ -55,12 +55,20 @@
             BTDeviceListTableViewCell *deviceListCell = (BTDeviceListTableViewCell *)cell;
             deviceListCell.nameLabel.text = [NSString stringWithFormat:@"Branch_%@", @(branch.branchNumber)];
             
-            NSMutableAttributedString *currentTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(branch.branchTemperature).stringValue attributes:[BTDeviceListTableViewCell currentTemperatureTextAttributes]];
-            [currentTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString celsius] attributes:[BTDeviceListTableViewCell currentTemperatureDegreeAttributes]]];
-            deviceListCell.currentTemperatureLabel.attributedText = currentTemperatureString;
+            BOOL isCelsius = [BTAppState sharedInstance].degreeUnitType == kBTDegreeCelsius;
             
-            NSMutableAttributedString *targetTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(branch.branchTargetTemperature).stringValue attributes:[BTDeviceListTableViewCell targetTemperatureTextAttributes]];
-            [targetTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString celsius] attributes:[BTDeviceListTableViewCell targetTemperatureDegreeAttributes]]];
+            NSNumber *currentTemperature = isCelsius ? @(branch.branchTemperature) : [NSNumber convertNumberToFahrenheit:@(branch.branchTemperature)];
+            NSMutableAttributedString *currentTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(currentTemperature.integerValue).stringValue attributes:[BTDeviceListTableViewCell currentTemperatureTextAttributes]];
+            [currentTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:(isCelsius ? [NSString celsius] : [NSString fahrenheit]) attributes:[BTDeviceListTableViewCell currentTemperatureDegreeAttributes]]];
+            deviceListCell.currentTemperatureLabel.attributedText = currentTemperatureString;
+
+            NSString *targetTemperatureText = @"--";
+            if (branch.branchTargetTemperature != NSUIntegerMax) {
+                targetTemperatureText = isCelsius ? @(branch.branchTargetTemperature).stringValue : @([NSNumber convertNumberToFahrenheit:@(branch.branchTargetTemperature)].integerValue).stringValue;
+            }
+            
+            NSMutableAttributedString *targetTemperatureString = [[NSMutableAttributedString alloc] initWithString:targetTemperatureText attributes:[BTDeviceListTableViewCell targetTemperatureTextAttributes]];
+            [targetTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:(isCelsius ? [NSString celsius] : [NSString fahrenheit]) attributes:[BTDeviceListTableViewCell targetTemperatureDegreeAttributes]]];
             deviceListCell.targetTemperatureLabel.attributedText = targetTemperatureString;
         }
     } else if (indexPath.section == 1) {
