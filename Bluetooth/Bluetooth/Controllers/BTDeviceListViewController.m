@@ -30,25 +30,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.textView.textAlignment = NSTextAlignmentLeft;
-    self.textView.font = [UIFont bluetoothFontOfSize:14.0];
-    self.modalPresentationStyle = UIModalPresentationCustom;
-    
+    [self.textView setFont:[UIFont lightBluetoothFontOfSize:12.0f]];
+    [self.textView setTextColor:[UIColor whiteColor]];
+    self.textView.editable = NO;
+    self.textView.selectable = NO;
     self.tableSupporter.delegate = self;
     
+    self.modalPresentationStyle = UIModalPresentationCustom;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLogNotification:) name:@"DebugLogNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDegreeUnitChangedNotification:) name:kBTNotificationDegreeUnitDidChangeNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLogNotification:) name:@"DebugLogNotification" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [[BTBluetoothManager sharedInstance] start];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[BTBluetoothManager sharedInstance] start];
+    });
 }
 
 - (void)dealloc

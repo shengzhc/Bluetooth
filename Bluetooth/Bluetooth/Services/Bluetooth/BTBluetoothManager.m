@@ -9,7 +9,7 @@
 #import "BTBluetoothManager.h"
 #import "BTBLEServiceCharacteristicMapper.h"
 
-@interface BTBluetoothManager () <CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface BTBluetoothManager ()
 @property (strong, nonatomic) CBCentralManager *cbCentralManager;
 @end
 
@@ -19,11 +19,13 @@
     dispatch_queue_t _peripherals_connect_queue;
     
     NSLock *_discoveried_peripherals_lock;
+    NSLock *_connecting_peripherals_lock;
     NSLock *_connected_peripherals_lock;
     
     NSTimer *_jobTimer;
 
     NSMutableDictionary *_discoveried_peripherals;
+    NSMutableDictionary *_connecting_peripherals;
     NSMutableDictionary *_connected_peripherals;
     
     BTBLEServiceCharacteristicMapper *_serviceCharacteristicMapper;
@@ -42,6 +44,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
+        _serviceCharacteristicMapper = [[BTBLEServiceCharacteristicMapper alloc] init];
         _central_queue = dispatch_queue_create("com.bluetooth.centralmanager", DISPATCH_QUEUE_CONCURRENT);
         _peripherals_connect_queue = dispatch_queue_create("com.bluetooth.peripheralsconnect", DISPATCH_QUEUE_SERIAL);
         
@@ -50,15 +53,21 @@
         _discoveried_peripherals = [[NSMutableDictionary alloc] init];
         _discoveried_peripherals_lock = [[NSLock alloc] init];
         
+        _connecting_peripherals = [[NSMutableDictionary alloc] init];
+        _connecting_peripherals_lock = [[NSLock alloc] init];
+        
         _connected_peripherals = [[NSMutableDictionary alloc] init];
         _connected_peripherals_lock = [[NSLock alloc] init];
         
         _jobTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(runningPeripheralConnectJob:) userInfo:nil repeats:YES];
-        
-        _serviceCharacteristicMapper = [[BTBLEServiceCharacteristicMapper alloc] init];
     }
     
     return self;
+}
+
+- (void)log
+{
+    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 - (void)start
@@ -95,8 +104,10 @@
             NSUInteger randomIndex = arc4random() % _discoveried_peripherals.count;
             [_discoveried_peripherals_lock lock];
             CBPeripheral *peripheral = [_discoveried_peripherals.allValues objectAtIndex:randomIndex];
-            [_discoveried_peripherals removeObjectForKey:peripheral.identifier.UUIDString];
             [_discoveried_peripherals_lock unlock];
+            [_connecting_peripherals_lock lock];
+            [_connecting_peripherals setObject:peripheral forKey:peripheral.identifier.UUIDString];
+            [_connecting_peripherals_lock unlock];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.cbCentralManager connectPeripheral:peripheral options:nil];
             }];
@@ -113,7 +124,6 @@
     NSLog(@"%@", log);
 #endif
 }
-
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
@@ -137,6 +147,10 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
+    
+    [_connecting_peripherals_lock lock];
+    [_connecting_peripherals removeObjectForKey:peripheral.identifier.UUIDString];
+    [_connecting_peripherals_lock unlock];
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [_connected_peripherals_lock lock];
@@ -162,7 +176,7 @@
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
 #if DEBUG
-    NSString *log = [NSString stringWithFormat:@"didFailToConnectPeripheral: %@, %@, %@", peripheral.name, peripheral.identifier.UUIDString, error];
+    NSString *log = [NSString stringWithFormat:@"didFailToConnectPeripheral: %@, %@", peripheral.name, peripheral.identifier.UUIDString];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
@@ -171,7 +185,7 @@
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
 #if DEBUG
-    NSString *log = [NSString stringWithFormat:@"didDisconnectPeripheral: %@, %@, %@", peripheral.name, peripheral.identifier.UUIDString, error];
+    NSString *log = [NSString stringWithFormat:@"didDisconnectPeripheral: %@, %@", peripheral.name, peripheral.identifier.UUIDString];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
@@ -189,7 +203,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
 #if DEBUG
-    NSString *log = [NSString stringWithFormat:@"didDiscoverServices: %@, %@, %@", peripheral.name, peripheral.services, error];
+    NSString *log = [NSString stringWithFormat:@"didDiscoverServices: %@, %@", peripheral.name, peripheral.services];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
@@ -204,13 +218,13 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
 #if DEBUG
-    NSString *log = [NSString stringWithFormat:@"didDiscoverCharacteristicsForService: %@, %@, %@", service.UUID.UUIDString, service.characteristics, error];
+    NSString *log = [NSString stringWithFormat:@"didDiscoverCharacteristicsForService: %@, %@", service.UUID.UUIDString, service.characteristics];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
 
     for (CBCharacteristic *characteristic in service.characteristics) {
-        if ([characteristic.UUID.UUIDString isEqualToString:@"2A90"]) {
+        if ([[_serviceCharacteristicMapper readCharacteristicUUIDsForServiceUUIDString:service.UUID.UUIDString] containsObject:characteristic.UUID]) {
             [peripheral readValueForCharacteristic:characteristic];
         }
     }
@@ -219,13 +233,12 @@
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
 #if DEBUG
-    NSString *log = [NSString stringWithFormat:@"didReadValueForCharacteristic: %@: %@, %@, %@", characteristic.service.UUID.UUIDString, characteristic.UUID.UUIDString, characteristic.value, error];
+    NSString *log = [NSString stringWithFormat:@"didReadValueForCharacteristic: %@: %@, %@", characteristic.service.UUID.UUIDString, characteristic.UUID.UUIDString, characteristic.value];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
-    
     for (CBCharacteristic *writeCharacteristic in characteristic.service.characteristics) {
-        if ([writeCharacteristic.UUID.UUIDString isEqualToString:@"2A91"]) {
+        if ([[_serviceCharacteristicMapper writeCharacteristicUUIDsForServiceUUIDString:characteristic.service.UUID.UUIDString] containsObject:writeCharacteristic.UUID]) {
             [peripheral writeValue:[NSData dataFromHexString:@"0xAB"] forCharacteristic:writeCharacteristic type:CBCharacteristicWriteWithResponse];
         }
     }
@@ -234,7 +247,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
 #if DEBUG
-    NSString *log = [NSString stringWithFormat:@"didWriteValueForCharacteristic: %@: %@, %@", characteristic.service.UUID.UUIDString, characteristic.UUID.UUIDString, error];
+    NSString *log = [NSString stringWithFormat:@"didWriteValueForCharacteristic: %@: %@, %@", characteristic.service.UUID.UUIDString, characteristic.UUID.UUIDString, characteristic.value];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif

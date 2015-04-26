@@ -19,7 +19,7 @@
 {
     if (self = [super init]) {
         self.branches = [NSMutableArray new];
-        for (NSUInteger index=1; index <= 5; index++) {
+        for (NSUInteger index=1; index <= 4; index++) {
             BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:index temperature:arc4random()%20 + 10];
             [self.branches addObject:branch];
         }

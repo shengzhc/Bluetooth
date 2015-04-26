@@ -12,5 +12,7 @@
 
 - (NSArray *)supportedPeripheralServices;
 - (NSArray *)supportedCharacteristicForServiceUUIDString:(NSString *)uuidString;
+- (NSArray *)readCharacteristicUUIDsForServiceUUIDString:(NSString *)uuidString;
+- (NSArray *)writeCharacteristicUUIDsForServiceUUIDString:(NSString *)uuidString;
 
 @end

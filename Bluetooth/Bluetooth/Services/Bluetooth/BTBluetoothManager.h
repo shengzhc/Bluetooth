@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BTBluetoothManager : NSObject
+@interface BTBluetoothManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 + (BTBluetoothManager *)sharedInstance;
 - (void)start;
 - (void)stop;
+- (void)log;
 @end
