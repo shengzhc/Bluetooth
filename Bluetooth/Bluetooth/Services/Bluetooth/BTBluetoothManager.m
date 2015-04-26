@@ -207,10 +207,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
-
     for (CBService *service in peripheral.services) {
         if ([[_serviceCharacteristicMapper supportedPeripheralServices] containsObject:service.UUID]) {
-            [peripheral discoverCharacteristics:nil forService:service];
+            [peripheral discoverCharacteristics:[_serviceCharacteristicMapper supportedCharacteristicForServiceUUIDString:service.UUID.UUIDString] forService:service];
         }
     }
 }
@@ -237,11 +236,18 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DebugLogNotification" object:log];
     NSLog(@"%@", log);
 #endif
+    BTDataPackage *readingPackage = [characteristic.value dataPackage];
+    if (!readingPackage) {
+        BTBranchBlock *block = [[BTBranchBlock alloc] initWithBranchNumber:1 temperature:10];
+        readingPackage = [[BTDataPackage alloc] initWithBranchBlocks:@[block]];
+    }
+
+    BTBranchBlock *branch = readingPackage.branches[0];
+    branch.branchTargetTemperature = 0xAB;
+    
     for (CBCharacteristic *writeCharacteristic in characteristic.service.characteristics) {
         if ([[_serviceCharacteristicMapper writeCharacteristicUUIDsForServiceUUIDString:characteristic.service.UUID.UUIDString] containsObject:writeCharacteristic.UUID]) {
-            BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:1 temperature:10];
-            BTDataPackage *package = [[BTDataPackage alloc] initWithBranchBlocks:@[branch]];
-            [peripheral writeValue:[package dataPackageBytesData] forCharacteristic:writeCharacteristic type:CBCharacteristicWriteWithResponse];
+            [peripheral writeValue:[readingPackage dataPackageSendingBytesData] forCharacteristic:writeCharacteristic type:CBCharacteristicWriteWithResponse];
         }
     }
 }

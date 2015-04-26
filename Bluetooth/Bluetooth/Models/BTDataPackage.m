@@ -30,11 +30,12 @@
     return _branchTargetTemperature;
 }
 
-- (NSData *)branchBytesData
+- (NSData *)branchSendingBytesData
 {
     UInt16 bytes = 0x0000;
-    bytes |= ((self.branchNumber) << 4);
+    bytes |= ((self.branchNumber) << 8);
     bytes |= self.branchTargetTemperature;
+    NSLog(@"Hex value of char is 0x%02x", (unsigned int) bytes);
     return [NSData dataWithBytes:&bytes length:sizeof(UInt16)];
 }
 
@@ -50,12 +51,12 @@
     return self;
 }
 
-- (NSData *)dataPackageBytesData
+- (NSData *)dataPackageSendingBytesData
 {
     NSMutableData *bytes = [[NSMutableData alloc] init];
     for (NSUInteger index=0; index < self.branches.count; index++) {
         BTBranchBlock *branch = self.branches[index];
-        [bytes appendData:[branch branchBytesData]];
+        [bytes appendData:[branch branchSendingBytesData]];
     }
     return bytes;
 }
