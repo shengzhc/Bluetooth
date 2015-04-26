@@ -18,6 +18,6 @@
 IB_DESIGNABLE
 @interface BTTemperatureFanView : UIView
 @property (assign, nonatomic) IBInspectable NSUInteger lineWidth;
-@property (assign, nonatomic) double percentage;
+@property (assign, nonatomic) IBInspectable double percentage;
 @property (strong, nonatomic) NSArray *segments;
 @end

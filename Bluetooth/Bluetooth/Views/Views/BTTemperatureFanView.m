@@ -46,22 +46,36 @@
 - (void)_initialize
 {
     NSMutableArray *segments = [NSMutableArray new];
-    for (int i=0; i<4; i++) {
-        BTTemperatureFanSegment *segment = [[BTTemperatureFanSegment alloc] init];
-        segment.index = i;
-        segment.startLocation = 0.25*i;
-        segment.percentage = 0.25;
-        [segments addObject:segment];
-    }
+    BTTemperatureFanSegment *segment1 = [[BTTemperatureFanSegment alloc] init];
+    segment1.index = 1;
+    segment1.startLocation = 0;
+    segment1.percentage = 0.2;
+    segment1.color = [UIColor lightWaveColor];
+    [segments addObject:segment1];
+
+    BTTemperatureFanSegment *segment2 = [[BTTemperatureFanSegment alloc] init];
+    segment2.index = 2;
+    segment2.startLocation = 0.2;
+    segment2.percentage = 0.6;
+    segment2.color = [UIColor lightBambooColor];
+    [segments addObject:segment2];
+
+    BTTemperatureFanSegment *segment3 = [[BTTemperatureFanSegment alloc] init];
+    segment3.index = 3;
+    segment3.startLocation = 0.8;
+    segment3.percentage = 0.2;
+    segment3.color = [UIColor lightCoralColor];
+    [segments addObject:segment3];
+
     self.segments = segments;
 }
 
 - (void)setSegments:(NSArray *)segments
 {
-    self.segments = [segments sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    _segments = [segments sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return ((BTTemperatureFanSegment *)obj1).index > ((BTTemperatureFanSegment *)obj2).index;
     }];
-    CGFloat startAngle = M_PI_4, fullAngle = M_PI * 2 * 3;
+    CGFloat startAngle = M_PI_4 * 3, fullAngle = M_PI_2 * 3;
     for (BTTemperatureFanSegment *segment in self.segments) {
         segment.startAngle = startAngle + fullAngle * segment.startLocation;
         segment.endAngle = segment.startAngle + fullAngle * segment.percentage;
@@ -71,6 +85,7 @@
 - (void)drawRect:(CGRect)rect
 {
     CGRect myFrame = CGRectZero;
+    CGFloat alpha = 0.3f;
     CGFloat width = MAX(MIN(self.bounds.size.width, self.bounds.size.height) - self.lineWidth, 0);
     myFrame.size = CGSizeMake(width, width);
     myFrame.origin = CGPointMake((self.bounds.size.width - width)/2.0, (self.bounds.size.height - width)/2.0);
@@ -82,55 +97,62 @@
     if (self.segments.count > 0) {
         BTTemperatureFanSegment *firstSegment = self.segments.firstObject;
         UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:firstSegment.startAngle endAngle:firstSegment.endAngle clockwise:YES];
-        CGContextSetStrokeColorWithColor(context, [firstSegment.color colorWithAlphaComponent:0.5f].CGColor);
+        CGContextSetStrokeColorWithColor(context, [firstSegment.color colorWithAlphaComponent:alpha].CGColor);
         CGContextSetLineCap(context, kCGLineCapRound);
         CGContextAddPath(context, path.CGPath);
         CGContextDrawPath(context, kCGPathStroke);
+        
+        if (self.percentage >= firstSegment.startLocation) {
+            CGFloat endAngle = firstSegment.startAngle + MIN(1.0, (self.percentage-firstSegment.startLocation)/firstSegment.percentage) * (firstSegment.endAngle - firstSegment.startAngle);
+            
+            path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:firstSegment.startAngle endAngle:endAngle clockwise:YES];
+            
+            CGContextSetStrokeColorWithColor(context, firstSegment.color.CGColor);
+            CGContextSetLineCap(context, kCGLineCapRound);
+            CGContextAddPath(context, path.CGPath);
+            CGContextDrawPath(context, kCGPathStroke);
+        }
+    }
+    
+    if (self.segments.count > 1) {
+        BTTemperatureFanSegment *lastSegment = self.segments.lastObject;
+        UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:lastSegment.startAngle endAngle:lastSegment.endAngle clockwise:YES];
+        CGContextSetStrokeColorWithColor(context, [lastSegment.color colorWithAlphaComponent:alpha].CGColor);
+        CGContextSetLineCap(context, kCGLineCapRound);
+        CGContextAddPath(context, path.CGPath);
+        CGContextDrawPath(context, kCGPathStroke);
+        
+        if (self.percentage >= lastSegment.startLocation) {
+            CGFloat endAngle = lastSegment.startAngle + MIN(1.0, (self.percentage-lastSegment.startLocation)/lastSegment.percentage) * (lastSegment.endAngle - lastSegment.startAngle);
+            
+            path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:lastSegment.startAngle endAngle:endAngle clockwise:YES];
+            
+            CGContextSetStrokeColorWithColor(context, lastSegment.color.CGColor);
+            CGContextSetLineCap(context, kCGLineCapRound);
+            CGContextAddPath(context, path.CGPath);
+            CGContextDrawPath(context, kCGPathStroke);
+        }
     }
     
     for (NSUInteger index = 1; index < self.segments.count-1; index++) {
         BTTemperatureFanSegment *segment = self.segments[index];
         UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:segment.startAngle endAngle:segment.endAngle clockwise:YES];
-        CGContextSetStrokeColorWithColor(context, [segment.color colorWithAlphaComponent:0.5f].CGColor);
+        CGContextSetStrokeColorWithColor(context, [segment.color colorWithAlphaComponent:alpha].CGColor);
         CGContextSetLineCap(context, kCGLineCapButt);
         CGContextAddPath(context, path.CGPath);
         CGContextDrawPath(context, kCGPathStroke);
+        
+        if (self.percentage >= segment.startLocation) {
+            CGFloat endAngle = segment.startAngle + MIN(1.0, (self.percentage-segment.startLocation)/segment.percentage) * (segment.endAngle - segment.startAngle);
+            
+            path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:segment.startAngle endAngle:endAngle clockwise:YES];
+            
+            CGContextSetStrokeColorWithColor(context, segment.color.CGColor);
+            CGContextSetLineCap(context, self.percentage > (segment.startLocation + segment.percentage) ? kCGLineCapButt : kCGLineCapRound);
+            CGContextAddPath(context, path.CGPath);
+            CGContextDrawPath(context, kCGPathStroke);
+        }
     }
-    
-    if (self.segments.count > 1) {
-        BTTemperatureFanSegment *lastSegment = self.segments.firstObject;
-        UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:lastSegment.startAngle endAngle:lastSegment.endAngle clockwise:YES];
-        CGContextSetStrokeColorWithColor(context, [lastSegment.color colorWithAlphaComponent:0.5f].CGColor);
-        CGContextSetLineCap(context, kCGLineCapRound);
-        CGContextAddPath(context, path.CGPath);
-        CGContextDrawPath(context, kCGPathStroke);
-    }
-    
-//    double startAngle = M_PI_4 * 3, endAngle = M_PI_4, fullAngle = M_PI * 2 - startAngle + endAngle;
-//    double p1 = 0.3, p2 = 0.5, p3 = 0.2;
-//    double angle1 = fullAngle * p1, angle2 = fullAngle * p2, angle3 = fullAngle * p3;
-
-//    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:startAngle endAngle:(startAngle+angle1) clockwise:YES];
-//    CGContextSetLineWidth(context, self.lineWidth);
-//    CGContextSetStrokeColorWithColor(context, [UIColor bambooColor].CGColor);
-//    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
-//    CGContextSetLineCap(context, kCGLineCapRound);
-//    CGContextAddPath(context, path.CGPath);
-//    CGContextDrawPath(context, kCGPathStroke);
-    
-//    path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:startAngle+angle1+angle2 endAngle:startAngle+angle1+angle2+angle3 clockwise:YES];
-//    CGContextSetStrokeColorWithColor(context, [UIColor waveColor].CGColor);
-//    CGContextAddPath(context, path.CGPath);
-//    CGContextDrawPath(context, kCGPathStroke);
-//
-//    
-//    path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:startAngle+angle1 endAngle:startAngle+angle1+angle2 clockwise:YES];
-//    CGContextSetStrokeColorWithColor(context, [UIColor coralColor].CGColor);
-//    CGContextSetLineCap(context, kCGLineCapButt);
-//    CGContextAddPath(context, path.CGPath);
-//    CGContextDrawPath(context, kCGPathStroke);
-//
-
 }
 
 @end
