@@ -34,6 +34,8 @@
 		9C3200791AE40849003721CF /* BTDeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3200781AE40849003721CF /* BTDeviceListViewController.m */; };
 		9C32007E1AE408A7003721CF /* BTDeviceListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C32007D1AE408A7003721CF /* BTDeviceListTableViewCell.m */; };
 		9C3200811AE408D2003721CF /* BTTableViewCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3200801AE408D2003721CF /* BTTableViewCellFactory.m */; };
+		9C351C0D1AECDC9F002620A8 /* UIImage+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C351C0C1AECDC9F002620A8 /* UIImage+Bluetooth.m */; };
+		9C351C111AECE535002620A8 /* BTFadeAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C351C101AECE535002620A8 /* BTFadeAnimator.m */; };
 		9C685AAC1AEAB196001DDC80 /* BTDeviceListSupporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AAB1AEAB196001DDC80 /* BTDeviceListSupporter.m */; };
 		9C685AB61AEAF0F9001DDC80 /* bg_galaxy_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C685AB21AEAF0F9001DDC80 /* bg_galaxy_02.jpg */; };
 		9C685AB71AEAF0F9001DDC80 /* bg_galaxy_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C685AB31AEAF0F9001DDC80 /* bg_galaxy_01.jpg */; };
@@ -105,6 +107,10 @@
 		9C32007D1AE408A7003721CF /* BTDeviceListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDeviceListTableViewCell.m; sourceTree = "<group>"; };
 		9C32007F1AE408D2003721CF /* BTTableViewCellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTableViewCellFactory.h; sourceTree = "<group>"; };
 		9C3200801AE408D2003721CF /* BTTableViewCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTableViewCellFactory.m; sourceTree = "<group>"; };
+		9C351C0B1AECDC9F002620A8 /* UIImage+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bluetooth.h"; sourceTree = "<group>"; };
+		9C351C0C1AECDC9F002620A8 /* UIImage+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bluetooth.m"; sourceTree = "<group>"; };
+		9C351C0F1AECE535002620A8 /* BTFadeAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTFadeAnimator.h; sourceTree = "<group>"; };
+		9C351C101AECE535002620A8 /* BTFadeAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTFadeAnimator.m; sourceTree = "<group>"; };
 		9C685AAA1AEAB196001DDC80 /* BTDeviceListSupporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDeviceListSupporter.h; sourceTree = "<group>"; };
 		9C685AAB1AEAB196001DDC80 /* BTDeviceListSupporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDeviceListSupporter.m; sourceTree = "<group>"; };
 		9C685AAD1AEAB262001DDC80 /* BTConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTConstants.h; sourceTree = "<group>"; };
@@ -193,6 +199,7 @@
 		9C1E75131AE077470047D04E /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				9C351C0E1AECE518002620A8 /* Animations */,
 				9C685AC91AEC4C9E001DDC80 /* Global */,
 				9C685AA91AEAB174001DDC80 /* Models */,
 				9C32007A1AE40879003721CF /* Views */,
@@ -266,6 +273,8 @@
 				9C685AC11AEC0148001DDC80 /* NSString+Bluetooth.m */,
 				9C685AD01AEC59C8001DDC80 /* NSNumber+Bluetooth.h */,
 				9C685AD11AEC59C8001DDC80 /* NSNumber+Bluetooth.m */,
+				9C351C0B1AECDC9F002620A8 /* UIImage+Bluetooth.h */,
+				9C351C0C1AECDC9F002620A8 /* UIImage+Bluetooth.m */,
 			);
 			name = Categories;
 			path = Extensions;
@@ -340,6 +349,15 @@
 				9C685AC71AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.m */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		9C351C0E1AECE518002620A8 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				9C351C0F1AECE535002620A8 /* BTFadeAnimator.h */,
+				9C351C101AECE535002620A8 /* BTFadeAnimator.m */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		9C685AA91AEAB174001DDC80 /* Models */ = {
@@ -562,9 +580,11 @@
 				9C1E751A1AE077470047D04E /* AppDelegate.m in Sources */,
 				9C3200811AE408D2003721CF /* BTTableViewCellFactory.m in Sources */,
 				9C3200791AE40849003721CF /* BTDeviceListViewController.m in Sources */,
+				9C351C0D1AECDC9F002620A8 /* UIImage+Bluetooth.m in Sources */,
 				9C685AC81AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.m in Sources */,
 				9C32007E1AE408A7003721CF /* BTDeviceListTableViewCell.m in Sources */,
 				9C685AC21AEC0148001DDC80 /* NSString+Bluetooth.m in Sources */,
+				9C351C111AECE535002620A8 /* BTFadeAnimator.m in Sources */,
 				9C3200721AE3F43A003721CF /* NSData+Bluetooth.m in Sources */,
 				9C685AD91AEC9BF9001DDC80 /* BTCircleView.m in Sources */,
 				9C1E75171AE077470047D04E /* main.m in Sources */,

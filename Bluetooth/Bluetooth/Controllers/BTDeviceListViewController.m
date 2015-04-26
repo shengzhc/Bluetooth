@@ -13,7 +13,9 @@
 #import "BTDeviceListTableViewCell.h"
 #import "BTDegreeUnitSwitchCell.h"
 
-@interface BTDeviceListViewController () < BTDeviceListSupporterDelegate, BTDeviceListTableViewCellDelegate >
+#import "BTFadeAnimator.h"
+
+@interface BTDeviceListViewController () < BTDeviceListSupporterDelegate, BTDeviceListTableViewCellDelegate, UIViewControllerTransitioningDelegate >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet BTDeviceListSupporter *tableSupporter;
@@ -30,6 +32,8 @@
     [super viewDidLoad];
     self.textView.textAlignment = NSTextAlignmentLeft;
     self.textView.font = [UIFont bluetoothFontOfSize:14.0];
+    self.modalPresentationStyle = UIModalPresentationCustom;
+    
     self.tableSupporter.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDegreeUnitChangedNotification:) name:kBTNotificationDegreeUnitDidChangeNotification object:nil];
@@ -70,6 +74,8 @@
 {
     BTTemperatureAdjustViewController *adjustViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kBTTemperatureAdjustViewControllerIdentifier];
     adjustViewController.branch = branch;
+    adjustViewController.modalPresentationStyle = UIModalPresentationCustom;
+    adjustViewController.transitioningDelegate = self;
     [self presentViewController:adjustViewController animated:YES completion:nil];
 }
 
@@ -125,5 +131,12 @@
     BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:1 temperature:arc4random()%20+10];
     [self presentBranchTemperatureAdjustViewControllerWithBranch:branch];
 }
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    BTFadeAnimator *animator = [[BTFadeAnimator alloc] init];
+    return animator;
+}
+
 
 @end

@@ -12,7 +12,6 @@
 @interface BTTemperatureAdjustViewController ()
 @property (weak, nonatomic) IBOutlet BTCircleView *circleBorderView;
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
-
 @end
 
 @implementation BTTemperatureAdjustViewController

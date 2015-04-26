@@ -17,6 +17,7 @@
 
 #import "Masonry.h"
 #import "ReactiveCocoa.h"
+#import "GPUImage.h"
 
 #import "BTConstants.h"
 
@@ -26,6 +27,7 @@
 #import "NSString+Bluetooth.h"
 #import "CBUUID+Bluetooth.h"
 #import "NSNumber+Bluetooth.h"
+#import "UIImage+Bluetooth.h"
 
 #import "BTTableViewCellFactory.h"
 #import "BTBluetoothManager.h"
