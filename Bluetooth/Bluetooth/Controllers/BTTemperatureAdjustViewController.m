@@ -25,8 +25,8 @@
 
 - (void)updateTemperatureLabelWithTemperature:(NSUInteger)temperature
 {
-    NSDictionary *numberAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:32.0f], NSForegroundColorAttributeName: [UIColor whiteColor]};
-    NSDictionary *signAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:20.0f], NSForegroundColorAttributeName: [UIColor whiteColor], (NSString *)kCTSuperscriptAttributeName: @(1.25)};
+    NSDictionary *numberAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:40.0f], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    NSDictionary *signAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:24.0f], NSForegroundColorAttributeName: [UIColor whiteColor], (NSString *)kCTSuperscriptAttributeName: @(1.25)};
     
     NSMutableAttributedString *temperatureText = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@", @(temperature).stringValue] attributes:numberAttributes];
     [temperatureText appendAttributedString:[[NSAttributedString alloc] initWithString:([BTAppState sharedInstance].isCelsius ? [NSString celsius] : [NSString fahrenheit]) attributes:signAttributes]];

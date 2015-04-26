@@ -85,7 +85,7 @@
 - (void)drawRect:(CGRect)rect
 {
     CGRect myFrame = CGRectZero;
-    CGFloat alpha = 0.3f;
+    CGFloat alpha = 0.2f;
     CGFloat width = MAX(MIN(self.bounds.size.width, self.bounds.size.height) - self.lineWidth, 0);
     myFrame.size = CGSizeMake(width, width);
     myFrame.origin = CGPointMake((self.bounds.size.width - width)/2.0, (self.bounds.size.height - width)/2.0);
@@ -137,7 +137,7 @@
     for (NSUInteger index = 1; index < self.segments.count-1; index++) {
         BTTemperatureFanSegment *segment = self.segments[index];
         UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:width/2.0 startAngle:segment.startAngle endAngle:segment.endAngle clockwise:YES];
-        CGContextSetStrokeColorWithColor(context, [segment.color colorWithAlphaComponent:alpha].CGColor);
+        CGContextSetStrokeColorWithColor(context, [segment.color colorWithAlphaComponent:alpha + 0.15f].CGColor);
         CGContextSetLineCap(context, kCGLineCapButt);
         CGContextAddPath(context, path.CGPath);
         CGContextDrawPath(context, kCGPathStroke);
