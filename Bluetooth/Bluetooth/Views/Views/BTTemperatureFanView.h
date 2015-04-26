@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTTemperatureFanView : UIView
+@interface BTTemperatureFanSegment : NSObject
+@property (assign, nonatomic) double percentage;
+@property (assign, nonatomic) double startLocation;
+@property (strong, nonatomic) UIColor *color;
+@property (assign, nonatomic) NSUInteger index;
+@end
 
+IB_DESIGNABLE
+@interface BTTemperatureFanView : UIView
+@property (assign, nonatomic) IBInspectable NSUInteger lineWidth;
+@property (assign, nonatomic) double percentage;
+@property (strong, nonatomic) NSArray *segments;
 @end
