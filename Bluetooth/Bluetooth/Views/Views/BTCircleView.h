@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-//IB_DESIGNABLE
+IB_DESIGNABLE
 @interface BTCircleView : UIView
-@property (assign, nonatomic) NSInteger lineWidth;
-@property (assign, nonatomic) UIColor *borderColor;
-@property (assign, nonatomic) UIColor *fillColor;
+@property (assign, nonatomic) IBInspectable NSInteger lineWidth;
+@property (assign, nonatomic) IBInspectable UIColor *borderColor;
+@property (assign, nonatomic) IBInspectable UIColor *fillColor;
 @end

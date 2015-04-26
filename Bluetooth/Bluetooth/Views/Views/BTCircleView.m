@@ -38,7 +38,7 @@
 {
     self.lineWidth = 4.0f;
     self.borderColor = [UIColor bambooColor];
-    self.fillColor = [UIColor redColor];
+    self.fillColor = [UIColor clearColor];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -50,8 +50,8 @@
     myFrame.origin = CGPointMake((self.bounds.size.width - width)/2.0, (self.bounds.size.height - width)/2.0);
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:myFrame cornerRadius:myFrame.size.width/2.0];
     CGContextSetLineWidth(context, self.lineWidth);
-    CGContextSetStrokeColorWithColor(context, [UIColor bambooColor].CGColor);
-    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
+    CGContextSetFillColorWithColor(context, self.fillColor.CGColor);
     CGContextAddPath(context, path.CGPath);
     CGContextDrawPath(context, kCGPathEOFillStroke);
 }
