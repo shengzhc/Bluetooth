@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - GPUImage (0.1.6)
   - Masonry (0.6.1)
+  - pop (1.0.7)
   - ReactiveCocoa (2.4.7):
     - ReactiveCocoa/UI (= 2.4.7)
   - ReactiveCocoa/Core (2.4.7):
@@ -34,12 +35,14 @@ DEPENDENCIES:
   - AFNetworking
   - GPUImage
   - Masonry
+  - pop
   - ReactiveCocoa
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   GPUImage: 4675ce4a5370ca92fcea8623b2a08b8f0c51b940
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   ReactiveCocoa: eb38dee0a0e698f73a9b25e5c1faea2bb4c79240
 
 COCOAPODS: 0.36.4

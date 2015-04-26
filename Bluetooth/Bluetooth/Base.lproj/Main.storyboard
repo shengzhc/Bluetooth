@@ -223,11 +223,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qoo-yS-As1" customClass="BTTemperatureFanView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuI-zd-EOh" userLabel="border">
                                 <rect key="frame" x="20" y="144" width="280" height="280"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="gf6-sy-UCD"/>
+                                    <constraint firstAttribute="width" secondItem="fuI-zd-EOh" secondAttribute="height" id="ndf-aG-chE"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qoo-yS-As1" customClass="BTTemperatureFanView">
+                                <rect key="frame" x="48" y="172" width="224" height="224"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
                                     <constraint firstAttribute="width" secondItem="Qoo-yS-As1" secondAttribute="height" multiplier="1:1" id="ptN-fQ-Y4a"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -240,10 +246,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXI-mL-F84" userLabel="CircleBackground" customClass="BTCircleView">
-                                <rect key="frame" x="100" y="224" width="120" height="120"/>
+                                <rect key="frame" x="110" y="234" width="100" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="9i3-YG-4eG"/>
+                                    <constraint firstAttribute="width" constant="100" id="9i3-YG-4eG"/>
                                     <constraint firstAttribute="width" secondItem="fXI-mL-F84" secondAttribute="height" id="mPA-oz-z7J"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -264,19 +270,48 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0q-hh-YWb" userLabel="check">
+                                <rect key="frame" x="2" y="122" width="44" height="44"/>
+                                <state key="normal" backgroundImage="ico_cross">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didCloseButtonClicked:" destination="Snr-G5-YsJ" eventType="touchUpInside" id="Sih-mN-JXE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83P-7R-CN4" userLabel="close">
+                                <rect key="frame" x="274" y="122" width="44" height="44"/>
+                                <state key="normal" backgroundImage="ico_check">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didCheckButtonClicked:" destination="Snr-G5-YsJ" eventType="touchUpInside" id="FDh-h6-Qmb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="fuI-zd-EOh" secondAttribute="centerY" id="1iw-T0-7CY"/>
                             <constraint firstAttribute="centerY" secondItem="Qoo-yS-As1" secondAttribute="centerY" id="2rc-ty-Sv4"/>
+                            <constraint firstAttribute="trailing" secondItem="fuI-zd-EOh" secondAttribute="trailing" constant="20" id="3hL-dP-yPk"/>
                             <constraint firstAttribute="centerY" secondItem="fXI-mL-F84" secondAttribute="centerY" id="4E6-aj-Tve"/>
+                            <constraint firstItem="O0q-hh-YWb" firstAttribute="top" secondItem="83P-7R-CN4" secondAttribute="top" id="6Ng-7d-hwF"/>
                             <constraint firstAttribute="centerY" secondItem="0tb-3z-il4" secondAttribute="centerY" id="9pS-4Y-GNF"/>
+                            <constraint firstAttribute="trailing" secondItem="Qoo-yS-As1" secondAttribute="trailing" constant="48" id="CLc-ho-W3Y"/>
                             <constraint firstAttribute="centerX" secondItem="0tb-3z-il4" secondAttribute="centerX" id="FNf-lW-srL"/>
-                            <constraint firstAttribute="centerX" secondItem="Qoo-yS-As1" secondAttribute="centerX" id="WBo-iy-7C2"/>
+                            <constraint firstItem="fuI-zd-EOh" firstAttribute="top" secondItem="O0q-hh-YWb" secondAttribute="bottom" constant="-22" id="LTS-MZ-20R"/>
+                            <constraint firstItem="fuI-zd-EOh" firstAttribute="leading" secondItem="JsT-P5-sIg" secondAttribute="leading" constant="20" id="Q4E-P8-B2Y"/>
+                            <constraint firstItem="fuI-zd-EOh" firstAttribute="leading" secondItem="O0q-hh-YWb" secondAttribute="leading" constant="18" id="iYh-JJ-1Yn"/>
+                            <constraint firstItem="Qoo-yS-As1" firstAttribute="leading" secondItem="JsT-P5-sIg" secondAttribute="leading" constant="48" id="jdr-Tf-4QQ"/>
+                            <constraint firstItem="fuI-zd-EOh" firstAttribute="trailing" secondItem="83P-7R-CN4" secondAttribute="trailing" constant="-18" id="os2-Fx-QhK"/>
                             <constraint firstAttribute="centerX" secondItem="fXI-mL-F84" secondAttribute="centerX" id="vBf-lk-yso"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="fuI-zd-EOh" id="8yP-DE-Hvj"/>
+                        <outlet property="checkButton" destination="83P-7R-CN4" id="J4T-7o-mPA"/>
                         <outlet property="circleBorderView" destination="fXI-mL-F84" id="tzW-Pm-3fZ"/>
+                        <outlet property="closeButton" destination="O0q-hh-YWb" id="yrR-TL-xj6"/>
                         <outlet property="temperatureLabel" destination="0tb-3z-il4" id="Wiu-5k-iNQ"/>
                     </connections>
                 </viewController>
@@ -287,6 +322,8 @@
     </scenes>
     <resources>
         <image name="bg_galaxy_02.jpg" width="1080" height="1920"/>
+        <image name="ico_check" width="44" height="44"/>
+        <image name="ico_cross" width="44" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -9,6 +9,7 @@ pod 'AFNetworking'
 pod 'Masonry'
 pod 'ReactiveCocoa'
 pod 'GPUImage'
+pod 'pop'
 
 end
 

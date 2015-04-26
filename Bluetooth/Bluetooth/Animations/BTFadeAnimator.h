@@ -10,4 +10,6 @@
 
 @interface BTFadeAnimator : NSObject < UIViewControllerAnimatedTransitioning >
 
+@property (assign, nonatomic) BOOL presenting;
+
 @end

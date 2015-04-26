@@ -10,6 +10,7 @@
 #import "BTCircleView.h"
 
 @interface BTTemperatureAdjustViewController ()
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property (weak, nonatomic) IBOutlet BTCircleView *circleBorderView;
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @end
@@ -19,6 +20,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.backgroundView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.backgroundView.layer.borderWidth = 4.0f;
+    self.backgroundView.layer.cornerRadius = 6.0;
+    
     [self updateTemperatureLabelWithTemperature:self.branch.branchTargetTemperature];
 }
 
@@ -30,6 +35,16 @@
     NSMutableAttributedString *temperatureText = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@", @(temperature).stringValue] attributes:numberAttributes];
     [temperatureText appendAttributedString:[[NSAttributedString alloc] initWithString:([BTAppState sharedInstance].isCelsius ? [NSString celsius] : [NSString fahrenheit]) attributes:signAttributes]];
     self.temperatureLabel.attributedText = temperatureText;
+}
+
+- (IBAction)didCloseButtonClicked:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)didCheckButtonClicked:(id)sender
+{
+
 }
 
 @end

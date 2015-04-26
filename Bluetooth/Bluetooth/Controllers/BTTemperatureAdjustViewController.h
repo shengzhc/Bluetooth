@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BTTemperatureAdjustViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *blurImageView;
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
 @property (strong, nonatomic) BTBranchBlock *branch;
 @end

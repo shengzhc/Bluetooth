@@ -132,11 +132,18 @@
     [self presentBranchTemperatureAdjustViewControllerWithBranch:branch];
 }
 
+#pragma mark UIViewControllerTransitioningDelegate
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    BTFadeAnimator *animator = [[BTFadeAnimator alloc] init];
+    animator.presenting = YES;
+    return animator;
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
     BTFadeAnimator *animator = [[BTFadeAnimator alloc] init];
     return animator;
 }
-
 
 @end
