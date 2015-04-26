@@ -210,7 +210,7 @@
 
     for (CBService *service in peripheral.services) {
         if ([[_serviceCharacteristicMapper supportedPeripheralServices] containsObject:service.UUID]) {
-            [peripheral discoverCharacteristics:[_serviceCharacteristicMapper supportedCharacteristicForServiceUUIDString:service.UUID.UUIDString] forService:service];
+            [peripheral discoverCharacteristics:nil forService:service];
         }
     }
 }
@@ -239,7 +239,9 @@
 #endif
     for (CBCharacteristic *writeCharacteristic in characteristic.service.characteristics) {
         if ([[_serviceCharacteristicMapper writeCharacteristicUUIDsForServiceUUIDString:characteristic.service.UUID.UUIDString] containsObject:writeCharacteristic.UUID]) {
-            [peripheral writeValue:[NSData dataFromHexString:@"0xAB"] forCharacteristic:writeCharacteristic type:CBCharacteristicWriteWithResponse];
+            BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:1 temperature:10];
+            BTDataPackage *package = [[BTDataPackage alloc] initWithBranchBlocks:@[branch]];
+            [peripheral writeValue:[package dataPackageBytesData] forCharacteristic:writeCharacteristic type:CBCharacteristicWriteWithResponse];
         }
     }
 }

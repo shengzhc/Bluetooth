@@ -30,6 +30,14 @@
     return _branchTargetTemperature;
 }
 
+- (NSData *)branchBytesData
+{
+    UInt16 bytes = 0x0000;
+    bytes |= ((self.branchNumber) << 4);
+    bytes |= self.branchTargetTemperature;
+    return [NSData dataWithBytes:&bytes length:sizeof(UInt16)];
+}
+
 @end
 
 @implementation BTDataPackage
@@ -40,6 +48,16 @@
         self.branches = [NSArray arrayWithArray:branches];
     }
     return self;
+}
+
+- (NSData *)dataPackageBytesData
+{
+    NSMutableData *bytes = [[NSMutableData alloc] init];
+    for (NSUInteger index=0; index < self.branches.count; index++) {
+        BTBranchBlock *branch = self.branches[index];
+        [bytes appendData:[branch branchBytesData]];
+    }
+    return bytes;
 }
 
 @end

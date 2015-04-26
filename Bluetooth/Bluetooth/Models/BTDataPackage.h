@@ -14,6 +14,7 @@
 @property (assign, nonatomic) NSUInteger branchTargetTemperature;
 
 - (instancetype)initWithBranchNumber:(NSUInteger)branchNumber temperature:(NSUInteger)branchTemperature;
+- (NSData *)branchBytesData;
 
 @end
 
@@ -21,6 +22,7 @@
 @property (strong, nonatomic) NSArray *branches;
 
 - (instancetype)initWithBranchBlocks:(NSArray *)branches;
+- (NSData *)dataPackageBytesData;
 
 @end
 

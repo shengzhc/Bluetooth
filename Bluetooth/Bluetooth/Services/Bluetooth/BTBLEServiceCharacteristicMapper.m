@@ -23,7 +23,6 @@
 
 - (NSArray *)supportedCharacteristicForServiceUUIDString:(NSString *)uuidString
 {
-    return nil;
     if ([uuidString isEqualToString:@"1890"]) {
         return @[[CBUUID UUIDWithString:@"2A98"],
                  [CBUUID UUIDWithString:@"2A99"]];
@@ -33,7 +32,6 @@
 
 - (NSArray *)readCharacteristicUUIDsForServiceUUIDString:(NSString *)uuidString
 {
-    return nil;
     if ([uuidString isEqualToString:@"1890"]) {
         return @[[CBUUID UUIDWithString:@"2A90"]];
     }
@@ -42,7 +40,6 @@
 
 - (NSArray *)writeCharacteristicUUIDsForServiceUUIDString:(NSString *)uuidString
 {
-    return nil;
     if ([uuidString isEqualToString:@"1890"]) {
         return @[[CBUUID UUIDWithString:@"2A91"]];
     }
