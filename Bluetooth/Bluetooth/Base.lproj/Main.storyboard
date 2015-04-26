@@ -223,6 +223,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9P-wc-46M" customClass="BTTemperatureFanView">
+                                <rect key="frame" x="80" y="204" width="160" height="160"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="QZt-Tq-Sy1"/>
+                                    <constraint firstAttribute="width" secondItem="w9P-wc-46M" secondAttribute="height" multiplier="1:1" id="cWB-19-T3h"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXI-mL-F84" userLabel="CircleBackground" customClass="BTCircleView">
                                 <rect key="frame" x="110" y="234" width="100" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -242,7 +250,9 @@
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="fXI-mL-F84" secondAttribute="centerY" id="4E6-aj-Tve"/>
                             <constraint firstAttribute="centerY" secondItem="0tb-3z-il4" secondAttribute="centerY" id="9pS-4Y-GNF"/>
+                            <constraint firstAttribute="centerY" secondItem="w9P-wc-46M" secondAttribute="centerY" id="EkS-eT-o6Q"/>
                             <constraint firstAttribute="centerX" secondItem="0tb-3z-il4" secondAttribute="centerX" id="FNf-lW-srL"/>
+                            <constraint firstAttribute="centerX" secondItem="w9P-wc-46M" secondAttribute="centerX" id="LPU-29-hB9"/>
                             <constraint firstAttribute="centerX" secondItem="fXI-mL-F84" secondAttribute="centerX" id="vBf-lk-yso"/>
                         </constraints>
                     </view>
