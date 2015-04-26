@@ -12,4 +12,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
 @property (strong, nonatomic) BTBranchBlock *branch;
+@property (copy, nonatomic) void (^temperatureAdjustCompletionHandler)(BOOL isCancelled, BTBranchBlock *branch, id userInfo);
 @end

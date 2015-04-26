@@ -39,12 +39,20 @@
 
 - (IBAction)didCloseButtonClicked:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (self.temperatureAdjustCompletionHandler) {
+            self.temperatureAdjustCompletionHandler(YES, self.branch, nil);
+        }
+    }];
 }
 
 - (IBAction)didCheckButtonClicked:(id)sender
 {
-
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (self.temperatureAdjustCompletionHandler) {
+            self.temperatureAdjustCompletionHandler(NO, self.branch, nil);
+        }
+    }];
 }
 
 @end

@@ -72,8 +72,8 @@
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
     POPBasicAnimation *translateAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerTranslationY];
-    translateAnimation.fromValue = @(fromViewController.view.layer.position.y);
-    translateAnimation.toValue = @(fromViewController.view.layer.position.y + fromViewController.view.layer.bounds.size.height);
+    translateAnimation.fromValue = @(0);
+    translateAnimation.toValue = @([transitionContext containerView].bounds.size.height * 0.7f);
     translateAnimation.duration = [self transitionDuration:transitionContext];
     translateAnimation.completionBlock = ^(POPAnimation *animation, BOOL finished) {
         [transitionContext completeTransition:finished];

@@ -68,7 +68,7 @@
     self.nameLabel.font = [UIFont bluetoothFontOfSize:22.0];
     self.nameLabel.textAlignment = NSTextAlignmentLeft;
     UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestureRecognizer:)];
-    longPressGestureRecognizer.minimumPressDuration = 1.0f;
+    longPressGestureRecognizer.minimumPressDuration = 0.5f;
     [self.contentView addGestureRecognizer:longPressGestureRecognizer];
 }
 

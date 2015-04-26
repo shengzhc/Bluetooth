@@ -76,6 +76,10 @@
     adjustViewController.branch = branch;
     adjustViewController.modalPresentationStyle = UIModalPresentationCustom;
     adjustViewController.transitioningDelegate = self;
+    adjustViewController.temperatureAdjustCompletionHandler = ^(BOOL isCancelled, BTBranchBlock *branch, id userInfo) {
+        _isHandlingLongPress = NO;
+        NSLog(@"%@", branch);
+    };
     [self presentViewController:adjustViewController animated:YES completion:nil];
 }
 
@@ -126,8 +130,6 @@
     }
 
     _isHandlingLongPress = YES;
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-    
     BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:1 temperature:arc4random()%20+10];
     [self presentBranchTemperatureAdjustViewControllerWithBranch:branch];
 }
