@@ -6,7 +6,13 @@
 //  Copyright (c) 2015 Shengzhe Chen. All rights reserved.
 //
 
+#define kBTUserDefaultDegreeUnit @"BTDegreeUnit"
+
 #import "BTAppState.h"
+
+@interface BTAppState ()
+
+@end
 
 @implementation BTAppState
 
@@ -40,6 +46,13 @@
         }
     } else {
         return kBTDegreeCelsius;
+    }
+}
+
+- (void)updateDegreeUnitTypeWithType:(BTDegreeUnitType)type sender:(id)sender
+{
+    if ([sender conformsToProtocol:@protocol(BTAppStateChangeApprovalProtocol)]) {
+        [self setDegreeUnitType:type];
     }
 }
 

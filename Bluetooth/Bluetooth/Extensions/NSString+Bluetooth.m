@@ -20,4 +20,15 @@
     return @"\u00B0C";
 }
 
++ (NSString *)fahrenheitWithoutUnit
+{
+    return @"\u00B0";
+}
+
++ (NSString *)celsiusWithoutUnit
+{
+    return @"\u00B0";
+}
+
+
 @end

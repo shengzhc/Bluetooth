@@ -12,5 +12,7 @@
 
 + (NSString *)fahrenheit;
 + (NSString *)celsius;
++ (NSString *)fahrenheitWithoutUnit;
++ (NSString *)celsiusWithoutUnit;
 
 @end

@@ -17,5 +17,5 @@
 #define kBTNotificationDegreeUnitDidChangeNotification @"BTNotificationDegreeUnitDidChangeNotification"
 
 //User Default
-#define kBTUserDefaultDegreeUnit @"BTDegreeUnit"
+
 #endif

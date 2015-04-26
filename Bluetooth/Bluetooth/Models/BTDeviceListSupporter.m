@@ -31,30 +31,40 @@
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.branches.count;
+    if (section == 0) {
+        return self.branches.count;
+    } else if (section == 1) {
+        return self.branches.count == 0 ? 0 : 1;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[BTTableViewCellFactory shareInstance] tableView:tableView withBTCellType:kBTDeviceListTableViewCell withIndexPath:indexPath];
+    UITableViewCell *cell = nil;
     
-    if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
-        BTBranchBlock *branch = self.branches[indexPath.row];
-        BTDeviceListTableViewCell *deviceListCell = (BTDeviceListTableViewCell *)cell;
-        deviceListCell.nameLabel.text = [NSString stringWithFormat:@"Branch_%@", @(branch.branchNumber)];
-
-        NSMutableAttributedString *currentTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(branch.branchTemperature).stringValue attributes:[BTDeviceListTableViewCell currentTemperatureTextAttributes]];
-        [currentTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString celsius] attributes:[BTDeviceListTableViewCell currentTemperatureDegreeAttributes]]];
-        deviceListCell.currentTemperatureLabel.attributedText = currentTemperatureString;
-
-        NSMutableAttributedString *targetTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(branch.branchTargetTemperature).stringValue attributes:[BTDeviceListTableViewCell targetTemperatureTextAttributes]];
-        [targetTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString celsius] attributes:[BTDeviceListTableViewCell targetTemperatureDegreeAttributes]]];
-        deviceListCell.targetTemperatureLabel.attributedText = targetTemperatureString;
+    if (indexPath.section == 0) {
+        cell = [[BTTableViewCellFactory shareInstance] tableView:tableView withBTCellType:kBTDeviceListTableViewCell withIndexPath:indexPath];
+        if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
+            BTBranchBlock *branch = self.branches[indexPath.row];
+            BTDeviceListTableViewCell *deviceListCell = (BTDeviceListTableViewCell *)cell;
+            deviceListCell.nameLabel.text = [NSString stringWithFormat:@"Branch_%@", @(branch.branchNumber)];
+            
+            NSMutableAttributedString *currentTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(branch.branchTemperature).stringValue attributes:[BTDeviceListTableViewCell currentTemperatureTextAttributes]];
+            [currentTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString celsius] attributes:[BTDeviceListTableViewCell currentTemperatureDegreeAttributes]]];
+            deviceListCell.currentTemperatureLabel.attributedText = currentTemperatureString;
+            
+            NSMutableAttributedString *targetTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(branch.branchTargetTemperature).stringValue attributes:[BTDeviceListTableViewCell targetTemperatureTextAttributes]];
+            [targetTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString celsius] attributes:[BTDeviceListTableViewCell targetTemperatureDegreeAttributes]]];
+            deviceListCell.targetTemperatureLabel.attributedText = targetTemperatureString;
+        }
+    } else if (indexPath.section == 1) {
+        cell = [[BTTableViewCellFactory shareInstance] tableView:tableView withBTCellType:kBTDegreeUnitSwitchCell withIndexPath:indexPath];
     }
     
     return cell;
