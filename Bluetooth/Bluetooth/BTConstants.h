@@ -12,6 +12,7 @@
 
 //Storyboard
 #define kBTDeviceListViewControllerIdentifier @"BTDeviceListViewControllerIdentifier"
+#define kBTTemperatureAdjustViewControllerIdentifier @"BTTemperatureAdjustViewControllerIdentifier"
 
 //Notification
 #define kBTNotificationDegreeUnitDidChangeNotification @"BTNotificationDegreeUnitDidChangeNotification"

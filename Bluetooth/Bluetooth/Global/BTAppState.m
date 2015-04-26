@@ -49,6 +49,11 @@
     }
 }
 
+- (BOOL)isCelsius
+{
+    return self.degreeUnitType == kBTDegreeCelsius;
+}
+
 - (void)updateDegreeUnitTypeWithType:(BTDegreeUnitType)type sender:(id)sender
 {
     if ([sender conformsToProtocol:@protocol(BTAppStateChangeApprovalProtocol)]) {

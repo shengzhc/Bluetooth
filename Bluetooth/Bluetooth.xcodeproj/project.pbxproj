@@ -46,6 +46,8 @@
 		9C685AC81AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AC71AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.m */; };
 		9C685ACC1AEC4CAA001DDC80 /* BTAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685ACB1AEC4CAA001DDC80 /* BTAppState.m */; };
 		9C685AD21AEC59C8001DDC80 /* NSNumber+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AD11AEC59C8001DDC80 /* NSNumber+Bluetooth.m */; };
+		9C685AD51AEC9B16001DDC80 /* BTTemperatureAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AD41AEC9B16001DDC80 /* BTTemperatureAdjustViewController.m */; };
+		9C685AD91AEC9BF9001DDC80 /* BTCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AD81AEC9BF9001DDC80 /* BTCircleView.m */; };
 		9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */; };
 		9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA41AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m */; };
 		9CF17BA91AE8AA8300831B16 /* BTBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF17BA81AE8AA8300831B16 /* BTBluetoothManager.m */; };
@@ -122,6 +124,10 @@
 		9C685ACB1AEC4CAA001DDC80 /* BTAppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAppState.m; sourceTree = "<group>"; };
 		9C685AD01AEC59C8001DDC80 /* NSNumber+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Bluetooth.h"; sourceTree = "<group>"; };
 		9C685AD11AEC59C8001DDC80 /* NSNumber+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Bluetooth.m"; sourceTree = "<group>"; };
+		9C685AD31AEC9B16001DDC80 /* BTTemperatureAdjustViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTemperatureAdjustViewController.h; sourceTree = "<group>"; };
+		9C685AD41AEC9B16001DDC80 /* BTTemperatureAdjustViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTemperatureAdjustViewController.m; sourceTree = "<group>"; };
+		9C685AD71AEC9BF9001DDC80 /* BTCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCircleView.h; sourceTree = "<group>"; };
+		9C685AD81AEC9BF9001DDC80 /* BTCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCircleView.m; sourceTree = "<group>"; };
 		9CD08DA01AE9A6DE0051D4F5 /* CBUUID+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+Bluetooth.h"; sourceTree = "<group>"; };
 		9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+Bluetooth.m"; sourceTree = "<group>"; };
 		9CD08DA31AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBLEServiceCharacteristicMapper.h; sourceTree = "<group>"; };
@@ -236,6 +242,8 @@
 				9C32004E1AE3F188003721CF /* ViewController.m */,
 				9C3200771AE40849003721CF /* BTDeviceListViewController.h */,
 				9C3200781AE40849003721CF /* BTDeviceListViewController.m */,
+				9C685AD31AEC9B16001DDC80 /* BTTemperatureAdjustViewController.h */,
+				9C685AD41AEC9B16001DDC80 /* BTTemperatureAdjustViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -311,6 +319,7 @@
 		9C32007A1AE40879003721CF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9C685AD61AEC9BE4001DDC80 /* Views */,
 				9C685AC51AEC4B27001DDC80 /* Controls */,
 				9C32007B1AE40889003721CF /* Cells */,
 			);
@@ -366,6 +375,15 @@
 				9C685ACB1AEC4CAA001DDC80 /* BTAppState.m */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		9C685AD61AEC9BE4001DDC80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9C685AD71AEC9BF9001DDC80 /* BTCircleView.h */,
+				9C685AD81AEC9BF9001DDC80 /* BTCircleView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A8264DFFDCEBA048FDAD36FB /* Frameworks */ = {
@@ -543,11 +561,13 @@
 				9C32007E1AE408A7003721CF /* BTDeviceListTableViewCell.m in Sources */,
 				9C685AC21AEC0148001DDC80 /* NSString+Bluetooth.m in Sources */,
 				9C3200721AE3F43A003721CF /* NSData+Bluetooth.m in Sources */,
+				9C685AD91AEC9BF9001DDC80 /* BTCircleView.m in Sources */,
 				9C1E75171AE077470047D04E /* main.m in Sources */,
 				9C685ACC1AEC4CAA001DDC80 /* BTAppState.m in Sources */,
 				9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */,
 				9C685ABF1AEB6D07001DDC80 /* UIColor+Bluetooth.m in Sources */,
 				9CF17BA91AE8AA8300831B16 /* BTBluetoothManager.m in Sources */,
+				9C685AD51AEC9B16001DDC80 /* BTTemperatureAdjustViewController.m in Sources */,
 				9C3200531AE3F1FF003721CF /* UIFont+Bluetooth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

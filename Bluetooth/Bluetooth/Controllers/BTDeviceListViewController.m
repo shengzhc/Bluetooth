@@ -7,6 +7,7 @@
 //
 
 #import "BTDeviceListViewController.h"
+#import "BTTemperatureAdjustViewController.h"
 #import "BTDeviceListSupporter.h"
 
 #import "BTDeviceListTableViewCell.h"
@@ -65,6 +66,13 @@
     }
 }
 
+- (void)presentBranchTemperatureAdjustViewControllerWithBranch:(BTBranchBlock *)branch
+{
+    BTTemperatureAdjustViewController *adjustViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kBTTemperatureAdjustViewControllerIdentifier];
+    adjustViewController.branch = branch;
+    [self presentViewController:adjustViewController animated:YES completion:nil];
+}
+
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -82,7 +90,7 @@
     if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
         ((BTDeviceListTableViewCell *)cell).delegate = self;
     } else if ([cell isKindOfClass:[BTDegreeUnitSwitchCell class]]) {
-        ((BTDegreeUnitSwitchCell *)cell).switchButton.selected = [BTAppState sharedInstance].degreeUnitType == kBTDegreeCelsius ? NO : YES;
+        ((BTDegreeUnitSwitchCell *)cell).switchButton.selected = ![BTAppState sharedInstance].isCelsius;
     }
     return cell;
 }
@@ -113,6 +121,9 @@
 
     _isHandlingLongPress = YES;
     NSLog(@"%@", NSStringFromSelector(_cmd));
+    
+    BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:1 temperature:arc4random()%20+10];
+    [self presentBranchTemperatureAdjustViewControllerWithBranch:branch];
 }
 
 @end
