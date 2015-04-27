@@ -73,6 +73,24 @@
             </objects>
             <point key="canvasLocation" x="169" y="398"/>
         </scene>
+        <!--Temperature Picker View Controller-->
+        <scene sceneID="awK-pQ-MM6">
+            <objects>
+                <viewController storyboardIdentifier="BTTemperaturePickerViewControllerIdentifier" id="epe-KJ-xb5" customClass="BTTemperaturePickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OIW-sT-bw5"/>
+                        <viewControllerLayoutGuide type="bottom" id="ddp-lu-xCC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OE6-CX-7I1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0FO-7p-Vpf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="609" y="-238"/>
+        </scene>
         <!--Device List View Controller-->
         <scene sceneID="9hc-hf-Dvc">
             <objects>
