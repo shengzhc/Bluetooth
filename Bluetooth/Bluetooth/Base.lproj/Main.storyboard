@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="epe-KJ-xb5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ySD-H3-Lm5">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -85,29 +85,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NwR-6V-zC2">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c05-2R-6Ey" userLabel="top">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="344"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NwR-6V-zC2" userLabel="picker container">
                                 <rect key="frame" x="0.0" y="344" width="320" height="224"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Su-GK-XIN" userLabel="bottom">
                                         <rect key="frame" x="0.0" y="180" width="320" height="44"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4s0-n4-QH0">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4s0-n4-QH0">
                                                 <rect key="frame" x="8" y="4" width="148" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="75l-wF-m9m"/>
                                                 </constraints>
-                                                <state key="normal" title="Cancel">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
+                                                <state key="normal" title="Cancel"/>
                                                 <connections>
                                                     <action selector="didCancelButtonClicked:" destination="epe-KJ-xb5" eventType="touchUpInside" id="ndG-AQ-8xA"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xan-sQ-U3Y">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xan-sQ-U3Y">
                                                 <rect key="frame" x="164" y="4" width="148" height="36"/>
-                                                <state key="normal" title="Done">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
+                                                <state key="normal" title="Done"/>
                                                 <connections>
                                                     <action selector="didDoneButtonClicked:" destination="epe-KJ-xb5" eventType="touchUpInside" id="kFG-nT-hNk"/>
                                                 </connections>
@@ -170,26 +170,29 @@
                                                     <outlet property="delegate" destination="epe-KJ-xb5" id="ZuQ-Cv-F1q"/>
                                                 </connections>
                                             </tableView>
-                                            <view userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s7g-fk-SMz">
+                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s7g-fk-SMz">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="0qP-Hq-vnn"/>
                                                 </constraints>
                                             </view>
-                                            <view userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CeU-dB-Mok">
+                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CeU-dB-Mok">
                                                 <rect key="frame" x="0.0" y="120" width="320" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="ZtU-j1-KpB"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5h-tg-Ho1" userLabel="degreeUnitSwitchButton">
-                                                <rect key="frame" x="209" y="73" width="62" height="34"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5h-tg-Ho1" userLabel="degreeUnitSwitchButton">
+                                                <rect key="frame" x="209" y="71" width="71" height="38"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                                 <state key="normal" title="Button">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="didDegreeUnitSwitchButtonClicked:" destination="epe-KJ-xb5" eventType="touchUpInside" id="FcP-ce-bff"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -227,18 +230,23 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="NwR-6V-zC2" firstAttribute="top" secondItem="c05-2R-6Ey" secondAttribute="bottom" id="53C-9D-sVo"/>
                             <constraint firstAttribute="bottom" secondItem="NwR-6V-zC2" secondAttribute="bottom" id="KPP-mC-OZ2"/>
+                            <constraint firstItem="c05-2R-6Ey" firstAttribute="leading" secondItem="OE6-CX-7I1" secondAttribute="leading" id="YcM-a9-O9T"/>
                             <constraint firstAttribute="trailing" secondItem="NwR-6V-zC2" secondAttribute="trailing" id="iab-RM-S58"/>
                             <constraint firstItem="NwR-6V-zC2" firstAttribute="leading" secondItem="OE6-CX-7I1" secondAttribute="leading" id="mmL-9Y-qZu"/>
+                            <constraint firstItem="c05-2R-6Ey" firstAttribute="top" secondItem="OE6-CX-7I1" secondAttribute="top" id="nIa-9q-izk"/>
+                            <constraint firstAttribute="trailing" secondItem="c05-2R-6Ey" secondAttribute="trailing" id="oPO-r7-C3A"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomContainer" destination="8Su-GK-XIN" id="ire-A1-NdK"/>
                         <outlet property="cancelButton" destination="4s0-n4-QH0" id="jUF-i8-xkZ"/>
                         <outlet property="degreeUnitSwitchButton" destination="y5h-tg-Ho1" id="xQ6-rV-jck"/>
                         <outlet property="doneButton" destination="Xan-sQ-U3Y" id="6Mw-Nk-8rT"/>
                         <outlet property="pickerSupporter" destination="EtG-sa-6MY" id="Twh-v2-y2A"/>
                         <outlet property="temperatureTableView" destination="DXs-dN-796" id="CQn-NL-9e8"/>
+                        <outletCollection property="blurViews" destination="s7g-fk-SMz" id="fH0-71-2bo"/>
+                        <outletCollection property="blurViews" destination="CeU-dB-Mok" id="o6X-1W-zNB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FO-7p-Vpf" userLabel="First Responder" sceneMemberID="firstResponder"/>

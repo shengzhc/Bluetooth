@@ -1,18 +1,19 @@
 //
-//  BTFadeAnimator.m
+//  BTPickerAnimator.m
 //  Bluetooth
 //
-//  Created by Shengzhe Chen on 4/26/15.
+//  Created by Shengzhe Chen on 4/27/15.
 //  Copyright (c) 2015 Shengzhe Chen. All rights reserved.
 //
 
-#import "BTFadeAnimator.h"
+#import "BTPickerAnimator.h"
+#import "BTTemperaturePickerViewController.h"
 
-@interface BTFadeAnimator ()
+@interface BTPickerAnimator ()
 
 @end
 
-@implementation BTFadeAnimator
+@implementation BTPickerAnimator
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
@@ -31,15 +32,7 @@
 - (void)presentingWithTransitionContext:(id < UIViewControllerContextTransitioning >)transitionContext
 {
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIView *containerView = [transitionContext containerView];
-    
-    UIImageView *blurView = [[UIImageView alloc] initWithFrame:containerView.bounds];
-    blurView.tag = kBTFadeAnimatorBlurViewTag;
-    blurView.image = [UIImage blurWithGPUImage:[UIImage takeSnapshotOfView:fromViewController.view]];
-    blurView.layer.opacity = 0.0f;
-    
-    [containerView addSubview:blurView];
     
     toViewController.view.frame = containerView.bounds;
     
@@ -62,7 +55,6 @@
     
     [toViewController.view.layer pop_addAnimation:scaleAnimation forKey:@"ScaleAnimation"];
     [toViewController.view.layer pop_addAnimation:fadeAnimation forKey:@"FadeAnimation"];
-    [blurView.layer pop_addAnimation:fadeAnimation forKey:@"BlurFadeAnimation"];
 }
 
 - (void)dismissingWithTransitionContext:(id < UIViewControllerContextTransitioning > )transitionContext
@@ -84,7 +76,7 @@
     [fromViewController.view.layer pop_addAnimation:translateAnimation forKey:@"TranslateAnimation"];
     [fromViewController.view.layer pop_addAnimation:fadeAnimation forKey:@"FadeAnimation"];
     
-    UIView *blurView = [[transitionContext containerView] viewWithTag:kBTFadeAnimatorBlurViewTag];
+    UIView *blurView = [[transitionContext containerView] viewWithTag:0];
     if (blurView) {
         POPBasicAnimation *fadeAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
         fadeAnimation.fromValue = @(1);

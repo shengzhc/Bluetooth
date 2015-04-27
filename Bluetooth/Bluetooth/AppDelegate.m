@@ -17,13 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     [BTBluetoothManager sharedInstance];
     [NSThread sleepForTimeInterval:0.2f];
-    
-    NSLog(@"%@", [UIFont fontNamesForFamilyName:@"Digital-7"]);
-    
-    
     return YES;
 }
 

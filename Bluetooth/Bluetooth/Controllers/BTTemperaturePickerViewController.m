@@ -14,10 +14,10 @@
 
 @interface BTTemperaturePickerViewController ()
 @property (strong, nonatomic) IBOutlet BTTemperaturePickerSupporter *pickerSupporter;
-@property (weak, nonatomic) IBOutlet UIView *bottomContainer;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UITableView *temperatureTableView;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *blurViews;
 @property (weak, nonatomic) IBOutlet UIButton *degreeUnitSwitchButton;
 @end
 
@@ -26,23 +26,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self configureViews];
+}
 
-    self.cancelButton.titleLabel.font = [UIFont bluetoothFontOfSize:20.0f];
+- (void)configureViews
+{
+    self.cancelButton.titleLabel.font = [UIFont bluetoothFontOfSize:28.0];
     self.cancelButton.layer.cornerRadius = 4.0;
     [self.cancelButton setBackgroundColor:[UIColor lightBambooColor]];
     self.cancelButton.clipsToBounds = YES;
     [self.cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     
-    self.doneButton.titleLabel.font = [UIFont bluetoothFontOfSize:20.0f];
+    self.doneButton.titleLabel.font = [UIFont bluetoothFontOfSize:28.0];
     self.doneButton.layer.cornerRadius = 4.0;
     [self.doneButton setBackgroundColor:[UIColor coralColor]];
     self.doneButton.clipsToBounds = YES;
     [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
-    
-    CGFloat fontSize = 20.0f;
-    
+
+    CGFloat fontSize = 32.0;
     NSDictionary *highlightAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]};
     NSDictionary *grayAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:fontSize], NSForegroundColorAttributeName: [[UIColor whiteColor] colorWithAlphaComponent:.5f]};
     NSDictionary *seperatorAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:fontSize - 2], NSForegroundColorAttributeName: [UIColor coralColor], NSBaselineOffsetAttributeName: @(1.5)};
@@ -57,16 +60,35 @@
     
     [self.degreeUnitSwitchButton setAttributedTitle:celsiusState forState:UIControlStateNormal];
     [self.degreeUnitSwitchButton setAttributedTitle:fahrenheitState forState:UIControlStateSelected];
+    
+    for (UIView *view in self.blurViews) {
+        view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
+        view.alpha = 1.0;
+    }
+}
+
+- (IBAction)didDegreeUnitSwitchButtonClicked:(id)sender
+{
+    self.degreeUnitSwitchButton.selected = !self.degreeUnitSwitchButton.selected;
 }
 
 - (IBAction)didCancelButtonClicked:(id)sender
 {
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (self.temperaturePickerCompletionHandler) {
+            self.temperaturePickerCompletionHandler(YES, self.branch, nil);
+        }
+    }];
 }
 
 - (IBAction)didDoneButtonClicked:(id)sender
 {
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (self.temperaturePickerCompletionHandler) {
+            self.temperaturePickerCompletionHandler(YES, self.branch, nil);
+        }
+    }];
 }
-
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

@@ -56,6 +56,7 @@
 		9C8B4EAA1AEEB0B8002955AD /* digital-7 (italic).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C8B4EA71AEEB0B8002955AD /* digital-7 (italic).ttf */; };
 		9C8B4EAB1AEEB0B8002955AD /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C8B4EA81AEEB0B8002955AD /* digital-7 (mono).ttf */; };
 		9C8B4EAC1AEEB0B8002955AD /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C8B4EA91AEEB0B8002955AD /* digital-7.ttf */; };
+		9C8B4EAF1AEEB591002955AD /* BTPickerAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B4EAE1AEEB591002955AD /* BTPickerAnimator.m */; };
 		9C9356211AECB4BB00437689 /* BTTemperatureFanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9356201AECB4BB00437689 /* BTTemperatureFanView.m */; };
 		9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */; };
 		9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA41AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m */; };
@@ -150,6 +151,8 @@
 		9C8B4EA71AEEB0B8002955AD /* digital-7 (italic).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (italic).ttf"; sourceTree = "<group>"; };
 		9C8B4EA81AEEB0B8002955AD /* digital-7 (mono).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (mono).ttf"; sourceTree = "<group>"; };
 		9C8B4EA91AEEB0B8002955AD /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7.ttf"; sourceTree = "<group>"; };
+		9C8B4EAD1AEEB591002955AD /* BTPickerAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTPickerAnimator.h; sourceTree = "<group>"; };
+		9C8B4EAE1AEEB591002955AD /* BTPickerAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTPickerAnimator.m; sourceTree = "<group>"; };
 		9C93561F1AECB4BB00437689 /* BTTemperatureFanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTemperatureFanView.h; sourceTree = "<group>"; };
 		9C9356201AECB4BB00437689 /* BTTemperatureFanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTemperatureFanView.m; sourceTree = "<group>"; };
 		9CD08DA01AE9A6DE0051D4F5 /* CBUUID+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+Bluetooth.h"; sourceTree = "<group>"; };
@@ -378,6 +381,8 @@
 			children = (
 				9C351C0F1AECE535002620A8 /* BTFadeAnimator.h */,
 				9C351C101AECE535002620A8 /* BTFadeAnimator.m */,
+				9C8B4EAD1AEEB591002955AD /* BTPickerAnimator.h */,
+				9C8B4EAE1AEEB591002955AD /* BTPickerAnimator.m */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -601,6 +606,7 @@
 			files = (
 				9C685AD21AEC59C8001DDC80 /* NSNumber+Bluetooth.m in Sources */,
 				9C685ABC1AEAFE3D001DDC80 /* BTDataPackage.m in Sources */,
+				9C8B4EAF1AEEB591002955AD /* BTPickerAnimator.m in Sources */,
 				9C32004F1AE3F188003721CF /* ViewController.m in Sources */,
 				9C8B4EA61AEE92D3002955AD /* BTTemperaturePickerSupporter.m in Sources */,
 				9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */,

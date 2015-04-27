@@ -8,12 +8,15 @@
 
 #import "BTDeviceListViewController.h"
 #import "BTTemperatureAdjustViewController.h"
+#import "BTTemperaturePickerViewController.h"
+
 #import "BTDeviceListSupporter.h"
 
 #import "BTDeviceListTableViewCell.h"
 #import "BTDegreeUnitSwitchCell.h"
 
 #import "BTFadeAnimator.h"
+#import "BTPickerAnimator.h"
 
 @interface BTDeviceListViewController () < BTDeviceListSupporterDelegate, BTDeviceListTableViewCellDelegate, UIViewControllerTransitioningDelegate >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -76,9 +79,20 @@
     adjustViewController.transitioningDelegate = self;
     adjustViewController.temperatureAdjustCompletionHandler = ^(BOOL isCancelled, BTBranchBlock *branch, id userInfo) {
         _isHandlingLongPress = NO;
-        NSLog(@"%@", branch);
     };
     [self presentViewController:adjustViewController animated:YES completion:nil];
+}
+
+- (void)presentBranchTemperaturePickerViewControllerWithBranch:(BTBranchBlock *)branch
+{
+    BTTemperaturePickerViewController *pickerViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kBTTemperaturePickerViewControllerIdentifier];
+    pickerViewController.branch = branch;
+    pickerViewController.modalPresentationStyle = UIModalPresentationCustom;
+    pickerViewController.transitioningDelegate = self;
+    pickerViewController.temperaturePickerCompletionHandler = ^(BOOL isCancelled, BTBranchBlock *branch, id userInfo) {
+        _isHandlingLongPress = NO;
+    };
+    [self presentViewController:pickerViewController animated:YES completion:nil];
 }
 
 #pragma mark UITableViewDataSource
@@ -129,21 +143,36 @@
 
     _isHandlingLongPress = YES;
     BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:1 temperature:arc4random()%20+10];
-    [self presentBranchTemperatureAdjustViewControllerWithBranch:branch];
+    [self presentBranchTemperaturePickerViewControllerWithBranch:branch];
 }
 
 #pragma mark UIViewControllerTransitioningDelegate
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {
-    BTFadeAnimator *animator = [[BTFadeAnimator alloc] init];
-    animator.presenting = YES;
-    return animator;
+    if ([presented isKindOfClass:[BTTemperatureAdjustViewController class]]) {
+        BTFadeAnimator *animator = [[BTFadeAnimator alloc] init];
+        animator.presenting = YES;
+        return animator;
+    } else if ([presented isKindOfClass:[BTTemperaturePickerViewController class]]) {
+        BTPickerAnimator *animator = [[BTPickerAnimator alloc] init];
+        animator.presenting = YES;
+        return animator;
+    }
+    return nil;
 }
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    BTFadeAnimator *animator = [[BTFadeAnimator alloc] init];
-    return animator;
+    if ([dismissed isKindOfClass:[BTTemperatureAdjustViewController class]]) {
+        BTFadeAnimator *animator = [[BTFadeAnimator alloc] init];
+        animator.presenting = NO;
+        return animator;
+    } else if ([dismissed isKindOfClass:[BTTemperaturePickerViewController class]]) {
+        BTPickerAnimator *animator = [[BTPickerAnimator alloc] init];
+        animator.presenting = NO;
+        return animator;
+    }
+    return nil;
 }
 
 @end

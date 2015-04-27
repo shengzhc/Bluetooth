@@ -21,4 +21,9 @@
 
 //User Default
 
+
+// View Tag
+#define kBTFadeAnimatorBlurViewTag 500
+
+
 #endif

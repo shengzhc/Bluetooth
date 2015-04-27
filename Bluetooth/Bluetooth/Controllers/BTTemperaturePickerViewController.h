@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BTTemperaturePickerViewController : UIViewController < UITableViewDataSource, UITableViewDelegate >
-
 @property (strong, nonatomic) BTBranchBlock *branch;
 @property (copy, nonatomic) void (^temperaturePickerCompletionHandler)(BOOL isCancelled, BTBranchBlock *branch, id userInfo);
-
 @end
