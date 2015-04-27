@@ -16,7 +16,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.mTextLabel.font = [UIFont bluetoothFontOfSize:20.0f];
+    self.mTextLabel.font = [UIFont bluetoothFontOfSize:40.0];
     self.mTextLabel.textColor = [UIColor whiteColor];
 }
 

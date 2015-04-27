@@ -53,6 +53,9 @@
 		9C8B4EA01AEE80E9002955AD /* BTTemperaturePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B4E9F1AEE80E9002955AD /* BTTemperaturePickerViewController.m */; };
 		9C8B4EA31AEE9187002955AD /* BTLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B4EA21AEE9187002955AD /* BTLabelTableViewCell.m */; };
 		9C8B4EA61AEE92D3002955AD /* BTTemperaturePickerSupporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B4EA51AEE92D3002955AD /* BTTemperaturePickerSupporter.m */; };
+		9C8B4EAA1AEEB0B8002955AD /* digital-7 (italic).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C8B4EA71AEEB0B8002955AD /* digital-7 (italic).ttf */; };
+		9C8B4EAB1AEEB0B8002955AD /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C8B4EA81AEEB0B8002955AD /* digital-7 (mono).ttf */; };
+		9C8B4EAC1AEEB0B8002955AD /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C8B4EA91AEEB0B8002955AD /* digital-7.ttf */; };
 		9C9356211AECB4BB00437689 /* BTTemperatureFanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9356201AECB4BB00437689 /* BTTemperatureFanView.m */; };
 		9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */; };
 		9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA41AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m */; };
@@ -144,6 +147,9 @@
 		9C8B4EA21AEE9187002955AD /* BTLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLabelTableViewCell.m; sourceTree = "<group>"; };
 		9C8B4EA41AEE92D3002955AD /* BTTemperaturePickerSupporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTemperaturePickerSupporter.h; sourceTree = "<group>"; };
 		9C8B4EA51AEE92D3002955AD /* BTTemperaturePickerSupporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTemperaturePickerSupporter.m; sourceTree = "<group>"; };
+		9C8B4EA71AEEB0B8002955AD /* digital-7 (italic).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (italic).ttf"; sourceTree = "<group>"; };
+		9C8B4EA81AEEB0B8002955AD /* digital-7 (mono).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (mono).ttf"; sourceTree = "<group>"; };
+		9C8B4EA91AEEB0B8002955AD /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7.ttf"; sourceTree = "<group>"; };
 		9C93561F1AECB4BB00437689 /* BTTemperatureFanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTemperatureFanView.h; sourceTree = "<group>"; };
 		9C9356201AECB4BB00437689 /* BTTemperatureFanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTemperatureFanView.m; sourceTree = "<group>"; };
 		9CD08DA01AE9A6DE0051D4F5 /* CBUUID+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+Bluetooth.h"; sourceTree = "<group>"; };
@@ -322,6 +328,9 @@
 		9C3200551AE3F3D4003721CF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				9C8B4EA71AEEB0B8002955AD /* digital-7 (italic).ttf */,
+				9C8B4EA81AEEB0B8002955AD /* digital-7 (mono).ttf */,
+				9C8B4EA91AEEB0B8002955AD /* digital-7.ttf */,
 				9C3200561AE3F3D4003721CF /* Sketchnote Text Regular.otf */,
 				9C3200571AE3F3D4003721CF /* SourceSansPro-Black.ttf */,
 				9C3200581AE3F3D4003721CF /* SourceSansPro-BlackItalic.ttf */,
@@ -521,13 +530,16 @@
 				9C685AB71AEAF0F9001DDC80 /* bg_galaxy_01.jpg in Resources */,
 				9C3200691AE3F3D4003721CF /* SourceSansPro-ExtraLightItalic.ttf in Resources */,
 				9C32006A1AE3F3D4003721CF /* SourceSansPro-Italic.ttf in Resources */,
+				9C8B4EAA1AEEB0B8002955AD /* digital-7 (italic).ttf in Resources */,
 				9C3200651AE3F3D4003721CF /* SourceSansPro-BlackItalic.ttf in Resources */,
 				9C32006D1AE3F3D4003721CF /* SourceSansPro-Regular.ttf in Resources */,
 				9C32006B1AE3F3D4003721CF /* SourceSansPro-Light.ttf in Resources */,
 				9C1E75201AE077470047D04E /* Main.storyboard in Resources */,
 				9C3200631AE3F3D4003721CF /* Sketchnote Text Regular.otf in Resources */,
+				9C8B4EAB1AEEB0B8002955AD /* digital-7 (mono).ttf in Resources */,
 				9C685AB61AEAF0F9001DDC80 /* bg_galaxy_02.jpg in Resources */,
 				9C3200681AE3F3D4003721CF /* SourceSansPro-ExtraLight.ttf in Resources */,
+				9C8B4EAC1AEEB0B8002955AD /* digital-7.ttf in Resources */,
 				9C3200671AE3F3D4003721CF /* SourceSansPro-BoldItalic.ttf in Resources */,
 				9C1E75251AE077470047D04E /* LaunchScreen.xib in Resources */,
 				9C32006F1AE3F3D4003721CF /* SourceSansPro-SemiboldItalic.ttf in Resources */,

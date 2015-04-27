@@ -20,6 +20,10 @@
     
     [BTBluetoothManager sharedInstance];
     [NSThread sleepForTimeInterval:0.2f];
+    
+    NSLog(@"%@", [UIFont fontNamesForFamilyName:@"Digital-7"]);
+    
+    
     return YES;
 }
 

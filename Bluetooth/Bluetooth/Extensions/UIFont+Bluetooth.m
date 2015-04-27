@@ -8,6 +8,17 @@
 
 #import "UIFont+Bluetooth.h"
 
+#define FONT_DIGITAL 1
+
+#if FONT_DIGITAL
+NSString* Bluetooth_Font = @"Digital-7";
+NSString* Bluetooth_Font_Italic = @"Digital-7Italic";
+NSString* Bluetooth_Font_Bold = @"Digital-7";
+NSString* Bluetooth_Font_Semibold = @"SourceSansPro-Semibold";
+NSString* Bluetooth_Font_Cond = @"SourceSansPro-Regular";
+NSString* Bluetooth_Font_Cond_Semibold = @"SourceSansPro-Regular";
+NSString* Bluetooth_Font_Interstitial = @"Sketchnote Text";
+#else
 NSString* Bluetooth_Font = @"SourceSansPro-Regular";
 NSString* Bluetooth_Font_Italic = @"SourceSansPro-Italic";
 NSString* Bluetooth_Font_Bold = @"SourceSansPro-Bold";
@@ -15,6 +26,8 @@ NSString* Bluetooth_Font_Semibold = @"SourceSansPro-Semibold";
 NSString* Bluetooth_Font_Cond = @"SourceSansPro-Regular";
 NSString* Bluetooth_Font_Cond_Semibold = @"SourceSansPro-Regular";
 NSString* Bluetooth_Font_Interstitial = @"Sketchnote Text";
+#endif
+
 
 @implementation UIFont (Bluetooth)
 

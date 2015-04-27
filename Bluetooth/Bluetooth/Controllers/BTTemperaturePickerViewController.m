@@ -29,14 +29,14 @@
 
     self.cancelButton.titleLabel.font = [UIFont bluetoothFontOfSize:20.0f];
     self.cancelButton.layer.cornerRadius = 4.0;
-    [self.cancelButton setBackgroundColor:[[UIColor lightBambooColor] colorWithAlphaComponent:0.8f]];
+    [self.cancelButton setBackgroundColor:[UIColor lightBambooColor]];
     self.cancelButton.clipsToBounds = YES;
     [self.cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     
     self.doneButton.titleLabel.font = [UIFont bluetoothFontOfSize:20.0f];
     self.doneButton.layer.cornerRadius = 4.0;
-    [self.doneButton setBackgroundColor:[[UIColor lightCoralColor] colorWithAlphaComponent:0.8]];
+    [self.doneButton setBackgroundColor:[UIColor coralColor]];
     self.doneButton.clipsToBounds = YES;
     [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];

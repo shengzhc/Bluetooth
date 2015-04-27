@@ -24,6 +24,9 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>digital-7 (italic).ttf</string>
+		<string>digital-7 (mono).ttf</string>
+		<string>digital-7.ttf</string>
 		<string>Sketchnote Text Regular.otf</string>
 		<string>SourceSansPro-SemiboldItalic.ttf</string>
 		<string>SourceSansPro-Semibold.ttf</string>
