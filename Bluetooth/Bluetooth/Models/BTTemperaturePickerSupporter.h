@@ -10,4 +10,6 @@
 
 @interface BTTemperaturePickerSupporter : NSObject < UITableViewDataSource >
 
+@property (assign, nonatomic) BTDegreeUnitType degreeUnitType;
+
 @end

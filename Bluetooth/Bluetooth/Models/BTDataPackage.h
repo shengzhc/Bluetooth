@@ -10,10 +10,11 @@
 
 @interface BTBranchBlock : NSObject
 @property (assign, nonatomic) NSUInteger branchNumber;
-@property (assign, nonatomic) NSUInteger branchTemperature;
-@property (assign, nonatomic) NSUInteger branchTargetTemperature;
+@property (assign, nonatomic) double branchTemperature;
+@property (assign, nonatomic) double branchTargetTemperature;
+@property (copy, nonatomic) NSString *branchName;
 
-- (instancetype)initWithBranchNumber:(NSUInteger)branchNumber temperature:(NSUInteger)branchTemperature;
+- (instancetype)initWithBranchNumber:(double)branchNumber temperature:(double)branchTemperature;
 - (NSData *)branchSendingBytesData;
 
 @end

@@ -70,6 +70,8 @@
 - (IBAction)didDegreeUnitSwitchButtonClicked:(id)sender
 {
     self.degreeUnitSwitchButton.selected = !self.degreeUnitSwitchButton.selected;
+    self.pickerSupporter.degreeUnitType = self.degreeUnitSwitchButton.selected ? kBTDegreeFahrenheit : kBTDegreeCelsius;
+    [self.temperatureTableView reloadData];
 }
 
 - (IBAction)didCancelButtonClicked:(id)sender

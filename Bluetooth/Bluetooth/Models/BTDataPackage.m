@@ -10,18 +10,24 @@
 
 @implementation BTBranchBlock
 
-- (instancetype)initWithBranchNumber:(NSUInteger)branchNumber temperature:(NSUInteger)branchTemperature
+- (instancetype)initWithBranchNumber:(double)branchNumber temperature:(double)branchTemperature
 {
     if (self = [super init]) {
         self.branchNumber = branchNumber;
         self.branchTemperature = branchTemperature;
         self.branchTargetTemperature = NSUIntegerMax;
         self.branchTargetTemperature = arc4random()%20 + 10;
+        self.branchName = [[self reservedTitles] objectAtIndex:self.branchNumber % [self reservedTitles].count];
     }
     return self;
 }
 
-- (NSUInteger)branchTargetTemperature
+- (NSArray *)reservedTitles
+{
+    return @[@"Kitchen", @"Living Room", @"Baby Bedroom", @"Study Room"];
+}
+
+- (double)branchTargetTemperature
 {
     if (_branchTargetTemperature == NSUIntegerMax) {
         return NSUIntegerMax;
@@ -34,7 +40,7 @@
 {
     UInt16 bytes = 0x0000;
     bytes |= ((self.branchNumber) << 8);
-    bytes |= self.branchTargetTemperature;
+    bytes |= (NSUInteger)self.branchTargetTemperature;
     NSLog(@"Hex value of char is 0x%02x", (unsigned int) bytes);
     return [NSData dataWithBytes:&bytes length:sizeof(UInt16)];
 }
