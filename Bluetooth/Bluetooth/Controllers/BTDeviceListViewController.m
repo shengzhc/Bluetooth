@@ -8,6 +8,8 @@
 
 #import "BTDeviceListViewController.h"
 #import "BTTemperatureAdjustViewController.h"
+#import "BTTemperaturePickerViewController.h"
+
 #import "BTDeviceListSupporter.h"
 
 #import "BTDeviceListTableViewCell.h"
@@ -76,9 +78,16 @@
     adjustViewController.transitioningDelegate = self;
     adjustViewController.temperatureAdjustCompletionHandler = ^(BOOL isCancelled, BTBranchBlock *branch, id userInfo) {
         _isHandlingLongPress = NO;
-        NSLog(@"%@", branch);
     };
     [self presentViewController:adjustViewController animated:YES completion:nil];
+}
+
+- (void)presentTemperaturePickerViewControllerWithBranch:(BTBranchBlock *)branch
+{
+    BTTemperaturePickerViewController *pickerViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kBTTemperaturePickerViewControllerIdentifier];
+    pickerViewController.modalPresentationStyle = UIModalPresentationCustom;
+    pickerViewController.transitioningDelegate = self;
+    [self presentViewController:pickerViewController animated:YES completion:nil];
 }
 
 #pragma mark UITableViewDataSource
@@ -129,7 +138,8 @@
 
     _isHandlingLongPress = YES;
     BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:1 temperature:arc4random()%20+10];
-    [self presentBranchTemperatureAdjustViewControllerWithBranch:branch];
+//    [self presentBranchTemperatureAdjustViewControllerWithBranch:branch];
+    [self presentTemperaturePickerViewControllerWithBranch:branch];
 }
 
 #pragma mark UIViewControllerTransitioningDelegate

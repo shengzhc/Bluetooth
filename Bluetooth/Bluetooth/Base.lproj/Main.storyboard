@@ -323,7 +323,58 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8v-Vq-LZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1044" y="398"/>
+            <point key="canvasLocation" x="169" y="1079"/>
+        </scene>
+        <!--Temperature Picker View Controller-->
+        <scene sceneID="t8f-Pd-Woz">
+            <objects>
+                <viewController storyboardIdentifier="BTTemperaturePickerViewControllerIdentifier" id="Kot-67-fhb" customClass="BTTemperaturePickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NDq-Yz-nQe"/>
+                        <viewControllerLayoutGuide type="bottom" id="mFY-Sk-7Ie"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zT5-1H-1Po">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSP-0C-9Kh">
+                                <rect key="frame" x="0.0" y="328" width="320" height="240"/>
+                                <subviews>
+                                    <pickerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYh-ka-ggW">
+                                        <rect key="frame" x="40" y="60" width="240" height="180"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Kot-67-fhb" id="UKo-qe-pZ8"/>
+                                            <outlet property="delegate" destination="Kot-67-fhb" id="IfT-Tk-0Z7"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="fYh-ka-ggW" firstAttribute="leading" secondItem="SSP-0C-9Kh" secondAttribute="leading" constant="40" id="9qu-xg-Xgk"/>
+                                    <constraint firstAttribute="bottom" secondItem="fYh-ka-ggW" secondAttribute="bottom" id="QO9-ka-5Cx"/>
+                                    <constraint firstAttribute="trailing" secondItem="fYh-ka-ggW" secondAttribute="trailing" constant="40" id="XqS-Yw-sIf"/>
+                                    <constraint firstAttribute="height" constant="240" id="osS-e0-qsq"/>
+                                    <constraint firstItem="fYh-ka-ggW" firstAttribute="top" secondItem="SSP-0C-9Kh" secondAttribute="top" constant="60" id="yd7-xf-r14"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SSP-0C-9Kh" firstAttribute="leading" secondItem="zT5-1H-1Po" secondAttribute="leading" id="8wZ-25-8pu"/>
+                            <constraint firstAttribute="bottom" secondItem="SSP-0C-9Kh" secondAttribute="bottom" id="SVf-Dc-gz4"/>
+                            <constraint firstAttribute="trailing" secondItem="SSP-0C-9Kh" secondAttribute="trailing" id="zOg-Wh-lGO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pickerSupporter" destination="zGU-rq-doB" id="qqh-Qi-kfC"/>
+                        <outlet property="pickerView" destination="fYh-ka-ggW" id="3c8-fA-dbQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="68r-Jk-B9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="zGU-rq-doB" customClass="BTTemperaturePickerSupporter"/>
+            </objects>
+            <point key="canvasLocation" x="609" y="1079"/>
         </scene>
     </scenes>
     <resources>

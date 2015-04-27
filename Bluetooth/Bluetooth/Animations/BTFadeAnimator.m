@@ -64,7 +64,7 @@
     
     [toViewController.view.layer pop_addAnimation:scaleAnimation forKey:@"ScaleAnimation"];
     [toViewController.view.layer pop_addAnimation:fadeAnimation forKey:@"FadeAnimation"];
-    [blurView.layer pop_addAnimation:fadeAnimation forKey:@"BlurFadeAnimation"];
+//    [blurView.layer pop_addAnimation:fadeAnimation forKey:@"BlurFadeAnimation"];
 }
 
 - (void)dismissingWithTransitionContext:(id < UIViewControllerContextTransitioning > )transitionContext
