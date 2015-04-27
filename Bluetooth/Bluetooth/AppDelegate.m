@@ -18,9 +18,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [[BTBluetoothManager sharedInstance] log];
+    [BTBluetoothManager sharedInstance];
     [NSThread sleepForTimeInterval:1.5f];
-    
     return YES;
 }
 

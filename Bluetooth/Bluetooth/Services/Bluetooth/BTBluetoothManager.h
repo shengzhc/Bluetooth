@@ -12,5 +12,4 @@
 + (BTBluetoothManager *)sharedInstance;
 - (void)start;
 - (void)stop;
-- (void)log;
 @end

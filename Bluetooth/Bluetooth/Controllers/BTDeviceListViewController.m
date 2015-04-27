@@ -41,16 +41,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDegreeUnitChangedNotification:) name:kBTNotificationDegreeUnitDidChangeNotification object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[BTBluetoothManager sharedInstance] start];
+//        [[BTBluetoothManager sharedInstance] start];
     });
 }
 

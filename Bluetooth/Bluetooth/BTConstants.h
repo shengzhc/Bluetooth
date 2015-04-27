@@ -15,6 +15,7 @@
 #define kBTTemperatureAdjustViewControllerIdentifier @"BTTemperatureAdjustViewControllerIdentifier"
 
 //Notification
+#define kBTNotificationDebugLogNotification @"BTNotificationDebugLogNotification"
 #define kBTNotificationDegreeUnitDidChangeNotification @"BTNotificationDegreeUnitDidChangeNotification"
 
 //User Default
