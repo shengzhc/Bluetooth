@@ -48,12 +48,14 @@
 {
     UITableViewCell *cell = nil;
     
+    NSArray *titles = @[@"Kitchen", @"Living Room", @"Baby Bedroom", @"Study Room"];
+    
     if (indexPath.section == 0) {
         cell = [[BTTableViewCellFactory shareInstance] tableView:tableView withBTCellType:kBTDeviceListTableViewCell withIndexPath:indexPath];
         if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
             BTBranchBlock *branch = self.branches[indexPath.row];
             BTDeviceListTableViewCell *deviceListCell = (BTDeviceListTableViewCell *)cell;
-            deviceListCell.nameLabel.text = [NSString stringWithFormat:@"Branch_%@", @(branch.branchNumber)];
+            deviceListCell.nameLabel.text = titles[indexPath.item];
             
             NSNumber *currentTemperature = [BTAppState sharedInstance].isCelsius ? @(branch.branchTemperature) : [NSNumber convertNumberToFahrenheit:@(branch.branchTemperature)];
             NSMutableAttributedString *currentTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(currentTemperature.integerValue).stringValue attributes:[BTDeviceListTableViewCell currentTemperatureTextAttributes]];

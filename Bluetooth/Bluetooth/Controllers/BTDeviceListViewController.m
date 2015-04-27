@@ -45,7 +45,7 @@
 {
     [super viewDidAppear:animated];
     dispatch_async(dispatch_get_main_queue(), ^{
-//        [[BTBluetoothManager sharedInstance] start];
+        [[BTBluetoothManager sharedInstance] start];
     });
 }
 

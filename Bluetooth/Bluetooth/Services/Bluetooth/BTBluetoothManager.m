@@ -17,6 +17,7 @@
 {
     dispatch_queue_t _central_queue;
     dispatch_queue_t _peripherals_connect_queue;
+    dispatch_queue_t _characteristic_reading_queue;
     
     NSLock *_discoveried_peripherals_lock;
     NSLock *_connecting_peripherals_lock;
