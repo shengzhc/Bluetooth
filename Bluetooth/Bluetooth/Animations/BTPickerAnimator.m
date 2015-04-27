@@ -33,58 +33,90 @@
 {
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView = [transitionContext containerView];
-    
     toViewController.view.frame = containerView.bounds;
     
-    toViewController.view.layer.opacity = 0;
-    [containerView addSubview:toViewController.view];
-    
-    POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
-    scaleAnimation.fromValue = [NSValue valueWithCGSize:CGSizeMake(0.2, 0.2)];
-    scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(1.0, 1.0)];
-    scaleAnimation.springBounciness = 10;
-    scaleAnimation.springSpeed = 16;
-    scaleAnimation.completionBlock = ^(POPAnimation *animtion, BOOL finished) {
+    if ([toViewController isKindOfClass:[BTTemperaturePickerViewController class]]) {
+        BTTemperaturePickerViewController *pickerViewController = (BTTemperaturePickerViewController *)toViewController;
+        [pickerViewController.view setNeedsLayout];
+        [pickerViewController.view layoutIfNeeded];
+        
+        CGFloat originalValue = pickerViewController.pickerContainer.layer.position.y;
+        pickerViewController.pickerContainer.layer.position = CGPointMake(pickerViewController.pickerContainer.layer.position.x, originalValue + pickerViewController.pickerContainer.layer.bounds.size.height);
+        POPSpringAnimation *translateAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+        translateAnimation.fromValue = @(originalValue + pickerViewController.pickerContainer.layer.bounds.size.height);
+        translateAnimation.toValue = @(originalValue);
+        translateAnimation.springSpeed = 16.0;
+        translateAnimation.dynamicsFriction = 28.0;
+        [pickerViewController.pickerContainer.layer pop_addAnimation:translateAnimation forKey:@"PickerContainerTranslateAnimation"];
+        
+        pickerViewController.pickerContainer.layer.opacity = 0.0f;
+        POPBasicAnimation *fadeAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+        fadeAnimation.fromValue = @(0);
+        fadeAnimation.toValue = @(1);
+        fadeAnimation.duration = [self transitionDuration:transitionContext] * 0.6f;
+        [pickerViewController.pickerContainer.layer pop_addAnimation:fadeAnimation forKey:@"PickerContainerFadeAnimation"];
+        
+        CGSize scaleOrigin = CGSizeMake(2.0, 2.0);
+        pickerViewController.topContainer.layer.transform = CATransform3DMakeScale(scaleOrigin.width, scaleOrigin.height, 1.0);
+        POPBasicAnimation *scaleAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+        scaleAnimation.fromValue = [NSValue valueWithCGSize:scaleOrigin];
+        scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(1.0, 1.0)];
+        scaleAnimation.duration = [self transitionDuration:transitionContext];
+        [pickerViewController.topContainer.layer pop_addAnimation:scaleAnimation forKey:@"TopContainerScaleAnimation"];
+        
+        pickerViewController.topContainer.layer.backgroundColor = [UIColor clearColor].CGColor;
+        POPBasicAnimation *colorAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerBackgroundColor];
+        colorAnimation.fromValue = [UIColor clearColor];
+        colorAnimation.toValue = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+        colorAnimation.duration = [self transitionDuration:transitionContext] * 0.8f;
+        [pickerViewController.topContainer.layer pop_addAnimation:colorAnimation forKey:@"TopContainerColorTranslateAnimation"];
+    }
+
+    POPBasicAnimation *dummyAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerBackgroundColor];
+    dummyAnimation.fromValue = [UIColor clearColor];
+    dummyAnimation.toValue = [UIColor clearColor];
+    dummyAnimation.duration = [self transitionDuration:transitionContext];
+    dummyAnimation.completionBlock = ^(POPAnimation *animtion, BOOL finished) {
         [transitionContext completeTransition:finished];
     };
     
-    POPBasicAnimation *fadeAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
-    fadeAnimation.fromValue = @(0);
-    fadeAnimation.toValue = @(1);
-    fadeAnimation.duration = [self transitionDuration:transitionContext] * 0.7f;
-    
-    [toViewController.view.layer pop_addAnimation:scaleAnimation forKey:@"ScaleAnimation"];
-    [toViewController.view.layer pop_addAnimation:fadeAnimation forKey:@"FadeAnimation"];
+    [containerView addSubview:toViewController.view];
+    [toViewController.view.layer pop_addAnimation:dummyAnimation forKey:@"DummyAnimation"];
 }
 
 - (void)dismissingWithTransitionContext:(id < UIViewControllerContextTransitioning > )transitionContext
 {
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
-    POPBasicAnimation *translateAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerTranslationY];
-    translateAnimation.fromValue = @(0);
-    translateAnimation.toValue = @([transitionContext containerView].bounds.size.height * 0.7f);
-    translateAnimation.duration = [self transitionDuration:transitionContext];
-    translateAnimation.completionBlock = ^(POPAnimation *animation, BOOL finished) {
-        [transitionContext completeTransition:finished];
-    };
+    if ([fromViewController isKindOfClass:[BTTemperaturePickerViewController class]]) {
+        BTTemperaturePickerViewController *pickerViewController = (BTTemperaturePickerViewController *)fromViewController;
+        [pickerViewController.view setNeedsLayout];
+        [pickerViewController.view layoutIfNeeded];
+        
+        POPBasicAnimation *translateAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+        translateAnimation.fromValue = @(pickerViewController.pickerContainer.layer.position.y);
+        translateAnimation.toValue = @(pickerViewController.pickerContainer.layer.position.y + pickerViewController.pickerContainer.layer.bounds.size.height);
+        translateAnimation.duration = [self transitionDuration:transitionContext];
+        [pickerViewController.pickerContainer.layer pop_addAnimation:translateAnimation forKey:@"PickerContainerTranslateAnimation"];
+        
+        CGSize scaleOrigin = CGSizeMake(3.0, 3.0);
+        pickerViewController.topContainer.layer.transform = CATransform3DMakeScale(scaleOrigin.width, scaleOrigin.height, 1.0);
+        POPBasicAnimation *scaleAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+        scaleAnimation.fromValue = [NSValue valueWithCGSize:scaleOrigin];
+        scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(2.0, 2.0)];
+        scaleAnimation.duration = [self transitionDuration:transitionContext];
+        [pickerViewController.topContainer.layer pop_addAnimation:scaleAnimation forKey:@"TopContainerScaleAnimation"];
+    }
     
     POPBasicAnimation *fadeAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
     fadeAnimation.fromValue = @(1);
     fadeAnimation.toValue = @(0);
-    fadeAnimation.duration = [self transitionDuration:transitionContext];
-    [fromViewController.view.layer pop_addAnimation:translateAnimation forKey:@"TranslateAnimation"];
+    fadeAnimation.beginTime = CACurrentMediaTime() + 0.2f;
+    fadeAnimation.duration = [self transitionDuration:transitionContext] - 0.2f;
+    fadeAnimation.completionBlock = ^(POPAnimation *animtion, BOOL finished) {
+        [transitionContext completeTransition:finished];
+    };
     [fromViewController.view.layer pop_addAnimation:fadeAnimation forKey:@"FadeAnimation"];
-    
-    UIView *blurView = [[transitionContext containerView] viewWithTag:0];
-    if (blurView) {
-        POPBasicAnimation *fadeAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
-        fadeAnimation.fromValue = @(1);
-        fadeAnimation.toValue = @(0);
-        fadeAnimation.duration = [self transitionDuration:transitionContext] - 0.2f;
-        fadeAnimation.beginTime = CACurrentMediaTime() + 0.2f;
-        [blurView.layer pop_addAnimation:fadeAnimation forKey:@"BlurViewFadeAnimation"];
-    }
 }
 
 @end

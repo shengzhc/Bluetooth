@@ -243,8 +243,10 @@
                         <outlet property="cancelButton" destination="4s0-n4-QH0" id="jUF-i8-xkZ"/>
                         <outlet property="degreeUnitSwitchButton" destination="y5h-tg-Ho1" id="xQ6-rV-jck"/>
                         <outlet property="doneButton" destination="Xan-sQ-U3Y" id="6Mw-Nk-8rT"/>
+                        <outlet property="pickerContainer" destination="NwR-6V-zC2" id="143-0W-ZjM"/>
                         <outlet property="pickerSupporter" destination="EtG-sa-6MY" id="Twh-v2-y2A"/>
                         <outlet property="temperatureTableView" destination="DXs-dN-796" id="CQn-NL-9e8"/>
+                        <outlet property="topContainer" destination="c05-2R-6Ey" id="23E-AH-1Fg"/>
                         <outletCollection property="blurViews" destination="s7g-fk-SMz" id="fH0-71-2bo"/>
                         <outletCollection property="blurViews" destination="CeU-dB-Mok" id="o6X-1W-zNB"/>
                     </connections>
