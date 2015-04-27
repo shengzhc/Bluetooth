@@ -19,7 +19,7 @@
     // Override point for customization after application launch.
     
     [BTBluetoothManager sharedInstance];
-    [NSThread sleepForTimeInterval:1.5f];
+    [NSThread sleepForTimeInterval:0.2f];
     return YES;
 }
 

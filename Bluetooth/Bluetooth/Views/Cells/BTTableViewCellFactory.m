@@ -8,6 +8,7 @@
 
 #import "BTTableViewCellFactory.h"
 #import "BTDeviceListTableViewCell.h"
+#import "BTLabelTableViewCell.h"
 
 NSString *stringFromBTTableViewCellType(BTTableViewCellType type)
 {
@@ -17,6 +18,8 @@ NSString *stringFromBTTableViewCellType(BTTableViewCellType type)
             break;
         case kBTDegreeUnitSwitchCell:
             return @"BTDegreeUnitSwitchCellIdentifier";
+        case kBTLabelTableViewCell:
+            return @"BTLabelTableViewCellIdentifier";
         case kDefault:
             return nil;
         default:

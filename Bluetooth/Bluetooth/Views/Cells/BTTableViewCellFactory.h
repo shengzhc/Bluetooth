@@ -11,7 +11,8 @@
 typedef enum : NSUInteger {
     kDefault = 0,
     kBTDeviceListTableViewCell = 1,
-    kBTDegreeUnitSwitchCell = 2
+    kBTDegreeUnitSwitchCell = 2,
+    kBTLabelTableViewCell = 3
 } BTTableViewCellType;
 
 @interface BTTableViewCellFactory : NSObject

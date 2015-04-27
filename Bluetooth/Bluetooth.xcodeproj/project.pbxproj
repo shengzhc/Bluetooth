@@ -51,6 +51,8 @@
 		9C685AD51AEC9B16001DDC80 /* BTTemperatureAdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AD41AEC9B16001DDC80 /* BTTemperatureAdjustViewController.m */; };
 		9C685AD91AEC9BF9001DDC80 /* BTCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C685AD81AEC9BF9001DDC80 /* BTCircleView.m */; };
 		9C8B4EA01AEE80E9002955AD /* BTTemperaturePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B4E9F1AEE80E9002955AD /* BTTemperaturePickerViewController.m */; };
+		9C8B4EA31AEE9187002955AD /* BTLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B4EA21AEE9187002955AD /* BTLabelTableViewCell.m */; };
+		9C8B4EA61AEE92D3002955AD /* BTTemperaturePickerSupporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B4EA51AEE92D3002955AD /* BTTemperaturePickerSupporter.m */; };
 		9C9356211AECB4BB00437689 /* BTTemperatureFanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9356201AECB4BB00437689 /* BTTemperatureFanView.m */; };
 		9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA11AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m */; };
 		9CD08DA51AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD08DA41AE9B3DC0051D4F5 /* BTBLEServiceCharacteristicMapper.m */; };
@@ -138,6 +140,10 @@
 		9C685AD81AEC9BF9001DDC80 /* BTCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCircleView.m; sourceTree = "<group>"; };
 		9C8B4E9E1AEE80E9002955AD /* BTTemperaturePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTemperaturePickerViewController.h; sourceTree = "<group>"; };
 		9C8B4E9F1AEE80E9002955AD /* BTTemperaturePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTemperaturePickerViewController.m; sourceTree = "<group>"; };
+		9C8B4EA11AEE9187002955AD /* BTLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLabelTableViewCell.h; sourceTree = "<group>"; };
+		9C8B4EA21AEE9187002955AD /* BTLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLabelTableViewCell.m; sourceTree = "<group>"; };
+		9C8B4EA41AEE92D3002955AD /* BTTemperaturePickerSupporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTemperaturePickerSupporter.h; sourceTree = "<group>"; };
+		9C8B4EA51AEE92D3002955AD /* BTTemperaturePickerSupporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTemperaturePickerSupporter.m; sourceTree = "<group>"; };
 		9C93561F1AECB4BB00437689 /* BTTemperatureFanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTemperatureFanView.h; sourceTree = "<group>"; };
 		9C9356201AECB4BB00437689 /* BTTemperatureFanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTemperatureFanView.m; sourceTree = "<group>"; };
 		9CD08DA01AE9A6DE0051D4F5 /* CBUUID+Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+Bluetooth.h"; sourceTree = "<group>"; };
@@ -352,6 +358,8 @@
 				9C3200801AE408D2003721CF /* BTTableViewCellFactory.m */,
 				9C685AC61AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.h */,
 				9C685AC71AEC4B7E001DDC80 /* BTDegreeUnitSwitchCell.m */,
+				9C8B4EA11AEE9187002955AD /* BTLabelTableViewCell.h */,
+				9C8B4EA21AEE9187002955AD /* BTLabelTableViewCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -372,6 +380,8 @@
 				9C685AAB1AEAB196001DDC80 /* BTDeviceListSupporter.m */,
 				9C685ABA1AEAFE3D001DDC80 /* BTDataPackage.h */,
 				9C685ABB1AEAFE3D001DDC80 /* BTDataPackage.m */,
+				9C8B4EA41AEE92D3002955AD /* BTTemperaturePickerSupporter.h */,
+				9C8B4EA51AEE92D3002955AD /* BTTemperaturePickerSupporter.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -580,8 +590,10 @@
 				9C685AD21AEC59C8001DDC80 /* NSNumber+Bluetooth.m in Sources */,
 				9C685ABC1AEAFE3D001DDC80 /* BTDataPackage.m in Sources */,
 				9C32004F1AE3F188003721CF /* ViewController.m in Sources */,
+				9C8B4EA61AEE92D3002955AD /* BTTemperaturePickerSupporter.m in Sources */,
 				9CD08DA21AE9A6DE0051D4F5 /* CBUUID+Bluetooth.m in Sources */,
 				9C685AAC1AEAB196001DDC80 /* BTDeviceListSupporter.m in Sources */,
+				9C8B4EA31AEE9187002955AD /* BTLabelTableViewCell.m in Sources */,
 				9C1E751A1AE077470047D04E /* AppDelegate.m in Sources */,
 				9C3200811AE408D2003721CF /* BTTableViewCellFactory.m in Sources */,
 				9C3200791AE40849003721CF /* BTDeviceListViewController.m in Sources */,
