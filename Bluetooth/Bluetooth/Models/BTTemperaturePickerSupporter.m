@@ -22,11 +22,20 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        _minValue = 16;
+        _minValue = 10;
         _maxValue = 50;
         _degreeUnitType = [BTAppState sharedInstance].degreeUnitType;
     }
     return self;
+}
+
+- (NSUInteger)indexOfBranchTemperature:(double)temperature degreeUnitType:(BTDegreeUnitType)degreeUnitType
+{
+    if (degreeUnitType == kBTDegreeCelsius) {
+        return temperature - _minValue;
+    } else {
+        return [NSNumber convertNumberToFahrenheit:@(temperature)].integerValue - [NSNumber convertNumberToFahrenheit:@(_minValue)].integerValue;
+    }
 }
 
 #pragma mark UITableViewDataSource

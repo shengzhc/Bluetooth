@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBOutlet BTTemperaturePickerSupporter *pickerSupporter;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
-@property (weak, nonatomic) IBOutlet UITableView *temperatureTableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *degreeUnitSwitchButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end
@@ -32,6 +32,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
+    NSUInteger row = [self.pickerSupporter indexOfBranchTemperature:self.branch.branchTargetTemperature degreeUnitType: self.pickerSupporter.degreeUnitType];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)configureViews
@@ -88,7 +96,7 @@
 {
     self.degreeUnitSwitchButton.selected = !self.degreeUnitSwitchButton.selected;
     self.pickerSupporter.degreeUnitType = self.degreeUnitSwitchButton.selected ? kBTDegreeFahrenheit : kBTDegreeCelsius;
-    [self.temperatureTableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (IBAction)didCancelButtonClicked:(id)sender

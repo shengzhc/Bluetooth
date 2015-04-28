@@ -266,7 +266,7 @@
                         <outlet property="doneButton" destination="Xan-sQ-U3Y" id="6Mw-Nk-8rT"/>
                         <outlet property="pickerContainer" destination="NwR-6V-zC2" id="143-0W-ZjM"/>
                         <outlet property="pickerSupporter" destination="EtG-sa-6MY" id="Twh-v2-y2A"/>
-                        <outlet property="temperatureTableView" destination="DXs-dN-796" id="CQn-NL-9e8"/>
+                        <outlet property="tableView" destination="DXs-dN-796" id="kYH-Gi-qsI"/>
                         <outlet property="titleLabel" destination="7G2-nU-LAk" id="04G-WP-FDh"/>
                         <outlet property="topContainer" destination="c05-2R-6Ey" id="23E-AH-1Fg"/>
                     </connections>
