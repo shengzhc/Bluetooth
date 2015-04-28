@@ -108,7 +108,6 @@
         if (!isCancelled) {
             __strong BTDeviceListViewController *deviceListViewController = weakSelf;
             if (deviceListViewController) {
-                branch.branchTargetTemperature = rand()%20 + 16;
                 BTBranchBlock *originalBranch = [deviceListViewController.deviceListSupporter branchWithBranchNumber:branch.branchNumber];
                 if (originalBranch.branchTargetTemperature != branch.branchTargetTemperature) {
                     [deviceListViewController.deviceListSupporter updateBranchWithBranchNumber:branch.branchNumber updatedBranch:branch];

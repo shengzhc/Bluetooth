@@ -11,7 +11,6 @@
 @interface BTTemperaturePickerSupporter : NSObject < UITableViewDataSource, UITableViewDelegate >
 @property (assign, nonatomic) BTDegreeUnitType degreeUnitType;
 @property (assign, nonatomic) double temperature;
-
 - (NSUInteger)indexOfBranchTemperature:(double)temperature degreeUnitType:(BTDegreeUnitType)degreeUnitType;
-
+- (NSNumber *)branchTemperatureAtIndex:(NSUInteger)index;
 @end

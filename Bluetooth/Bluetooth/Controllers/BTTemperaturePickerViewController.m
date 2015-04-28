@@ -12,7 +12,7 @@
 
 #import "BTLabelTableViewCell.h"
 
-@interface BTTemperaturePickerViewController ()
+@interface BTTemperaturePickerViewController () < UIScrollViewDelegate >
 @property (strong, nonatomic) IBOutlet BTTemperaturePickerSupporter *pickerSupporter;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
@@ -83,6 +83,12 @@
     [self.topContainer addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopContainer:)]];
 }
 
+- (NSIndexPath *)indexPathForCentralCellAtTableView:(UITableView *)tableView
+{
+    NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:CGPointMake(tableView.contentOffset.x, tableView.contentOffset.y + tableView.bounds.size.height/2.0)];
+    return indexPath;
+}
+
 - (void)didTapTopContainer:(UITapGestureRecognizer *)tapGestureRecognizer
 {
     [self dismissViewControllerAnimated:YES completion:^{
@@ -110,6 +116,8 @@
 
 - (IBAction)didDoneButtonClicked:(id)sender
 {
+    NSIndexPath *indexPath = [self indexPathForCentralCellAtTableView:self.tableView];
+    self.branch.branchTargetTemperature = [self.pickerSupporter branchTemperatureAtIndex:indexPath.row].doubleValue;
     [self dismissViewControllerAnimated:YES completion:^{
         if (self.temperaturePickerCompletionHandler) {
             self.temperaturePickerCompletionHandler(NO, self.branch, nil);
@@ -141,6 +149,20 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     return [self.pickerSupporter tableView:tableView viewForFooterInSection:section];
+}
+
+#pragma mark UIScrollViewDelegate
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    CGPoint destContentOffset = CGPointMake(targetContentOffset->x, targetContentOffset->y);
+    CGFloat frontY = (int)(destContentOffset.y / self.tableView.rowHeight) * self.tableView.rowHeight;
+    CGFloat nextY = (int)((destContentOffset.y + self.tableView.rowHeight) / self.tableView.rowHeight) * self.tableView.rowHeight;
+
+    if (fabs(destContentOffset.y - frontY) > fabs(destContentOffset.y - nextY)) {
+        targetContentOffset->y = nextY;
+    } else {
+        targetContentOffset->y = frontY;
+    }
 }
 
 @end

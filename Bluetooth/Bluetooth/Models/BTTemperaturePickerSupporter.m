@@ -38,6 +38,17 @@
     }
 }
 
+- (NSNumber *)branchTemperatureAtIndex:(NSUInteger)index
+{
+    if (self.degreeUnitType == kBTDegreeCelsius) {
+        return @(_minValue + index);
+    } else {
+        NSNumber *fahrenheit = @([NSNumber convertNumberToFahrenheit:@(_minValue)].doubleValue + index);
+        return [NSNumber convertNumberToCelsius:fahrenheit];
+    }
+}
+
+
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
