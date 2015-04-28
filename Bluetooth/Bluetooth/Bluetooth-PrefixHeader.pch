@@ -29,6 +29,8 @@
 #import "CBUUID+Bluetooth.h"
 #import "NSNumber+Bluetooth.h"
 #import "UIImage+Bluetooth.h"
+#import "CBPeripheral+Bluetooth.h"
+#import "CBService+Bluetooth.h"
 
 #import "BTTableViewCellFactory.h"
 #import "BTBluetoothManager.h"

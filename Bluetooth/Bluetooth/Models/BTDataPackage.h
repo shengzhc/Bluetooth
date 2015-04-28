@@ -21,6 +21,8 @@
 
 @interface BTDataPackage : NSObject
 @property (strong, nonatomic) NSArray *branches;
+@property (copy, nonatomic) NSString *serviceUUIDString;
+@property (copy, nonatomic) NSString *readingCharacteristicsUUIDString;
 
 - (instancetype)initWithBranchBlocks:(NSArray *)branches;
 - (NSData *)dataPackageSendingBytesData;

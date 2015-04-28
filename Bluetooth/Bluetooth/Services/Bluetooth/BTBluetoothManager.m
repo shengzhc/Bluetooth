@@ -16,19 +16,25 @@
 @implementation BTBluetoothManager
 {
     dispatch_queue_t _central_queue;
+    
     dispatch_queue_t _peripherals_connect_queue;
     dispatch_queue_t _characteristic_reading_queue;
+    dispatch_queue_t _characteristic_writting_queue;
     
     NSLock *_discoveried_peripherals_lock;
     NSLock *_connecting_peripherals_lock;
     NSLock *_connected_peripherals_lock;
+    NSLock *_writting_packages_lock;
     
     NSTimer *_scanningTimer;
     NSTimer *_connectingTimer;
+    NSTimer *_writtingTimer;
 
     NSMutableDictionary *_discoveried_peripherals;
     NSMutableDictionary *_connecting_peripherals;
     NSMutableDictionary *_connected_peripherals;
+    
+    NSMutableArray *_writting_packages;
     
     BTBLEServiceCharacteristicMapper *_serviceCharacteristicMapper;
 }
@@ -49,6 +55,8 @@
         _serviceCharacteristicMapper = [[BTBLEServiceCharacteristicMapper alloc] init];
         _central_queue = dispatch_queue_create("com.bluetooth.centralmanager", DISPATCH_QUEUE_CONCURRENT);
         _peripherals_connect_queue = dispatch_queue_create("com.bluetooth.peripheralsconnect", DISPATCH_QUEUE_SERIAL);
+        _characteristic_reading_queue = dispatch_queue_create("com.bluetooth.characteristic_reading_queue", DISPATCH_QUEUE_SERIAL);
+        _characteristic_writting_queue = dispatch_queue_create("com.bluetooth.characteristic_writting_queue", DISPATCH_QUEUE_SERIAL);
         
         self.cbCentralManager = [[CBCentralManager alloc] initWithDelegate:self queue:_central_queue options:nil];
         
@@ -61,17 +69,23 @@
         _connected_peripherals = [[NSMutableDictionary alloc] init];
         _connected_peripherals_lock = [[NSLock alloc] init];
         
+        _writting_packages = [[NSMutableArray alloc] init];
+        _writting_packages_lock = [[NSLock alloc] init];
+        
         _connectingTimer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(runPeripheralConnectionJob:) userInfo:nil repeats:YES];
         _scanningTimer = [NSTimer timerWithTimeInterval:60.0f target:self selector:@selector(runCentralManagerScanningJob:) userInfo:nil repeats:YES];
+        _writtingTimer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(runWrittingJob:) userInfo:nil repeats:YES];
     }
     
     return self;
 }
 
+#pragma mark APIs
 - (void)start
 {
     [[NSRunLoop mainRunLoop] addTimer:_scanningTimer forMode:NSDefaultRunLoopMode];
     [[NSRunLoop mainRunLoop] addTimer:_connectingTimer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop mainRunLoop] addTimer:_writtingTimer forMode:NSDefaultRunLoopMode];
     [_scanningTimer fire];
 }
 
@@ -79,15 +93,39 @@
 {
     [_scanningTimer invalidate];
     [_connectingTimer invalidate];
+    [_writtingTimer invalidate];
     [self _stop];
 }
 
+- (void)writeDataPackage:(BTDataPackage *)dataPackage withSender:(id)sender
+{
+    if (![sender conformsToProtocol:@protocol(BTBluetoothManagerPermissionDelegate)]) {
+        return;
+    }
+    
+    [_writting_packages_lock lock];
+    NSUInteger index = 0;
+    for (; index < _writting_packages.count; index++) {
+        BTDataPackage *oldDataPackage = _writting_packages[index];
+        if (oldDataPackage == dataPackage) {
+            break;
+        }
+    }
+    if (index < _writting_packages.count) {
+        [_writting_packages replaceObjectAtIndex:index withObject:dataPackage];
+    }
+    [_writting_packages_lock unlock];
+}
+
+
+#pragma Private Methods
 - (void)_stop
 {
     [self.cbCentralManager stopScan];
     
     [_scanningTimer invalidate];
     [_connectingTimer invalidate];
+    [_writtingTimer invalidate];
     
     for (CBPeripheral *peripheral in _discoveried_peripherals.allValues) {
         peripheral.delegate = nil;
@@ -122,8 +160,36 @@
     
     [[NSRunLoop mainRunLoop] addTimer:_scanningTimer forMode:NSDefaultRunLoopMode];
     [[NSRunLoop mainRunLoop] addTimer:_connectingTimer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop mainRunLoop] addTimer:_writtingTimer forMode:NSDefaultRunLoopMode];
 }
 
+- (void)readCharacteristicWithServiceUUIDString:(NSString *)serviceUUIDString characteristicUUIDString:(NSString *)characteristicUUIDString
+{
+    dispatch_async(_characteristic_reading_queue, ^{
+        [_connected_peripherals_lock lock];
+        NSArray *connectedPeripherals = [[_connected_peripherals allValues] copy];
+        [_connected_peripherals_lock unlock];
+        
+        CBService *service = nil;
+        CBPeripheral *connectedPeripheral = nil;
+        for (CBPeripheral *peripheral in connectedPeripherals) {
+            service = [peripheral serviceWithUUIDString:serviceUUIDString];
+            if (service) {
+                connectedPeripheral = peripheral;
+                break;
+            }
+        }
+        
+        if (connectedPeripheral && service) {
+            CBCharacteristic *characteristic = [service characteristicWithCharacteristicUUIDString:characteristicUUIDString];
+            if (characteristic) {
+                [connectedPeripheral readValueForCharacteristic:characteristic];
+            }
+        }
+    });
+}
+
+#pragma mark Timer Job
 - (void)runCentralManagerScanningJob:(NSTimer *)timer
 {
     [self _stop];
@@ -147,6 +213,56 @@
         }
     });
 }
+
+- (void)runWrittingJob:(NSTimer *)timer
+{
+    dispatch_async(_characteristic_writting_queue, ^{
+        BTDataPackage *dataPackage = nil;
+        [_writting_packages_lock lock];
+        if (_writting_packages.count > 0) {
+            dataPackage = _writting_packages.firstObject;
+            [_writting_packages removeObjectAtIndex:0];
+        }
+        [_writting_packages_lock unlock];
+        
+        if (!dataPackage) {
+            return ;
+        }
+
+        [_connected_peripherals_lock lock];
+        NSArray *connectedPeripherals = [[_connected_peripherals allValues] copy];
+        [_connected_peripherals_lock unlock];
+        
+        CBService *service = nil;
+        CBPeripheral *connectedPeripheral = nil;
+        for (CBPeripheral *peripheral in connectedPeripherals) {
+            service = [peripheral serviceWithUUIDString:dataPackage.serviceUUIDString];
+            if (service) {
+                connectedPeripheral = peripheral;
+                break;
+            }
+        }
+        
+        
+        BOOL success = NO;
+        if (connectedPeripheral && service) {
+            for (CBCharacteristic *writeCharacteristic in service.characteristics) {
+                if ([[_serviceCharacteristicMapper writeCharacteristicUUIDsForServiceUUIDString:service.UUID.UUIDString] containsObject:writeCharacteristic.UUID]) {
+                    [connectedPeripheral writeValue:[dataPackage dataPackageSendingBytesData] forCharacteristic:writeCharacteristic type:CBCharacteristicWriteWithResponse];
+                    success = YES;
+                    break;
+                }
+            }
+        }
+        
+        if (!success) {
+            [_writting_packages_lock lock];
+            [_writting_packages addObject:dataPackage];
+            [_writting_packages_lock unlock];
+        }
+    });
+}
+
 
 #pragma mark CBCentralManagerDelegate
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
@@ -248,10 +364,9 @@
     NSLog(@"%@", log);
 #endif
     
-#warning SC modify to use reading queue
     for (CBCharacteristic *characteristic in service.characteristics) {
         if ([[_serviceCharacteristicMapper readCharacteristicUUIDsForServiceUUIDString:service.UUID.UUIDString] containsObject:characteristic.UUID]) {
-            [peripheral readValueForCharacteristic:characteristic];
+            [self readCharacteristicWithServiceUUIDString:service.UUID.UUIDString characteristicUUIDString:characteristic.UUID.UUIDString];
         }
     }
 }
@@ -263,22 +378,16 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kBTNotificationDebugLogNotification object:log];
     NSLog(@"%@", log);
 #endif
-    
-#warning SC modify to use reading complete queue
-    BTDataPackage *readingPackage = [characteristic.value dataPackage];
-    if (!readingPackage) {
-        BTBranchBlock *block = [[BTBranchBlock alloc] initWithBranchNumber:1 temperature:10];
-        readingPackage = [[BTDataPackage alloc] initWithBranchBlocks:@[block]];
-    }
 
-    BTBranchBlock *branch = readingPackage.branches[0];
-    branch.branchTargetTemperature = 0xAB;
+    BTDataPackage *readingPackage = [characteristic.value dataPackage];
+    readingPackage.serviceUUIDString = characteristic.service.UUID.UUIDString;
+    readingPackage.readingCharacteristicsUUIDString = characteristic.service.UUID.UUIDString;
     
-    for (CBCharacteristic *writeCharacteristic in characteristic.service.characteristics) {
-        if ([[_serviceCharacteristicMapper writeCharacteristicUUIDsForServiceUUIDString:characteristic.service.UUID.UUIDString] containsObject:writeCharacteristic.UUID]) {
-            [peripheral writeValue:[readingPackage dataPackageSendingBytesData] forCharacteristic:writeCharacteristic type:CBCharacteristicWriteWithResponse];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if ([self.delegate respondsToSelector:@selector(bluetoothManager:didReceiveDataPackage:)]) {
+            [self.delegate bluetoothManager:self didReceiveDataPackage:readingPackage];
         }
-    }
+    }];
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error

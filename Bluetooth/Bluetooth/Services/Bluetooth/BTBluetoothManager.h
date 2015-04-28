@@ -8,8 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+@class BTBluetoothManager;
+
+@protocol BTBluetoothManagerDelegate <NSObject>
+@optional
+- (void)bluetoothManager:(BTBluetoothManager *)bluetoothManager didReceiveDataPackage:(BTDataPackage *)dataPackage;
+@end
+
+@protocol BTBluetoothManagerPermissionDelegate <NSObject>
+@end
+
 @interface BTBluetoothManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+@property (weak, nonatomic) id < BTBluetoothManagerDelegate > delegate;
 + (BTBluetoothManager *)sharedInstance;
 - (void)start;
 - (void)stop;
+- (void)writeDataPackage:(BTDataPackage *)dataPackage withSender:(id)sender;
 @end

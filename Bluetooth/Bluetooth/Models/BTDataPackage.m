@@ -74,4 +74,15 @@
     return bytes;
 }
 
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[BTDataPackage class]]) {
+        BTDataPackage *dataPackage = (BTDataPackage *)object;
+        if ([dataPackage.serviceUUIDString isEqualToString:self.serviceUUIDString] && [dataPackage.readingCharacteristicsUUIDString isEqualToString:self.readingCharacteristicsUUIDString]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end
