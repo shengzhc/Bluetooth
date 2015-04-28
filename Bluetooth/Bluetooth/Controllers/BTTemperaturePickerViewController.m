@@ -112,7 +112,7 @@
 {
     [self dismissViewControllerAnimated:YES completion:^{
         if (self.temperaturePickerCompletionHandler) {
-            self.temperaturePickerCompletionHandler(YES, self.branch, nil);
+            self.temperaturePickerCompletionHandler(NO, self.branch, nil);
         }
     }];
 }
