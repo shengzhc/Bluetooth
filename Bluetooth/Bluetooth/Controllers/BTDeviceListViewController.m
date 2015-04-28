@@ -71,26 +71,51 @@
     }
 }
 
-- (void)presentBranchTemperatureAdjustViewControllerWithBranch:(BTBranchBlock *)branch
+- (void)presentBranchTemperatureAdjustViewControllerWithBranch:(BTBranchBlock *)branch withIndexPath:(NSIndexPath *)indexPath
 {
     BTTemperatureAdjustViewController *adjustViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kBTTemperatureAdjustViewControllerIdentifier];
     adjustViewController.branch = branch;
     adjustViewController.modalPresentationStyle = UIModalPresentationCustom;
     adjustViewController.transitioningDelegate = self;
+    
+    __weak BTDeviceListViewController *weakSelf = self;
     adjustViewController.temperatureAdjustCompletionHandler = ^(BOOL isCancelled, BTBranchBlock *branch, id userInfo) {
         _isHandlingLongPress = NO;
+        if (!isCancelled) {
+            __strong BTDeviceListViewController *deviceListViewController = weakSelf;
+            if (deviceListViewController) {
+                BTBranchBlock *originalBranch = [deviceListViewController.deviceListSupporter branchWithBranchNumber:branch.branchNumber];
+                if (originalBranch.branchTargetTemperature != branch.branchTargetTemperature) {
+                    [deviceListViewController.deviceListSupporter updateBranchWithBranchNumber:branch.branchNumber updatedBranch:branch];
+                    [deviceListViewController.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                }
+            }
+        }
     };
     [self presentViewController:adjustViewController animated:YES completion:nil];
 }
 
-- (void)presentBranchTemperaturePickerViewControllerWithBranch:(BTBranchBlock *)branch
+- (void)presentBranchTemperaturePickerViewControllerWithBranch:(BTBranchBlock *)branch withIndexPath:(NSIndexPath *)indexPath
 {
     BTTemperaturePickerViewController *pickerViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kBTTemperaturePickerViewControllerIdentifier];
     pickerViewController.branch = branch;
     pickerViewController.modalPresentationStyle = UIModalPresentationCustom;
     pickerViewController.transitioningDelegate = self;
+
+    __weak BTDeviceListViewController *weakSelf = self;
     pickerViewController.temperaturePickerCompletionHandler = ^(BOOL isCancelled, BTBranchBlock *branch, id userInfo) {
         _isHandlingLongPress = NO;
+        if (!isCancelled) {
+            __strong BTDeviceListViewController *deviceListViewController = weakSelf;
+            if (deviceListViewController) {
+                branch.branchTargetTemperature = rand()%20 + 16;
+                BTBranchBlock *originalBranch = [deviceListViewController.deviceListSupporter branchWithBranchNumber:branch.branchNumber];
+                if (originalBranch.branchTargetTemperature != branch.branchTargetTemperature) {
+                    [deviceListViewController.deviceListSupporter updateBranchWithBranchNumber:branch.branchNumber updatedBranch:branch];
+                    [deviceListViewController.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                }
+            }
+        }
     };
     [self presentViewController:pickerViewController animated:YES completion:nil];
 }
@@ -145,7 +170,7 @@
     
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     BTBranchBlock *copiedBranch = [[self.deviceListSupporter branchWithIndex:indexPath.row] copy];
-    [self presentBranchTemperaturePickerViewControllerWithBranch:copiedBranch];
+    [self presentBranchTemperaturePickerViewControllerWithBranch:copiedBranch withIndexPath:indexPath];
 }
 
 #pragma mark UIViewControllerTransitioningDelegate

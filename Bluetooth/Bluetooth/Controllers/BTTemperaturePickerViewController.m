@@ -70,6 +70,7 @@
     
     [self.degreeUnitSwitchButton setAttributedTitle:celsiusState forState:UIControlStateNormal];
     [self.degreeUnitSwitchButton setAttributedTitle:fahrenheitState forState:UIControlStateSelected];
+    self.degreeUnitSwitchButton.selected = self.pickerSupporter.degreeUnitType != kBTDegreeCelsius;
     
     [self.topContainer addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopContainer:)]];
 }

@@ -36,6 +36,24 @@
     return self.branches[index];
 }
 
+- (BTBranchBlock *)branchWithBranchNumber:(NSUInteger)branchNumber
+{
+    id branchBlock = nil;
+    for (BTBranchBlock *branch in self.branches) {
+        if (branch.branchNumber == branchNumber) {
+            branchBlock = branch;
+        }
+    }
+    return branchBlock;
+}
+
+- (void)updateBranchWithBranchNumber:(NSUInteger)branchNumber updatedBranch:(BTBranchBlock *)branch
+{
+    BTBranchBlock *originalBranch = [self branchWithBranchNumber:branchNumber];
+    originalBranch.branchTemperature = branch.branchTemperature;
+    originalBranch.branchTargetTemperature = branch.branchTargetTemperature;
+}
+
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
