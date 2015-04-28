@@ -17,8 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UITableView *temperatureTableView;
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *blurViews;
 @property (weak, nonatomic) IBOutlet UIButton *degreeUnitSwitchButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end
 
 @implementation BTTemperaturePickerViewController
@@ -49,6 +49,11 @@
     self.doneButton.clipsToBounds = YES;
     [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
+    
+    self.titleLabel.font = [UIFont bluetoothFontOfSize:28.0f];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.textAlignment = NSTextAlignmentLeft;
+    self.titleLabel.text = self.branch.branchName;
 
     CGFloat fontSize = 32.0;
     NSDictionary *highlightAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]};
@@ -65,11 +70,6 @@
     
     [self.degreeUnitSwitchButton setAttributedTitle:celsiusState forState:UIControlStateNormal];
     [self.degreeUnitSwitchButton setAttributedTitle:fahrenheitState forState:UIControlStateSelected];
-    
-    for (UIView *view in self.blurViews) {
-        view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
-        view.alpha = 1.0;
-    }
     
     [self.topContainer addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopContainer:)]];
 }
@@ -124,5 +124,14 @@
 }
 
 #pragma mark UITableViewDelegate
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [self.pickerSupporter tableView:tableView viewForHeaderInSection:section];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [self.pickerSupporter tableView:tableView viewForFooterInSection:section];
+}
 
 @end

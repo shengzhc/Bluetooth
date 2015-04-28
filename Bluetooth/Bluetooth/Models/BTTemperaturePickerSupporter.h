@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BTTemperaturePickerSupporter : NSObject < UITableViewDataSource >
+@interface BTTemperaturePickerSupporter : NSObject < UITableViewDataSource, UITableViewDelegate >
 @property (assign, nonatomic) BTDegreeUnitType degreeUnitType;
 @property (assign, nonatomic) double temperature;
 @end

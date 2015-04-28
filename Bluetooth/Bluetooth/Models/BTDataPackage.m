@@ -22,6 +22,13 @@
     return self;
 }
 
+- (instancetype)copyWithZone:(NSZone *)zone
+{
+    BTBranchBlock *copiedBranch = [[BTBranchBlock alloc] initWithBranchNumber:self.branchNumber temperature:self.branchTemperature];
+    copiedBranch.branchTargetTemperature = self.branchTargetTemperature;
+    return copiedBranch;
+}
+
 - (NSArray *)reservedTitles
 {
     return @[@"Kitchen", @"Living Room", @"Baby Bedroom", @"Study Room"];

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BTBranchBlock : NSObject
+@interface BTBranchBlock : NSObject < NSCopying >
 @property (assign, nonatomic) NSUInteger branchNumber;
 @property (assign, nonatomic) double branchTemperature;
 @property (assign, nonatomic) double branchTargetTemperature;

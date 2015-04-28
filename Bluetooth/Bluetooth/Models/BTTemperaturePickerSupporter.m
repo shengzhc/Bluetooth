@@ -29,6 +29,7 @@
     return self;
 }
 
+#pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -56,6 +57,21 @@
     }
     
     return cell;
+}
+
+#pragma mark UITableViewDelegate
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.sectionHeaderHeight)];
+    sectionHeader.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
+    return sectionHeader;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *sectionFooter = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.sectionFooterHeight)];
+    sectionFooter.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
+    return sectionFooter;
 }
 
 @end
