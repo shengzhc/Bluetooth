@@ -23,5 +23,5 @@
 + (BTBluetoothManager *)sharedInstance;
 - (void)start;
 - (void)stop;
-- (void)writeDataPackage:(BTDataPackage *)dataPackage withSender:(id)sender;
+- (void)sendDataPackage:(BTDataPackage *)dataPackage withSender:(id)sender;
 @end

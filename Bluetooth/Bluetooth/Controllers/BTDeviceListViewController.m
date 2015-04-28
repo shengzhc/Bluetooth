@@ -7,7 +7,6 @@
 //
 
 #import "BTDeviceListViewController.h"
-#import "BTTemperatureAdjustViewController.h"
 #import "BTTemperaturePickerViewController.h"
 
 #import "BTDeviceListSupporter.h"
@@ -18,7 +17,7 @@
 #import "BTFadeAnimator.h"
 #import "BTPickerAnimator.h"
 
-@interface BTDeviceListViewController () < BTDeviceListSupporterDelegate, BTDeviceListTableViewCellDelegate, UIViewControllerTransitioningDelegate >
+@interface BTDeviceListViewController () < BTDeviceListTableViewCellDelegate, UIViewControllerTransitioningDelegate >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet BTDeviceListSupporter *deviceListSupporter;
@@ -37,8 +36,7 @@
     [self.textView setTextColor:[UIColor whiteColor]];
     self.textView.editable = NO;
     self.textView.selectable = NO;
-    self.deviceListSupporter.delegate = self;
-    
+    self.deviceListSupporter.tableView = self.tableView;
     self.modalPresentationStyle = UIModalPresentationCustom;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLogNotification:) name:@"DebugLogNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDegreeUnitChangedNotification:) name:kBTNotificationDegreeUnitDidChangeNotification object:nil];
@@ -48,6 +46,7 @@
 {
     [super viewDidAppear:animated];
     dispatch_async(dispatch_get_main_queue(), ^{
+        [BTBluetoothManager sharedInstance].delegate = self.deviceListSupporter;
         [[BTBluetoothManager sharedInstance] start];
     });
 }
@@ -71,31 +70,7 @@
     }
 }
 
-- (void)presentBranchTemperatureAdjustViewControllerWithBranch:(BTBranchBlock *)branch withIndexPath:(NSIndexPath *)indexPath
-{
-    BTTemperatureAdjustViewController *adjustViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kBTTemperatureAdjustViewControllerIdentifier];
-    adjustViewController.branch = branch;
-    adjustViewController.modalPresentationStyle = UIModalPresentationCustom;
-    adjustViewController.transitioningDelegate = self;
-    
-    __weak BTDeviceListViewController *weakSelf = self;
-    adjustViewController.temperatureAdjustCompletionHandler = ^(BOOL isCancelled, BTBranchBlock *branch, id userInfo) {
-        _isHandlingLongPress = NO;
-        if (!isCancelled) {
-            __strong BTDeviceListViewController *deviceListViewController = weakSelf;
-            if (deviceListViewController) {
-                BTBranchBlock *originalBranch = [deviceListViewController.deviceListSupporter branchWithBranchNumber:branch.branchNumber];
-                if (originalBranch.branchTargetTemperature != branch.branchTargetTemperature) {
-                    [deviceListViewController.deviceListSupporter updateBranchWithBranchNumber:branch.branchNumber updatedBranch:branch];
-                    [deviceListViewController.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                }
-            }
-        }
-    };
-    [self presentViewController:adjustViewController animated:YES completion:nil];
-}
-
-- (void)presentBranchTemperaturePickerViewControllerWithBranch:(BTBranchBlock *)branch withIndexPath:(NSIndexPath *)indexPath
+- (void)presentBranchTemperaturePickerViewControllerWithBranch:(BTBranchBlock *)branch
 {
     BTTemperaturePickerViewController *pickerViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kBTTemperaturePickerViewControllerIdentifier];
     pickerViewController.branch = branch;
@@ -111,7 +86,6 @@
                 BTBranchBlock *originalBranch = [deviceListViewController.deviceListSupporter branchWithBranchNumber:branch.branchNumber];
                 if (originalBranch.branchTargetTemperature != branch.branchTargetTemperature) {
                     [deviceListViewController.deviceListSupporter updateBranchWithBranchNumber:branch.branchNumber updatedBranch:branch];
-                    [deviceListViewController.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
                 }
             }
         }
@@ -169,17 +143,13 @@
     
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     BTBranchBlock *copiedBranch = [[self.deviceListSupporter branchWithIndex:indexPath.row] copy];
-    [self presentBranchTemperaturePickerViewControllerWithBranch:copiedBranch withIndexPath:indexPath];
+    [self presentBranchTemperaturePickerViewControllerWithBranch:copiedBranch];
 }
 
 #pragma mark UIViewControllerTransitioningDelegate
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {
-    if ([presented isKindOfClass:[BTTemperatureAdjustViewController class]]) {
-        BTFadeAnimator *animator = [[BTFadeAnimator alloc] init];
-        animator.presenting = YES;
-        return animator;
-    } else if ([presented isKindOfClass:[BTTemperaturePickerViewController class]]) {
+    if ([presented isKindOfClass:[BTTemperaturePickerViewController class]]) {
         BTPickerAnimator *animator = [[BTPickerAnimator alloc] init];
         animator.presenting = YES;
         return animator;
@@ -189,11 +159,7 @@
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    if ([dismissed isKindOfClass:[BTTemperatureAdjustViewController class]]) {
-        BTFadeAnimator *animator = [[BTFadeAnimator alloc] init];
-        animator.presenting = NO;
-        return animator;
-    } else if ([dismissed isKindOfClass:[BTTemperaturePickerViewController class]]) {
+    if ([dismissed isKindOfClass:[BTTemperaturePickerViewController class]]) {
         BTPickerAnimator *animator = [[BTPickerAnimator alloc] init];
         animator.presenting = NO;
         return animator;

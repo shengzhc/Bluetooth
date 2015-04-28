@@ -97,7 +97,7 @@
     [self _stop];
 }
 
-- (void)writeDataPackage:(BTDataPackage *)dataPackage withSender:(id)sender
+- (void)sendDataPackage:(BTDataPackage *)dataPackage withSender:(id)sender
 {
     if (![sender conformsToProtocol:@protocol(BTBluetoothManagerPermissionDelegate)]) {
         return;

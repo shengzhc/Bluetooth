@@ -10,7 +10,8 @@
 #import "BTDeviceListTableViewCell.h"
 
 @interface BTDeviceListSupporter ()
-@property (strong, nonatomic) NSMutableArray *branches;
+//@property (strong, nonatomic) NSMutableArray *branches;
+@property (strong, nonatomic) BTDataPackage *dataPackage;
 @end
 
 @implementation BTDeviceListSupporter
@@ -18,28 +19,26 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.branches = [NSMutableArray new];
-        for (NSUInteger index=1; index <= 4; index++) {
-            BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:index temperature:arc4random()%20 + 10];
-            [self.branches addObject:branch];
-        }
+        Byte bytes[] = {0x01, 0x10, 0x02, 0x11, 0x03, 0x12, 0x04, 0x13, 0x05, 0x14};
+        NSData *testData = [NSData dataWithBytes:bytes length:sizeof(bytes)/sizeof(Byte)];
+        self.dataPackage = [testData dataPackage];
     }
     return self;
 }
 
 - (BTBranchBlock *)branchWithIndex:(NSUInteger)index
 {
-    if (index >= self.branches.count) {
+    if (index >= self.dataPackage.branches.count) {
         return nil;
     }
     
-    return self.branches[index];
+    return self.dataPackage.branches[index];
 }
 
 - (BTBranchBlock *)branchWithBranchNumber:(NSUInteger)branchNumber
 {
     id branchBlock = nil;
-    for (BTBranchBlock *branch in self.branches) {
+    for (BTBranchBlock *branch in self.dataPackage.branches) {
         if (branch.branchNumber == branchNumber) {
             branchBlock = branch;
         }
@@ -52,6 +51,22 @@
     BTBranchBlock *originalBranch = [self branchWithBranchNumber:branchNumber];
     originalBranch.branchTemperature = branch.branchTemperature;
     originalBranch.branchTargetTemperature = branch.branchTargetTemperature;
+    [[BTBluetoothManager sharedInstance] sendDataPackage:self.dataPackage withSender:self];
+
+    NSUInteger index = [self.dataPackage.branches indexOfObject:originalBranch];
+    if (index != NSNotFound) {
+        __block NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        }];
+    }
+}
+
+#pragma mark BTBluetoothManagerDelegate
+- (void)bluetoothManager:(BTBluetoothManager *)bluetoothManager didReceiveDataPackage:(BTDataPackage *)dataPackage
+{
+    self.dataPackage = dataPackage;
+    [self.tableView reloadData];
 }
 
 #pragma mark UITableViewDataSource
@@ -63,9 +78,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return self.branches.count;
+        return self.dataPackage.branches.count;
     } else if (section == 1) {
-        return self.branches.count == 0 ? 0 : 1;
+        return self.dataPackage.branches.count == 0 ? 0 : 1;
     }
     return 0;
 }
@@ -77,7 +92,7 @@
     if (indexPath.section == 0) {
         cell = [[BTTableViewCellFactory shareInstance] tableView:tableView withBTCellType:kBTDeviceListTableViewCell withIndexPath:indexPath];
         if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
-            BTBranchBlock *branch = self.branches[indexPath.row];
+            BTBranchBlock *branch = self.dataPackage.branches[indexPath.row];
             BTDeviceListTableViewCell *deviceListCell = (BTDeviceListTableViewCell *)cell;
             deviceListCell.nameLabel.text = branch.branchName;
             

@@ -9,14 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @class BTDeviceListSupporter;
-@protocol BTDeviceListSupporterDelegate <NSObject>
-@end
 
-@interface BTDeviceListSupporter : NSObject < UITableViewDataSource >
-@property (weak, nonatomic) id < BTDeviceListSupporterDelegate > delegate;
+@interface BTDeviceListSupporter : NSObject < UITableViewDataSource, BTBluetoothManagerPermissionDelegate, BTBluetoothManagerDelegate >
+@property (weak, nonatomic) UITableView *tableView;
 - (BTBranchBlock *)branchWithIndex:(NSUInteger)index;
 - (BTBranchBlock *)branchWithBranchNumber:(NSUInteger)branchNumber;
-
 - (void)updateBranchWithBranchNumber:(NSUInteger)branchNumber updatedBranch:(BTBranchBlock *)branch;
-
 @end
