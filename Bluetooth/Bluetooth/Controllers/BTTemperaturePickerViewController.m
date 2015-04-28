@@ -29,6 +29,11 @@
     [self configureViews];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 - (void)configureViews
 {
     self.cancelButton.titleLabel.font = [UIFont bluetoothFontOfSize:28.0];
@@ -65,6 +70,17 @@
         view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
         view.alpha = 1.0;
     }
+    
+    [self.topContainer addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopContainer:)]];
+}
+
+- (void)didTapTopContainer:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (self.temperaturePickerCompletionHandler) {
+            self.temperaturePickerCompletionHandler(YES, self.branch, nil);
+        }
+    }];
 }
 
 - (IBAction)didDegreeUnitSwitchButtonClicked:(id)sender

@@ -21,7 +21,7 @@
 @interface BTDeviceListViewController () < BTDeviceListSupporterDelegate, BTDeviceListTableViewCellDelegate, UIViewControllerTransitioningDelegate >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic) IBOutlet BTDeviceListSupporter *tableSupporter;
+@property (strong, nonatomic) IBOutlet BTDeviceListSupporter *deviceListSupporter;
 @end
 
 @implementation BTDeviceListViewController
@@ -37,7 +37,7 @@
     [self.textView setTextColor:[UIColor whiteColor]];
     self.textView.editable = NO;
     self.textView.selectable = NO;
-    self.tableSupporter.delegate = self;
+    self.deviceListSupporter.delegate = self;
     
     self.modalPresentationStyle = UIModalPresentationCustom;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLogNotification:) name:@"DebugLogNotification" object:nil];
@@ -98,17 +98,17 @@
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.tableSupporter numberOfSectionsInTableView:tableView];
+    return [self.deviceListSupporter numberOfSectionsInTableView:tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.tableSupporter tableView:tableView numberOfRowsInSection:section];
+    return [self.deviceListSupporter tableView:tableView numberOfRowsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableSupporter tableView:tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = [self.deviceListSupporter tableView:tableView cellForRowAtIndexPath:indexPath];
     if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
         ((BTDeviceListTableViewCell *)cell).delegate = self;
     } else if ([cell isKindOfClass:[BTDegreeUnitSwitchCell class]]) {
@@ -142,8 +142,10 @@
     }
 
     _isHandlingLongPress = YES;
-    BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:1 temperature:arc4random()%20+10];
-    [self presentBranchTemperaturePickerViewControllerWithBranch:branch];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    BTBranchBlock *copiedBranch = [[self.deviceListSupporter branchWithIndex:indexPath.row] copy];
+    [self presentBranchTemperaturePickerViewControllerWithBranch:copiedBranch];
 }
 
 #pragma mark UIViewControllerTransitioningDelegate

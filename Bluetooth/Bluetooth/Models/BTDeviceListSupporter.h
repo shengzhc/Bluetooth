@@ -14,5 +14,5 @@
 
 @interface BTDeviceListSupporter : NSObject < UITableViewDataSource >
 @property (weak, nonatomic) id < BTDeviceListSupporterDelegate > delegate;
-@property (weak, nonatomic) UITableView *tableView;
+- (BTBranchBlock *)branchWithIndex:(NSUInteger)index;
 @end

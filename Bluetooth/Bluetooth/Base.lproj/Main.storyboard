@@ -390,7 +390,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableSupporter" destination="mvf-fz-jBK" id="rSV-00-fdr"/>
+                        <outlet property="deviceListSupporter" destination="mvf-fz-jBK" id="syo-77-Hy3"/>
                         <outlet property="tableView" destination="18O-hw-94N" id="jrP-uU-yQg"/>
                         <outlet property="textView" destination="OXN-Z6-Oh3" id="FZk-UH-H1e"/>
                     </connections>

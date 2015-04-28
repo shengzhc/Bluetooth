@@ -27,6 +27,14 @@
     return self;
 }
 
+- (BTBranchBlock *)branchWithIndex:(NSUInteger)index
+{
+    if (index >= self.branches.count) {
+        return nil;
+    }
+    
+    return self.branches[index];
+}
 
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
