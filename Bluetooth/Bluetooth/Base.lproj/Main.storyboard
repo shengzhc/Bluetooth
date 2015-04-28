@@ -198,12 +198,27 @@
                                                     <action selector="didDegreeUnitSwitchButtonClicked:" destination="epe-KJ-xb5" eventType="touchUpInside" id="FcP-ce-bff"/>
                                                 </connections>
                                             </button>
+                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGC-Ql-DJ3" userLabel="blur">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="yio-gN-R4J"/>
+                                                </constraints>
+                                            </view>
+                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Yj-D1-fAl" userLabel="blur">
+                                                <rect key="frame" x="0.0" y="120" width="320" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="eFU-An-cQi"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="centerY" secondItem="y5h-tg-Ho1" secondAttribute="centerY" id="9Cb-30-0Ub"/>
                                             <constraint firstItem="RWY-P2-wHo" firstAttribute="top" secondItem="5nI-BT-aG8" secondAttribute="top" id="AkE-3c-hWL"/>
                                             <constraint firstItem="DXs-dN-796" firstAttribute="top" secondItem="5nI-BT-aG8" secondAttribute="top" id="BlS-1Y-EgR"/>
+                                            <constraint firstItem="8Yj-D1-fAl" firstAttribute="leading" secondItem="5nI-BT-aG8" secondAttribute="leading" id="Qde-s7-K4l"/>
                                             <constraint firstAttribute="centerX" secondItem="RWY-P2-wHo" secondAttribute="centerX" id="XQk-GV-Sij"/>
                                             <constraint firstAttribute="height" constant="180" id="auT-1U-AO1"/>
                                             <constraint firstAttribute="trailing" secondItem="DXs-dN-796" secondAttribute="trailing" id="bx0-b2-WJo"/>
@@ -211,6 +226,11 @@
                                             <constraint firstItem="y5h-tg-Ho1" firstAttribute="leading" secondItem="RWY-P2-wHo" secondAttribute="trailing" constant="49" id="dmN-Hx-BnM"/>
                                             <constraint firstItem="DXs-dN-796" firstAttribute="leading" secondItem="5nI-BT-aG8" secondAttribute="leading" id="f0Y-Hm-Yu3"/>
                                             <constraint firstAttribute="bottom" secondItem="RWY-P2-wHo" secondAttribute="bottom" id="j3a-25-wFA"/>
+                                            <constraint firstItem="jGC-Ql-DJ3" firstAttribute="top" secondItem="5nI-BT-aG8" secondAttribute="top" id="nA2-WF-4gW"/>
+                                            <constraint firstAttribute="trailing" secondItem="jGC-Ql-DJ3" secondAttribute="trailing" id="oIF-8Z-51Q"/>
+                                            <constraint firstAttribute="trailing" secondItem="8Yj-D1-fAl" secondAttribute="trailing" id="oZD-2c-AF7"/>
+                                            <constraint firstAttribute="bottom" secondItem="8Yj-D1-fAl" secondAttribute="bottom" id="xwt-c5-ao3"/>
+                                            <constraint firstItem="jGC-Ql-DJ3" firstAttribute="leading" secondItem="5nI-BT-aG8" secondAttribute="leading" id="yCo-is-vDY"/>
                                         </constraints>
                                     </view>
                                 </subviews>

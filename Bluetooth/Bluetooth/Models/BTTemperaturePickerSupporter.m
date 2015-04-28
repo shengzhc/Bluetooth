@@ -63,14 +63,14 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.sectionHeaderHeight)];
-    sectionHeader.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
+    sectionHeader.backgroundColor = [UIColor clearColor];
     return sectionHeader;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *sectionFooter = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.sectionFooterHeight)];
-    sectionFooter.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
+    sectionFooter.backgroundColor = [UIColor clearColor];
     return sectionFooter;
 }
 
