@@ -65,8 +65,17 @@
 #pragma mark BTBluetoothManagerDelegate
 - (void)bluetoothManager:(BTBluetoothManager *)bluetoothManager didReceiveDataPackage:(BTDataPackage *)dataPackage
 {
+    for (BTBranchBlock *newBranch in dataPackage.branches) {
+        BTBranchBlock *oldBranch = [self branchWithBranchNumber:newBranch.branchNumber];
+        if (oldBranch) {
+            newBranch.branchTargetTemperature = oldBranch.branchTargetTemperature;
+        }
+    }
+    
     self.dataPackage = dataPackage;
-    [self.tableView reloadData];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark UITableViewDataSource
