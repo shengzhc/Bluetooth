@@ -37,11 +37,6 @@
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
 - (void)configureViews
 {
     self.cancelButton.titleLabel.font = [UIFont bluetoothFontOfSize:28.0];

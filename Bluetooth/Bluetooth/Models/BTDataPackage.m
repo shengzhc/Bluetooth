@@ -16,7 +16,7 @@
         self.branchNumber = branchNumber;
         self.branchTemperature = branchTemperature;
         self.branchTargetTemperature = NSUIntegerMax;
-        self.branchTargetTemperature = arc4random()%20 + 10;
+//        self.branchTargetTemperature = arc4random()%20 + 10;
         self.branchName = [[self reservedTitles] objectAtIndex:self.branchNumber % [self reservedTitles].count];
     }
     return self;
