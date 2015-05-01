@@ -47,7 +47,11 @@
 {
     UInt16 bytes = 0x0000;
     bytes |= ((self.branchNumber) << 8);
-    bytes |= (NSUInteger)self.branchTargetTemperature;
+    if (self.branchTargetTemperature == NSUIntegerMax) {
+        bytes |= 0xFF;
+    } else {
+        bytes |= (NSUInteger)self.branchTargetTemperature;
+    }
     NSLog(@"Hex value of char is 0x%02x", (unsigned int) bytes);
     return [NSData dataWithBytes:&bytes length:sizeof(UInt16)];
 }

@@ -44,7 +44,7 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        targetTemperatureTextAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:14], NSForegroundColorAttributeName: [UIColor bambooColor]};
+        targetTemperatureTextAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:18], NSForegroundColorAttributeName: [UIColor bambooColor]};
     });
     
     return targetTemperatureTextAttributes;
@@ -56,7 +56,7 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        targetTemperatureDegreeAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:8], NSForegroundColorAttributeName: [UIColor bambooColor], (NSString *)kCTSuperscriptAttributeName: @(1.0)};
+        targetTemperatureDegreeAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:12], NSForegroundColorAttributeName: [UIColor bambooColor], (NSString *)kCTSuperscriptAttributeName: @(0.8)};
     });
     
     return targetTemperatureDegreeAttributes;

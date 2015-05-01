@@ -70,6 +70,13 @@
     }
 }
 
+- (void)didReceiveLogNotification:(NSNotification *)notification
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        self.textView.text = [NSString stringWithFormat:@"%@\n%@", self.textView.text, notification.object];
+    }];
+}
+
 - (void)presentBranchTemperaturePickerViewControllerWithBranch:(BTBranchBlock *)branch
 {
     BTTemperaturePickerViewController *pickerViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kBTTemperaturePickerViewControllerIdentifier];
@@ -108,7 +115,8 @@
 {
     UITableViewCell *cell = [self.deviceListSupporter tableView:tableView cellForRowAtIndexPath:indexPath];
     if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
-        ((BTDeviceListTableViewCell *)cell).delegate = self;
+#warning SC turn of cell delegate to disable long tap
+        ((BTDeviceListTableViewCell *)cell).delegate = nil;
     } else if ([cell isKindOfClass:[BTDegreeUnitSwitchCell class]]) {
         ((BTDegreeUnitSwitchCell *)cell).switchButton.selected = ![BTAppState sharedInstance].isCelsius;
     }
@@ -125,11 +133,16 @@
     }
 }
 
-- (void)didReceiveLogNotification:(NSNotification *)notification
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        self.textView.text = [NSString stringWithFormat:@"%@\n%@", self.textView.text, notification.object];
-    }];
+    if (_isHandlingLongPress) {
+        return;
+    }
+    
+    _isHandlingLongPress = YES;
+
+    BTBranchBlock *copiedBranch = [[self.deviceListSupporter branchWithIndex:indexPath.row] copy];
+    [self presentBranchTemperaturePickerViewControllerWithBranch:copiedBranch];
 }
 
 #pragma mark BTDeviceListTableViewCellDelegate
