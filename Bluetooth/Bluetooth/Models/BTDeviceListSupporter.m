@@ -21,7 +21,7 @@
     if (self = [super init]) {
         Byte bytes[] = {0x01, 0x10, 0x02, 0x11, 0x03, 0x12, 0x04, 0x13, 0x05, 0x14};
         NSData *testData = [NSData dataWithBytes:bytes length:sizeof(bytes)/sizeof(Byte)];
-        self.dataPackage = [testData dataPackage];
+//        self.dataPackage = [testData dataPackage];
     }
     return self;
 }

@@ -71,10 +71,6 @@
         
         _writting_packages = [[NSMutableArray alloc] init];
         _writting_packages_lock = [[NSLock alloc] init];
-        
-        _connectingTimer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(runPeripheralConnectionJob:) userInfo:nil repeats:YES];
-        _scanningTimer = [NSTimer timerWithTimeInterval:60.0f target:self selector:@selector(runCentralManagerScanningJob:) userInfo:nil repeats:YES];
-        _writtingTimer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(runWrittingJob:) userInfo:nil repeats:YES];
     }
     
     return self;
@@ -83,6 +79,10 @@
 #pragma mark APIs
 - (void)start
 {
+    _connectingTimer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(runPeripheralConnectionJob:) userInfo:nil repeats:YES];
+    _scanningTimer = [NSTimer timerWithTimeInterval:30.0f target:self selector:@selector(runCentralManagerScanningJob:) userInfo:nil repeats:YES];
+    _writtingTimer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(runWrittingJob:) userInfo:nil repeats:YES];
+    
     [[NSRunLoop mainRunLoop] addTimer:_scanningTimer forMode:NSDefaultRunLoopMode];
     [[NSRunLoop mainRunLoop] addTimer:_connectingTimer forMode:NSDefaultRunLoopMode];
     [[NSRunLoop mainRunLoop] addTimer:_writtingTimer forMode:NSDefaultRunLoopMode];
@@ -94,6 +94,11 @@
     [_scanningTimer invalidate];
     [_connectingTimer invalidate];
     [_writtingTimer invalidate];
+    
+    _scanningTimer = nil;
+    _connectingTimer = nil;
+    _writtingTimer = nil;
+
     [self _stop];
 }
 
@@ -113,6 +118,8 @@
     }
     if (index < _writting_packages.count) {
         [_writting_packages replaceObjectAtIndex:index withObject:dataPackage];
+    } else {
+        [_writting_packages addObject:dataPackage];
     }
     [_writting_packages_lock unlock];
 }
@@ -126,6 +133,10 @@
     [_scanningTimer invalidate];
     [_connectingTimer invalidate];
     [_writtingTimer invalidate];
+    
+    _scanningTimer = nil;
+    _connectingTimer = nil;
+    _writtingTimer = nil;
     
     for (CBPeripheral *peripheral in _discoveried_peripherals.allValues) {
         peripheral.delegate = nil;
@@ -157,6 +168,10 @@
     [_connected_peripherals_lock lock];
     [_connected_peripherals removeAllObjects];
     [_connected_peripherals_lock unlock];
+    
+    _connectingTimer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(runPeripheralConnectionJob:) userInfo:nil repeats:YES];
+    _scanningTimer = [NSTimer timerWithTimeInterval:30.0f target:self selector:@selector(runCentralManagerScanningJob:) userInfo:nil repeats:YES];
+    _writtingTimer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(runWrittingJob:) userInfo:nil repeats:YES];
     
     [[NSRunLoop mainRunLoop] addTimer:_scanningTimer forMode:NSDefaultRunLoopMode];
     [[NSRunLoop mainRunLoop] addTimer:_connectingTimer forMode:NSDefaultRunLoopMode];
@@ -203,6 +218,7 @@
             NSUInteger randomIndex = arc4random() % _discoveried_peripherals.count;
             [_discoveried_peripherals_lock lock];
             CBPeripheral *peripheral = [_discoveried_peripherals.allValues objectAtIndex:randomIndex];
+            [_discoveried_peripherals removeObjectForKey:peripheral.identifier.UUIDString];
             [_discoveried_peripherals_lock unlock];
             [_connecting_peripherals_lock lock];
             [_connecting_peripherals setObject:peripheral forKey:peripheral.identifier.UUIDString];
