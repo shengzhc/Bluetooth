@@ -115,7 +115,6 @@
 {
     UITableViewCell *cell = [self.deviceListSupporter tableView:tableView cellForRowAtIndexPath:indexPath];
     if ([cell isKindOfClass:[BTDeviceListTableViewCell class]]) {
-#warning SC turn of cell delegate to disable long tap
         ((BTDeviceListTableViewCell *)cell).delegate = nil;
     } else if ([cell isKindOfClass:[BTDegreeUnitSwitchCell class]]) {
         ((BTDegreeUnitSwitchCell *)cell).switchButton.selected = ![BTAppState sharedInstance].isCelsius;

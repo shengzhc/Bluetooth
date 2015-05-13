@@ -8,9 +8,7 @@
 
 #import "UIFont+Bluetooth.h"
 
-#define FONT_DIGITAL 0
-
-#if FONT_DIGITAL
+#if BT_FONT_USE_DIGITAL
 NSString* Bluetooth_Font = @"Digital-7";
 NSString* Bluetooth_Font_Italic = @"Digital-7Italic";
 NSString* Bluetooth_Font_Bold = @"Digital-7";

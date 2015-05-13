@@ -779,6 +779,12 @@
 				Debug = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$SRCROOT/Bluetooth/Bluetooth-PrefixHeader.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"BT_USE_TESTDATA=1",
+					"BT_FONT_USE_DIGITAL=1",
+				);
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				INFOPLIST_FILE = Bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
