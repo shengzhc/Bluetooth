@@ -10,13 +10,12 @@
 
 @implementation BTBranchBlock
 
-- (instancetype)initWithBranchNumber:(double)branchNumber temperature:(double)branchTemperature
+- (instancetype)initWithBranchNumber:(double)branchNumber temperature:(double)branchTemperature targetTemperature:(double)branchTargetTemperature
 {
     if (self = [super init]) {
         self.branchNumber = branchNumber;
         self.branchTemperature = branchTemperature;
-        self.branchTargetTemperature = NSUIntegerMax;
-//        self.branchTargetTemperature = arc4random()%20 + 10;
+        self.branchTargetTemperature = branchTargetTemperature;
         self.branchName = [[self reservedTitles] objectAtIndex:self.branchNumber % [self reservedTitles].count];
     }
     return self;
@@ -24,8 +23,7 @@
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-    BTBranchBlock *copiedBranch = [[BTBranchBlock alloc] initWithBranchNumber:self.branchNumber temperature:self.branchTemperature];
-    copiedBranch.branchTargetTemperature = self.branchTargetTemperature;
+    BTBranchBlock *copiedBranch = [[BTBranchBlock alloc] initWithBranchNumber:self.branchNumber temperature:self.branchTemperature targetTemperature:self.branchTargetTemperature];
     return copiedBranch;
 }
 
@@ -34,24 +32,13 @@
     return @[@"Kitchen", @"Living Room", @"Baby Bedroom", @"Study Room"];
 }
 
-- (double)branchTargetTemperature
-{
-    if (_branchTargetTemperature == NSUIntegerMax) {
-        return NSUIntegerMax;
-    }
-
-    return _branchTargetTemperature;
-}
-
 - (NSData *)branchSendingBytesData
 {
     UInt16 bytes = 0x0000;
-    bytes |= ((self.branchNumber) << 8);
-    if (self.branchTargetTemperature == NSUIntegerMax) {
-        bytes |= 0xFF;
-    } else {
-        bytes |= (NSUInteger)self.branchTargetTemperature;
-    }
+    UInt8 firstByte = self.branchNumber;
+    UInt8 secondByte = ([BTAppState sharedInstance].isColdType ? 0x00 : 0xA0) | (UInt8)self.branchTargetTemperature;
+    bytes = (firstByte << 8) | secondByte;
+
     NSLog(@"Hex value of char is 0x%02x", (unsigned int) bytes);
     return [NSData dataWithBytes:&bytes length:sizeof(UInt16)];
 }

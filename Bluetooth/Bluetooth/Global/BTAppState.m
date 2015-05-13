@@ -49,6 +49,16 @@
     }
 }
 
+- (void)setIsColdType:(BOOL)isColdType
+{
+    if (_isColdType == isColdType) {
+        return;
+    }
+    
+    _isColdType = isColdType;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBTNotificationColdTypeDidChangeNotification object:nil];
+}
+
 - (BOOL)isCelsius
 {
     return self.degreeUnitType == kBTDegreeCelsius;
@@ -58,6 +68,13 @@
 {
     if ([sender conformsToProtocol:@protocol(BTAppStateChangeApprovalProtocol)]) {
         [self setDegreeUnitType:type];
+    }
+}
+
+- (void)updateColdTypeWithIsColdType:(BOOL)isCold sender:(id)sender
+{
+    if ([sender conformsToProtocol:@protocol(BTAppStateChangeApprovalProtocol)]) {
+        [self setIsColdType:isCold];
     }
 }
 

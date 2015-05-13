@@ -38,18 +38,28 @@
 
 - (BTDataPackage *)dataPackage
 {
+    const NSUInteger bytesPerBranch = 3;
     NSUInteger bytes = self.length;
-    if (bytes %2 != 0 || bytes == 0) {
+    if (bytes % bytesPerBranch != 0 || bytes == 0) {
         return nil;
     }
     
-    NSUInteger numberOfBranches = bytes/2;
+    NSUInteger numberOfBranches = bytes/bytesPerBranch;
     NSMutableArray *branchBlocks = [[NSMutableArray alloc] initWithCapacity:numberOfBranches];
     for (NSUInteger branchIndex = 0; branchIndex < numberOfBranches; branchIndex++) {
-        UInt16 buffer = 0;
-        [self getBytes:&buffer range:NSMakeRange(branchIndex * 2, sizeof(UInt16))];
-        BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:buffer & 0xFF temperature:((buffer & 0xFF00) >> 8)];
+        NSMutableArray *branchNumbers = [NSMutableArray new];
+        for (NSUInteger byteIndex = 0; byteIndex < bytesPerBranch; byteIndex++) {
+            UInt8 buffer = 0;
+            [self getBytes:&buffer range:NSMakeRange(branchIndex * bytesPerBranch, sizeof(UInt8))];
+            [branchNumbers addObject:@(buffer)];
+        }
+        assert(branchNumbers.count >= 3);
+        
+        BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:[branchNumbers[0] doubleValue] temperature:[branchNumbers[1] integerValue]%128 targetTemperature:[branchNumbers[2] doubleValue]];
         [branchBlocks addObject:branch];
+        
+        BOOL isCold = [branchNumbers[1] doubleValue] < 128.0;
+        [[BTAppState sharedInstance] updateColdTypeWithIsColdType:isCold sender:branch];
     }
     
     return [[BTDataPackage alloc] initWithBranchBlocks:branchBlocks];

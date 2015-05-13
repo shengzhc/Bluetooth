@@ -18,8 +18,11 @@ typedef enum : NSUInteger {
 
 @interface BTAppState : NSObject
 @property (assign, nonatomic, readonly) BTDegreeUnitType degreeUnitType;
+@property (assign, nonatomic, readonly) BOOL isColdType;
 + (BTAppState *)sharedInstance;
 
 - (BOOL)isCelsius;
 - (void)updateDegreeUnitTypeWithType:(BTDegreeUnitType)type sender:(id)sender;
+- (void)updateColdTypeWithIsColdType:(BOOL)isCold sender:(id)sender;
+
 @end

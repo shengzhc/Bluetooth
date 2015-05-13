@@ -13,4 +13,6 @@
 + (NSNumber *)convertNumberToCelsius:(NSNumber *)number;
 + (NSNumber *)convertNumberToFahrenheit:(NSNumber *)number;
 
+- (NSString *)temperatureFormattedPlainText;
+
 @end

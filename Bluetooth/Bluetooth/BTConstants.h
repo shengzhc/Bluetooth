@@ -18,9 +18,9 @@
 //Notification
 #define kBTNotificationDebugLogNotification @"BTNotificationDebugLogNotification"
 #define kBTNotificationDegreeUnitDidChangeNotification @"BTNotificationDegreeUnitDidChangeNotification"
+#define kBTNotificationColdTypeDidChangeNotification @"BTNotificationColdTypeDidChangeNotification"
 
 //User Default
-
 
 // View Tag
 #define kBTFadeAnimatorBlurViewTag 500

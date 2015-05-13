@@ -24,4 +24,14 @@
     return @(num);
 }
 
+- (NSString *)temperatureFormattedPlainText
+{
+    if (self.integerValue == kBTTemperatureMaxVoidValue || self.integerValue == kBTTemperatureMinVoidValue) {
+        return @"--";
+    } else {
+        NSNumber *temp = [BTAppState sharedInstance].isCelsius ? self : [NSNumber convertNumberToFahrenheit:self];
+        return @(temp.integerValue).stringValue;
+    }
+}
+
 @end

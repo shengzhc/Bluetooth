@@ -31,7 +31,7 @@
 
 - (NSUInteger)indexOfBranchTemperature:(double)temperature degreeUnitType:(BTDegreeUnitType)degreeUnitType
 {
-    if (temperature == NSUIntegerMax) {
+    if (temperature >= kBTTemperatureMaxVoidValue || temperature <= kBTTemperatureMinVoidValue) {
         return 0;
     }
     

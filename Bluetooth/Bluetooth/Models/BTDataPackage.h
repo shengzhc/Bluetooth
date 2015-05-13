@@ -8,13 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BTBranchBlock : NSObject < NSCopying >
+#define kBTTemperatureMaxVoidValue 0xFF
+#define kBTTemperatureMinVoidValue 0x00
+
+@interface BTBranchBlock : NSObject < NSCopying, BTAppStateChangeApprovalProtocol >
 @property (assign, nonatomic) NSUInteger branchNumber;
 @property (assign, nonatomic) double branchTemperature;
 @property (assign, nonatomic) double branchTargetTemperature;
 @property (copy, nonatomic) NSString *branchName;
 
-- (instancetype)initWithBranchNumber:(double)branchNumber temperature:(double)branchTemperature;
+- (instancetype)initWithBranchNumber:(double)branchNumber temperature:(double)branchTemperature targetTemperature:(double)branchTargetTemperature;
 - (NSData *)branchSendingBytesData;
 
 @end
