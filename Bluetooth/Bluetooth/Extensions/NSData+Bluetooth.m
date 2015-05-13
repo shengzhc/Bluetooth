@@ -38,7 +38,7 @@
 
 - (BTDataPackage *)dataPackage
 {
-    const NSUInteger bytesPerBranch = 3;
+    NSUInteger bytesPerBranch = 3;
     NSUInteger bytes = self.length;
     if (bytes % bytesPerBranch != 0 || bytes == 0) {
         return nil;
@@ -50,7 +50,7 @@
         NSMutableArray *branchNumbers = [NSMutableArray new];
         for (NSUInteger byteIndex = 0; byteIndex < bytesPerBranch; byteIndex++) {
             UInt8 buffer = 0;
-            [self getBytes:&buffer range:NSMakeRange(branchIndex * bytesPerBranch, sizeof(UInt8))];
+            [self getBytes:&buffer range:NSMakeRange(branchIndex*bytesPerBranch+byteIndex, sizeof(UInt8))];
             [branchNumbers addObject:@(buffer)];
         }
         assert(branchNumbers.count >= 3);

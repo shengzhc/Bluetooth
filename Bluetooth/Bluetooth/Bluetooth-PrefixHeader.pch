@@ -21,6 +21,7 @@
 #import "POP.h"
 
 #import "BTConstants.h"
+#import "BTAppState.h"
 
 #import "UIFont+Bluetooth.h"
 #import "NSData+Bluetooth.h"
@@ -34,6 +35,5 @@
 
 #import "BTTableViewCellFactory.h"
 #import "BTBluetoothManager.h"
-#import "BTAppState.h"
 
 #endif
