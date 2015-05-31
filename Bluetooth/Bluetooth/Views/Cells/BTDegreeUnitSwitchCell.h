@@ -10,4 +10,5 @@
 
 @interface BTDegreeUnitSwitchCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *switchButton;
+@property (weak, nonatomic) IBOutlet UIButton *modeSwitchButton;
 @end

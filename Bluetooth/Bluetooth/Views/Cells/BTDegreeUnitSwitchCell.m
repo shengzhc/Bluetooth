@@ -34,13 +34,28 @@
     [self.switchButton setAttributedTitle:celsiusState forState:UIControlStateNormal];
     [self.switchButton setAttributedTitle:fahrenheitState forState:UIControlStateSelected];
     
-    [self.switchButton setBackgroundImage:nil forState:(UIControlStateNormal | UIControlStateSelected)];
+    NSMutableAttributedString *coldState = [[NSMutableAttributedString alloc] initWithString:@"Cold" attributes:highlightAttributes];
+    [coldState appendAttributedString:[[NSAttributedString alloc] initWithString:@" / " attributes:seperatorAttributes]];
+    [coldState appendAttributedString:[[NSAttributedString alloc] initWithString:@"Warm" attributes:grayAttributes]];
+    
+    NSMutableAttributedString *warmState = [[NSMutableAttributedString alloc] initWithString:@"Cold" attributes:grayAttributes];
+    [warmState appendAttributedString:[[NSAttributedString alloc] initWithString:@" / " attributes:seperatorAttributes]];
+    [warmState appendAttributedString:[[NSAttributedString alloc] initWithString:@"Warm" attributes:highlightAttributes]];
+    
+    [self.modeSwitchButton setAttributedTitle:coldState forState:UIControlStateNormal];
+    [self.modeSwitchButton setAttributedTitle:warmState forState:UIControlStateSelected];
 }
 
 - (IBAction)didSwitchButtonClicked:(id)sender
 {
     self.switchButton.selected = !self.switchButton.selected;
     [[BTAppState sharedInstance] updateDegreeUnitTypeWithType:self.switchButton.selected ? kBTDegreeFahrenheit : kBTDegreeCelsius sender:self];
+}
+
+- (IBAction)didModeSwitchButtonClicked:(id)sender
+{
+    self.modeSwitchButton.selected = !self.modeSwitchButton.selected;
+    [[BTAppState sharedInstance] updateColdTypeWithIsColdType:!self.modeSwitchButton.selected sender:self];
 }
 
 @end

@@ -379,15 +379,27 @@
                                                         <action selector="didSwitchButtonClicked:" destination="4O8-M9-cx6" eventType="touchUpInside" id="eBE-Wn-v01"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaG-f6-r9K" userLabel="modeSwitch">
+                                                    <rect key="frame" x="251" y="21" width="55" height="34"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="didModeSwitchButtonClicked:" destination="4O8-M9-cx6" eventType="touchUpInside" id="oFL-ns-gyl"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="9O2-8r-NaK" secondAttribute="centerY" id="APP-vV-1WX"/>
+                                                <constraint firstAttribute="trailing" secondItem="DaG-f6-r9K" secondAttribute="trailing" constant="14" id="mqf-Cy-xOc"/>
                                                 <constraint firstItem="9O2-8r-NaK" firstAttribute="leading" secondItem="Grz-CC-f7U" secondAttribute="leading" constant="4" id="uZe-us-S9O"/>
+                                                <constraint firstAttribute="centerY" secondItem="DaG-f6-r9K" secondAttribute="centerY" id="zvf-is-gMZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="modeSwitchButton" destination="DaG-f6-r9K" id="fTt-kQ-K4F"/>
                                             <outlet property="switchButton" destination="9O2-8r-NaK" id="Q1c-oB-Ndp"/>
                                         </connections>
                                     </tableViewCell>

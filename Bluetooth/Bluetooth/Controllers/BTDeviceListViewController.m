@@ -118,6 +118,7 @@
         ((BTDeviceListTableViewCell *)cell).delegate = nil;
     } else if ([cell isKindOfClass:[BTDegreeUnitSwitchCell class]]) {
         ((BTDegreeUnitSwitchCell *)cell).switchButton.selected = ![BTAppState sharedInstance].isCelsius;
+        ((BTDegreeUnitSwitchCell *)cell).modeSwitchButton.selected = ![BTAppState sharedInstance].isColdType;
     }
     return cell;
 }
