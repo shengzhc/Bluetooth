@@ -20,9 +20,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *targetTemperatureLabel;
 @property (weak, nonatomic) id< BTDeviceListTableViewCellDelegate > delegate;
 
-+ (NSDictionary *)currentTemperatureTextAttributes;
-+ (NSDictionary *)currentTemperatureDegreeAttributes;
-+ (NSDictionary *)targetTemperatureTextAttributes;
-+ (NSDictionary *)targetTemperatureDegreeAttributes;
++ (NSDictionary *)currentTemperatureTextAttributesWithIsActive:(BOOL)isActive;
++ (NSDictionary *)currentTemperatureDegreeAttributesWithIsActive:(BOOL)isActive;
++ (NSDictionary *)targetTemperatureTextAttributesWithIsActive:(BOOL)isActive;
++ (NSDictionary *)targetTemperatureDegreeAttributesWithIsActive:(BOOL)isActive;
 
 @end

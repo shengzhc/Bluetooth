@@ -91,7 +91,7 @@
             __strong BTDeviceListViewController *deviceListViewController = weakSelf;
             if (deviceListViewController) {
                 BTBranchBlock *originalBranch = [deviceListViewController.deviceListSupporter branchWithBranchNumber:branch.branchNumber];
-                if (originalBranch.branchTargetTemperature != branch.branchTargetTemperature) {
+                if (originalBranch.branchTargetTemperature != branch.branchTargetTemperature || originalBranch.isActive != branch.isActive) {
                     [deviceListViewController.deviceListSupporter updateBranchWithBranchNumber:branch.branchNumber updatedBranch:branch];
                 }
             }

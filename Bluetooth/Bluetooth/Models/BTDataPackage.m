@@ -25,6 +25,7 @@
 - (instancetype)copyWithZone:(NSZone *)zone
 {
     BTBranchBlock *copiedBranch = [[BTBranchBlock alloc] initWithBranchNumber:self.branchNumber temperature:self.branchTemperature targetTemperature:self.branchTargetTemperature];
+    copiedBranch.isActive = self.isActive;
     return copiedBranch;
 }
 

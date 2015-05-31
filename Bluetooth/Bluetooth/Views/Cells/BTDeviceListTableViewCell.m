@@ -14,52 +14,40 @@
 
 @implementation BTDeviceListTableViewCell
 
-+ (NSDictionary *)currentTemperatureTextAttributes
++ (NSDictionary *)currentTemperatureTextAttributesWithIsActive:(BOOL)isActive
 {
-    static NSDictionary *currentTemperatureTextAttributes = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        currentTemperatureTextAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:36.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
-    });
-    
-    return currentTemperatureTextAttributes;
+    if (isActive) {
+        return @{NSFontAttributeName: [UIFont bluetoothFontOfSize:36.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    } else {
+        return @{NSFontAttributeName: [UIFont bluetoothFontOfSize:36.0], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
+    }
 }
 
-+ (NSDictionary *)currentTemperatureDegreeAttributes
++ (NSDictionary *)currentTemperatureDegreeAttributesWithIsActive:(BOOL)isActive
 {
-    static NSDictionary *currentTemperatureDegreeAttributes = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        currentTemperatureDegreeAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:16], NSForegroundColorAttributeName: [UIColor whiteColor], (NSString *)kCTSuperscriptAttributeName: @(2.0)};
-    });
-    
-    return currentTemperatureDegreeAttributes;
+    if (isActive) {
+        return @{NSFontAttributeName: [UIFont bluetoothFontOfSize:16], NSForegroundColorAttributeName: [UIColor whiteColor], (NSString *)kCTSuperscriptAttributeName: @(2.0)};
+    } else {
+        return @{NSFontAttributeName: [UIFont bluetoothFontOfSize:16], NSForegroundColorAttributeName: [UIColor lightGrayColor], (NSString *)kCTSuperscriptAttributeName: @(2.0)};
+    }
 }
 
-+ (NSDictionary *)targetTemperatureTextAttributes
++ (NSDictionary *)targetTemperatureTextAttributesWithIsActive:(BOOL)isActive
 {
-    static NSDictionary *targetTemperatureTextAttributes = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        targetTemperatureTextAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:18], NSForegroundColorAttributeName: [UIColor bambooColor]};
-    });
-    
-    return targetTemperatureTextAttributes;
+    if (isActive) {
+        return @{NSFontAttributeName: [UIFont bluetoothFontOfSize:18], NSForegroundColorAttributeName: [UIColor bambooColor]};
+    } else {
+        return @{NSFontAttributeName: [UIFont bluetoothFontOfSize:18], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
+    }
 }
 
-+ (NSDictionary *)targetTemperatureDegreeAttributes
++ (NSDictionary *)targetTemperatureDegreeAttributesWithIsActive:(BOOL)isActive
 {
-    static NSDictionary *targetTemperatureDegreeAttributes = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        targetTemperatureDegreeAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:12], NSForegroundColorAttributeName: [UIColor bambooColor], (NSString *)kCTSuperscriptAttributeName: @(0.8)};
-    });
-    
-    return targetTemperatureDegreeAttributes;
+    if (isActive) {
+        return @{NSFontAttributeName: [UIFont bluetoothFontOfSize:12], NSForegroundColorAttributeName: [UIColor bambooColor], (NSString *)kCTSuperscriptAttributeName: @(0.8)};
+    } else {
+        return @{NSFontAttributeName: [UIFont bluetoothFontOfSize:12], NSForegroundColorAttributeName: [UIColor lightGrayColor], (NSString *)kCTSuperscriptAttributeName: @(0.8)};
+    }
 }
 
 - (void)awakeFromNib

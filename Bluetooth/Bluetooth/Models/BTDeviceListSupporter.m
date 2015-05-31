@@ -54,6 +54,7 @@
     BTBranchBlock *originalBranch = [self branchWithBranchNumber:branchNumber];
     originalBranch.branchTemperature = branch.branchTemperature;
     originalBranch.branchTargetTemperature = branch.branchTargetTemperature;
+    originalBranch.isActive = branch.isActive;
     [[BTBluetoothManager sharedInstance] sendDataPackage:self.dataPackage withSender:self];
 
     NSUInteger index = [self.dataPackage.branches indexOfObject:originalBranch];
@@ -107,15 +108,16 @@
             BTBranchBlock *branch = self.dataPackage.branches[indexPath.row];
             BTDeviceListTableViewCell *deviceListCell = (BTDeviceListTableViewCell *)cell;
             deviceListCell.nameLabel.text = branch.branchName;
+            deviceListCell.nameLabel.textColor = branch.isActive ? [UIColor whiteColor] : [UIColor lightGrayColor];
             
             NSNumber *currentTemperature = [BTAppState sharedInstance].isCelsius ? @(branch.branchTemperature) : [NSNumber convertNumberToFahrenheit:@(branch.branchTemperature)];
-            NSMutableAttributedString *currentTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(currentTemperature.integerValue).stringValue attributes:[BTDeviceListTableViewCell currentTemperatureTextAttributes]];
-            [currentTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:([BTAppState sharedInstance].isCelsius ? [NSString celsius] : [NSString fahrenheit]) attributes:[BTDeviceListTableViewCell currentTemperatureDegreeAttributes]]];
+            NSMutableAttributedString *currentTemperatureString = [[NSMutableAttributedString alloc] initWithString:@(currentTemperature.integerValue).stringValue attributes:[BTDeviceListTableViewCell currentTemperatureTextAttributesWithIsActive:branch.isActive]];
+            [currentTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:([BTAppState sharedInstance].isCelsius ? [NSString celsius] : [NSString fahrenheit]) attributes:[BTDeviceListTableViewCell currentTemperatureDegreeAttributesWithIsActive:branch.isActive]]];
             deviceListCell.currentTemperatureLabel.attributedText = currentTemperatureString;
 
             NSString *targetTemperatureText = [@(branch.branchTargetTemperature) temperatureFormattedPlainText];
-            NSMutableAttributedString *targetTemperatureString = [[NSMutableAttributedString alloc] initWithString:targetTemperatureText attributes:[BTDeviceListTableViewCell targetTemperatureTextAttributes]];
-            [targetTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:([BTAppState sharedInstance].isCelsius ? [NSString celsius] : [NSString fahrenheit]) attributes:[BTDeviceListTableViewCell targetTemperatureDegreeAttributes]]];
+            NSMutableAttributedString *targetTemperatureString = [[NSMutableAttributedString alloc] initWithString:targetTemperatureText attributes:[BTDeviceListTableViewCell targetTemperatureTextAttributesWithIsActive:branch.isActive]];
+            [targetTemperatureString appendAttributedString:[[NSAttributedString alloc] initWithString:([BTAppState sharedInstance].isCelsius ? [NSString celsius] : [NSString fahrenheit]) attributes:[BTDeviceListTableViewCell targetTemperatureDegreeAttributesWithIsActive:branch.isActive]]];
             deviceListCell.targetTemperatureLabel.attributedText = targetTemperatureString;
         }
     } else if (indexPath.section == 1) {
