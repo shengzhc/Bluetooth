@@ -38,7 +38,7 @@
 {
     UInt16 bytes = 0x0000;
     UInt8 firstByte = self.branchNumber;
-    UInt8 secondByte = ([BTAppState sharedInstance].isColdType ? 0x00 : 0xA0) | (UInt8)self.branchTargetTemperature;
+    UInt8 secondByte = ([BTAppState sharedInstance].isColdType ? 0x80 : 0x00) | (UInt8)self.branchTargetTemperature;
     bytes = (firstByte << 8) | secondByte;
 
     NSLog(@"Hex value of char is 0x%02x", (unsigned int) bytes);

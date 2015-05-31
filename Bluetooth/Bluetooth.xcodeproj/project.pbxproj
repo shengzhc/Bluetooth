@@ -776,7 +776,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
-					"BT_USE_TESTDATA=1",
+					"BT_USE_TESTDATA=0",
 					"BT_FONT_USE_DIGITAL=1",
 				);
 				GCC_WARN_UNDECLARED_SELECTOR = NO;

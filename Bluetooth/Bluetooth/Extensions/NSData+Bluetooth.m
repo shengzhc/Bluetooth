@@ -54,12 +54,9 @@
             [branchNumbers addObject:@(buffer)];
         }
         assert(branchNumbers.count >= 3);
-        
-        BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:[branchNumbers[0] doubleValue] temperature:[branchNumbers[1] integerValue]%128 targetTemperature:[branchNumbers[2] doubleValue]];
+
+        BTBranchBlock *branch = [[BTBranchBlock alloc] initWithBranchNumber:[branchNumbers[0] doubleValue] temperature:[branchNumbers[1] doubleValue] targetTemperature:[branchNumbers[2] integerValue] & 0x7F];
         [branchBlocks addObject:branch];
-        
-        BOOL isCold = [branchNumbers[1] doubleValue] < 128.0;
-        [[BTAppState sharedInstance] updateColdTypeWithIsColdType:isCold sender:branch];
     }
     
     return [[BTDataPackage alloc] initWithBranchBlocks:branchBlocks];
