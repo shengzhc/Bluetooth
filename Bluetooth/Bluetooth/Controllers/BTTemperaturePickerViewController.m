@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *degreeUnitSwitchButton;
+@property (weak, nonatomic) IBOutlet UIButton *branchSwitchButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end
 
@@ -75,6 +76,24 @@
     [self.degreeUnitSwitchButton setAttributedTitle:fahrenheitState forState:UIControlStateSelected];
     self.degreeUnitSwitchButton.selected = self.pickerSupporter.degreeUnitType != kBTDegreeCelsius;
     
+    fontSize = 24.0f;
+    
+    highlightAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:fontSize], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    grayAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:fontSize], NSForegroundColorAttributeName: [[UIColor whiteColor] colorWithAlphaComponent:.5f]};
+    seperatorAttributes = @{NSFontAttributeName: [UIFont bluetoothFontOfSize:fontSize - 2], NSForegroundColorAttributeName: [UIColor coralColor], NSBaselineOffsetAttributeName: @(1.5)};
+    
+    NSMutableAttributedString *onState = [[NSMutableAttributedString alloc] initWithString:@"On" attributes:highlightAttributes];
+    [onState appendAttributedString:[[NSAttributedString alloc] initWithString:@" / " attributes:seperatorAttributes]];
+    [onState appendAttributedString:[[NSAttributedString alloc] initWithString:@"Off" attributes:grayAttributes]];
+    
+    NSMutableAttributedString *offState = [[NSMutableAttributedString alloc] initWithString:@"On" attributes:grayAttributes];
+    [offState appendAttributedString:[[NSAttributedString alloc] initWithString:@" / " attributes:seperatorAttributes]];
+    [offState appendAttributedString:[[NSAttributedString alloc] initWithString:@"Off" attributes:highlightAttributes]];
+    
+    [self.branchSwitchButton setAttributedTitle:onState forState:UIControlStateNormal];
+    [self.branchSwitchButton setAttributedTitle:offState forState:UIControlStateSelected];
+    self.branchSwitchButton.selected = !self.branch.isActive;
+    
     [self.topContainer addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopContainer:)]];
 }
 
@@ -119,6 +138,13 @@
         }
     }];
 }
+
+- (IBAction)didBranchSwitchButtonClicked:(id)sender
+{
+    self.branchSwitchButton.selected = !self.branchSwitchButton.selected;
+    self.branch.isActive = !self.branchSwitchButton.selected;
+}
+
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

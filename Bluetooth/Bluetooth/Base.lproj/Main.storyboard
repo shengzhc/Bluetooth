@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ySD-H3-Lm5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C2055" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ySD-H3-Lm5">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Light.ttf">
@@ -102,12 +101,28 @@
                                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Hu-iG-6hw">
+                                                <rect key="frame" x="257" y="7" width="51" height="31"/>
+                                            </switch>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbB-v7-MI2" userLabel="On/Off">
+                                                <rect key="frame" x="251" y="5" width="55" height="34"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didBranchSwitchButtonClicked:" destination="epe-KJ-xb5" eventType="touchUpInside" id="fle-zz-9yx"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="KbB-v7-MI2" secondAttribute="trailing" constant="14" id="bYo-wi-P6l"/>
                                             <constraint firstItem="7G2-nU-LAk" firstAttribute="leading" secondItem="uU3-zh-fD0" secondAttribute="leading" constant="14" id="eCc-dQ-nKn"/>
+                                            <constraint firstAttribute="centerY" secondItem="KbB-v7-MI2" secondAttribute="centerY" id="ml5-LP-Jfr"/>
                                             <constraint firstAttribute="centerY" secondItem="7G2-nU-LAk" secondAttribute="centerY" id="msa-Yt-U6V"/>
+                                            <constraint firstAttribute="centerY" secondItem="1Hu-iG-6hw" secondAttribute="centerY" id="nIA-mh-jvC"/>
                                             <constraint firstAttribute="height" constant="44" id="tNp-cG-9th"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Hu-iG-6hw" secondAttribute="trailing" constant="14" id="v4G-c7-vq4"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Su-GK-XIN" userLabel="bottom">
@@ -261,6 +276,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="branchSwitchButton" destination="KbB-v7-MI2" id="Rx0-xd-C3t"/>
                         <outlet property="cancelButton" destination="4s0-n4-QH0" id="jUF-i8-xkZ"/>
                         <outlet property="degreeUnitSwitchButton" destination="y5h-tg-Ho1" id="xQ6-rV-jck"/>
                         <outlet property="doneButton" destination="Xan-sQ-U3Y" id="6Mw-Nk-8rT"/>
@@ -420,119 +436,9 @@
             </objects>
             <point key="canvasLocation" x="609" y="398"/>
         </scene>
-        <!--Temperature Adjust View Controller-->
-        <scene sceneID="5M5-qm-vyh">
-            <objects>
-                <viewController storyboardIdentifier="BTTemperatureAdjustViewControllerIdentifier" id="Snr-G5-YsJ" customClass="BTTemperatureAdjustViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="K4e-Pn-do1"/>
-                        <viewControllerLayoutGuide type="bottom" id="Zie-ex-2Q0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JsT-P5-sIg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuI-zd-EOh" userLabel="border">
-                                <rect key="frame" x="20" y="144" width="280" height="280"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="fuI-zd-EOh" secondAttribute="height" id="ndf-aG-chE"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qoo-yS-As1" customClass="BTTemperatureFanView">
-                                <rect key="frame" x="48" y="172" width="224" height="224"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Qoo-yS-As1" secondAttribute="height" multiplier="1:1" id="ptN-fQ-Y4a"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                        <integer key="value" value="18"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="percentage">
-                                        <real key="value" value="0.59999999999999998"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXI-mL-F84" userLabel="CircleBackground" customClass="BTCircleView">
-                                <rect key="frame" x="110" y="234" width="100" height="100"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="9i3-YG-4eG"/>
-                                    <constraint firstAttribute="width" secondItem="fXI-mL-F84" secondAttribute="height" id="mPA-oz-z7J"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                        <integer key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="35" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tb-3z-il4" userLabel="TemperatureLabel">
-                                <rect key="frame" x="150" y="274" width="20" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0q-hh-YWb" userLabel="check">
-                                <rect key="frame" x="2" y="122" width="44" height="44"/>
-                                <state key="normal" backgroundImage="ico_cross">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didCloseButtonClicked:" destination="Snr-G5-YsJ" eventType="touchUpInside" id="Sih-mN-JXE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83P-7R-CN4" userLabel="close">
-                                <rect key="frame" x="274" y="122" width="44" height="44"/>
-                                <state key="normal" backgroundImage="ico_check">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didCheckButtonClicked:" destination="Snr-G5-YsJ" eventType="touchUpInside" id="FDh-h6-Qmb"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="fuI-zd-EOh" secondAttribute="centerY" id="1iw-T0-7CY"/>
-                            <constraint firstAttribute="centerY" secondItem="Qoo-yS-As1" secondAttribute="centerY" id="2rc-ty-Sv4"/>
-                            <constraint firstAttribute="trailing" secondItem="fuI-zd-EOh" secondAttribute="trailing" constant="20" id="3hL-dP-yPk"/>
-                            <constraint firstAttribute="centerY" secondItem="fXI-mL-F84" secondAttribute="centerY" id="4E6-aj-Tve"/>
-                            <constraint firstItem="O0q-hh-YWb" firstAttribute="top" secondItem="83P-7R-CN4" secondAttribute="top" id="6Ng-7d-hwF"/>
-                            <constraint firstAttribute="centerY" secondItem="0tb-3z-il4" secondAttribute="centerY" id="9pS-4Y-GNF"/>
-                            <constraint firstAttribute="trailing" secondItem="Qoo-yS-As1" secondAttribute="trailing" constant="48" id="CLc-ho-W3Y"/>
-                            <constraint firstAttribute="centerX" secondItem="0tb-3z-il4" secondAttribute="centerX" id="FNf-lW-srL"/>
-                            <constraint firstItem="fuI-zd-EOh" firstAttribute="top" secondItem="O0q-hh-YWb" secondAttribute="bottom" constant="-22" id="LTS-MZ-20R"/>
-                            <constraint firstItem="fuI-zd-EOh" firstAttribute="leading" secondItem="JsT-P5-sIg" secondAttribute="leading" constant="20" id="Q4E-P8-B2Y"/>
-                            <constraint firstItem="fuI-zd-EOh" firstAttribute="leading" secondItem="O0q-hh-YWb" secondAttribute="leading" constant="18" id="iYh-JJ-1Yn"/>
-                            <constraint firstItem="Qoo-yS-As1" firstAttribute="leading" secondItem="JsT-P5-sIg" secondAttribute="leading" constant="48" id="jdr-Tf-4QQ"/>
-                            <constraint firstItem="fuI-zd-EOh" firstAttribute="trailing" secondItem="83P-7R-CN4" secondAttribute="trailing" constant="-18" id="os2-Fx-QhK"/>
-                            <constraint firstAttribute="centerX" secondItem="fXI-mL-F84" secondAttribute="centerX" id="vBf-lk-yso"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="backgroundView" destination="fuI-zd-EOh" id="8yP-DE-Hvj"/>
-                        <outlet property="checkButton" destination="83P-7R-CN4" id="J4T-7o-mPA"/>
-                        <outlet property="circleBorderView" destination="fXI-mL-F84" id="tzW-Pm-3fZ"/>
-                        <outlet property="closeButton" destination="O0q-hh-YWb" id="yrR-TL-xj6"/>
-                        <outlet property="temperatureLabel" destination="0tb-3z-il4" id="Wiu-5k-iNQ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U8v-Vq-LZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1044" y="398"/>
-        </scene>
     </scenes>
     <resources>
         <image name="bg_galaxy_02.jpg" width="1080" height="1920"/>
-        <image name="ico_check" width="44" height="44"/>
-        <image name="ico_cross" width="44" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

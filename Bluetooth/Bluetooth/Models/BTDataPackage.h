@@ -16,6 +16,7 @@
 @property (assign, nonatomic) double branchTemperature;
 @property (assign, nonatomic) double branchTargetTemperature;
 @property (copy, nonatomic) NSString *branchName;
+@property (assign, nonatomic) BOOL isActive;
 
 - (instancetype)initWithBranchNumber:(double)branchNumber temperature:(double)branchTemperature targetTemperature:(double)branchTargetTemperature;
 - (NSData *)branchSendingBytesData;

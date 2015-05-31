@@ -17,6 +17,7 @@
         self.branchTemperature = branchTemperature;
         self.branchTargetTemperature = branchTargetTemperature;
         self.branchName = [[self reservedTitles] objectAtIndex:self.branchNumber % [self reservedTitles].count];
+        self.isActive = (NSLocationInRange((NSUInteger)self.branchTemperature, NSMakeRange(kBTTemperatureMinVoidValue+1, kBTTemperatureMaxVoidValue-1)));
     }
     return self;
 }
